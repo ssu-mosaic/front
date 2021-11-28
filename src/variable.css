@@ -1,0 +1,8 @@
+:root{
+    --main-blue:rgba(10, 53, 132,1);
+    --main-screen-size:115vh;
+    --main-border:1px solid rgba(228, 228, 228,1);
+    --main-background-color:rgba(245, 246, 248,1);
+    --grey-blue:rgba(78, 96, 132,1);
+    --dark-blue:rgba(54, 65, 95,1);
+}

@@ -1,0 +1,46 @@
+.screenPage{
+    display: flex;
+    
+}
+
+.screenPage__sidemenu{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 1;
+    height:var(--main-screen-size);
+    background-color: white;
+    width : 220px;
+    margin-right:15px;
+    border-right: var(--main-border);
+    
+}
+
+
+
+.screenPage__sidemenu_attr{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 70px;
+    border-bottom:var(--main-border);
+    padding: 0px 20px;
+
+
+    font-weight: bold;
+    font-size: 0.9em;
+    
+}
+
+
+
+.screenPage__sidemenu_blue{
+    background-color:var(--grey-blue);
+    color :white;
+}
+.screenPage__sidemenu_blue i{
+    color :yellow;
+}
+.screenPage__sidemenu_white{
+    background-color:white;
+}

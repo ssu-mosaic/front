@@ -1,0 +1,58 @@
+.menuBar {
+    display: flex;
+    background-color: var(--main-blue);
+    
+    
+}
+
+/*main menu navigation bar ratio adjustment*/
+.menuBar__column{
+    /* flex-grow: 1; flex-shrink: 1; flex-basis: 0%; */
+    flex: 1 1 0;
+
+    align-items: center;
+
+    color :white;
+    font-weight: 550;
+}
+.menuBar__column:first-child{
+    margin : 0px 40px;
+}
+
+.menuBar__column:nth-child(2){
+    flex: 7 1 0;
+    
+    margin-left: 20px;
+    padding-top : 25px;
+}
+.menuBar__column:last-child{
+    flex: 2 1 0;
+    padding-top : 17px;
+}
+
+
+
+.menuBar__logo{
+    width: 130px;
+    height: 70px;
+}
+
+.menuBar__list{
+    display: flex;   
+    justify-content: flex-start;
+    
+}
+
+.menuBar__btn{
+    margin : 0px 25px;
+}
+
+.menuBar__profile{
+    display: flex;
+    align-items: center;
+}
+
+.menuBar__profile i{
+    margin : 0px 15px;
+}
+
