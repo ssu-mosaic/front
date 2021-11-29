@@ -1,0 +1,11 @@
+.screenPage__content{
+    flex: 7 1 0;
+}
+
+.screenPage__content_box{
+    background-color: white;
+    flex-direction: column;
+    padding: 0px 25px;
+    margin : 30px 15px;
+    margin-bottom: 0px;
+}

@@ -34,7 +34,7 @@
     background-color:var(--grey-blue);
     color :white;
 }
-.screenPage__sidemenu_blue i{
+.screenPage__sidemenu_blue svg{
     color :yellow;
 }
 .screenPage__sidemenu_white{

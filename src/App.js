@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch , Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
+import SearchItem from "./routes/SearchItem";
 
 function App() {
   return (
@@ -8,6 +9,9 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/order/searchitem">
+          <SearchItem />
         </Route>
         <Route path="/">
           <Home />

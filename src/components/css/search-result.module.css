@@ -1,0 +1,30 @@
+
+.screenPage__searchResultTable tr:first-child > th[scope="col"]{
+    background-color : rgba(230, 230, 230,1);
+}
+
+th, 
+td{
+    border: 1px solid rgba(200, 200, 200,1);
+    padding :10px;
+    
+}
+td{
+    font-size: 0.95em;
+    text-align: center;
+    vertical-align: middle;
+}
+td img{
+    height :70px;
+    width : 100px;
+}
+
+.screenPage__searchResultTable{
+    border-collapse: collapse;
+    background-color:var(--main-background-color);
+    table-layout: auto;
+    border: var(--main-border);
+    width :100%;
+
+}
+
