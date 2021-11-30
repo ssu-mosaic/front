@@ -5,7 +5,7 @@ function SearchResultTable(){
 
     return(
         <table className={styles.screenPage__searchResultTable}>
-            <tr>
+            <tr className={styles.screenPage__searchResultTable_header}>
                 <th scope="col">No.</th>
                 <th scope="col">단품코드</th>
                 <th scope="col">단품명</th>
@@ -15,7 +15,7 @@ function SearchResultTable(){
                 <th scope="col">발주단가{`(단위)`}</th>
                 <th scope="col">물품구분</th>
             </tr>
-            <tr>
+            <tr className={styles.screenPage__searchResultTable_items}>
                 <td>1</td>
                 <td>39847390485729</td>
                 <td>??????</td>
@@ -25,7 +25,7 @@ function SearchResultTable(){
                 <td>0</td>
                 <td>?</td>
             </tr>
-            <tr>
+            <tr className={styles.screenPage__searchResultTable_items}>
                 <td>2</td>
                 <td>2342342343433729</td>
                 <td>??????</td>
