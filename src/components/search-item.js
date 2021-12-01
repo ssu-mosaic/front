@@ -1,6 +1,6 @@
 import contentStyles from "./css/screen-content.module.css";
 import styles from "./css/search-item.module.css";
-import SearchResultTable from "./search-result";
+import SearchItemResultTable from "./search-item-result";
 
 function SearchForItem(){
 
@@ -55,7 +55,7 @@ function SearchForItem(){
             </div>
             <div className={styles.screenPage__searchResult}>
                 <div className={styles.screenPage_title}><span>검색결과</span></div>
-                <SearchResultTable/>
+                <SearchItemResultTable/>
             </div>
         </div>
     

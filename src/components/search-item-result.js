@@ -1,7 +1,7 @@
-import styles from "./css/search-result.module.css";
+import styles from "./css/search-item-result.module.css";
 import testImg from './test.JPG';
 
-function SearchResultTable(){
+function SearchItemResultTable(){
 
     return(
         <table className={styles.screenPage__searchResultTable}>
@@ -40,4 +40,4 @@ function SearchResultTable(){
     );
 }
 
-export default SearchResultTable;
+export default SearchItemResultTable;
