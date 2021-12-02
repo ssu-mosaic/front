@@ -1,7 +1,6 @@
 import contentStyles from "./css/screen-content.module.css";
 import styles from "./css/search-order.module.css";
 import SearchOrderResultTable from "./search-order-result";
-import DateRangePicker from 'rsuite/DateRangePicker';
 
 function SearchForItem(){
 

@@ -1,32 +1,37 @@
 import styles from "./css/sidemenu-bar.module.css";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-function SideMenuBar(){
+
+function SideMenuBar({sideMenu}){
 
     return(
         <div className={styles.screenPage__sidemenu}>
-
             <div className={`${styles.screenPage__sidemenu_blue} ${styles.screenPage__sidemenu_attr}`}>
-                <span>즐겨찾기</span>
+                <span>{sideMenu.name}</span>
                 <FontAwesomeIcon icon={faChevronDown} />
             </div>
 
-            <div className={`${styles.screenPage__sidemenu_white} ${styles.screenPage__sidemenu_attr}`}>
-                <span>발주등록</span>
-            </div>            
+            {(sideMenu.elementsObj).map((sideMenuElement)=>(
+                <Link to= {sideMenuElement.link}>
+                    <div className={`${styles.screenPage__sidemenu_white} ${styles.screenPage__sidemenu_attr}`}>
+                        <span>{sideMenuElement.name}</span>
+                    </div> 
+                </Link>
 
-            <div className={`${styles.screenPage__sidemenu_white} ${styles.screenPage__sidemenu_attr}`}>
-                <span>발주확정</span>
-            </div>
-
-            <div className={`${styles.screenPage__sidemenu_white} ${styles.screenPage__sidemenu_attr}`}>
-                <span>발주조회</span>
-            </div>
+            ))}
             
         </div>
 
     );
 
 }
+
+SideMenuBar.propTypes ={
+
+    sideMenu : PropTypes.object.isRequired,
+};
+
 
 export default SideMenuBar;

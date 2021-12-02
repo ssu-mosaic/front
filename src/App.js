@@ -5,6 +5,34 @@ import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
 
 function App() {
+
+  const sideMenuObj = function(topName, sideMenuElements){
+    
+    return({
+        name: topName,
+        elementsObj: sideMenuElements,
+    });
+  };
+
+  const orderSideMenuElements =[
+
+    {
+      name : "발주등록",
+      link : "/order/searchitem",
+    },
+    {
+      name : "발주확정",
+      link : "/",
+    },
+    {
+      name : "발주조회",
+      link : "/order/searchorder",
+    },
+  ];
+
+  const homeMenuObj = sideMenuObj("홈",[]);
+  const orderMenuObj = sideMenuObj("발주관리",orderSideMenuElements);
+
   return (
     <Router>
       <Switch>
@@ -12,17 +40,20 @@ function App() {
           <Login />
         </Route>
         <Route path="/order/searchorder">
-          <SearchOrder />
+          <SearchOrder sideMenu={orderMenuObj}/>
         </Route>
         <Route path="/order/searchitem">
-          <SearchItem />
+          <SearchItem sideMenu={orderMenuObj}/>
         </Route>
         <Route path="/">
-          <Home />
+          <Home sideMenu={homeMenuObj}/>
         </Route>
       </Switch>
     </Router>
   );
 }
+
+
+
 
 export default App;

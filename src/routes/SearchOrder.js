@@ -2,14 +2,15 @@ import MenuBar from "../components/menu-bar";
 import styles from "./css/Home.module.css";
 import SideMenuBar from "../components/sidemenu-bar";
 import SearchForOrder from "../components/search-order";
+import PropTypes from "prop-types";
 
-function SearchOrder(){
+function SearchOrder({sideMenu}){
 
     return(
         <div>
             <MenuBar/>
             <div className={styles.screenPage}>
-                <SideMenuBar/>
+                <SideMenuBar sideMenu={sideMenu}/>
                 <SearchForOrder/>
             </div>
             
@@ -18,5 +19,10 @@ function SearchOrder(){
     
     );
 }
+
+SearchOrder.propTypes ={
+
+    sideMenu : PropTypes.object.isRequired,
+};
 
 export default SearchOrder;
