@@ -1,4 +1,4 @@
-import styles from "./css/search-order-result.module.css";
+import styles from "./css/result-table.module.css";
 import testImg from './test.JPG';
 
 function SearchOrderResultTable(){

@@ -1,17 +1,17 @@
 import contentStyles from "./css/screen-content.module.css";
 import styles from "./css/search-order.module.css";
-import SearchOrderResultTable from "./search-order-result";
+import ConfirmItemResultTable from "./order-confirm-result";
 
-function SearchForItem(){
+function ConfirmForItem(){
 
     return(
 
         <div className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}>
             <div className={styles.screenPage__searchItem}>
-                <span>발주조회</span>
+                <span>발주확정</span>
             </div>
             <div className={styles.screenPage__nextButton}>
-                <input type="button" value="발주확정"/>
+                <input type="button" value="발주등록"/>
             </div>
             <div className={styles.screenPage__searchBox}>
                 <div className={styles.screenPage_title}><span>검색옵션</span></div>
@@ -42,14 +42,6 @@ function SearchForItem(){
                                 <label for="condition">물품명 </label> 
                                 <input type="text" name="condition" required/>
                             </div>
-                            <div className={styles.screenPage__searchOption}>
-                                <label for="condition">확정</label> 
-                                <select name="condition">
-                                    <option value="all">전체</option>
-                                    <option value="positive">확정</option>
-                                    <option value="negative">미확정</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                     <div className={styles.screenPage__section_column}>
@@ -58,12 +50,12 @@ function SearchForItem(){
                 </form>
             </div>
             <div className={styles.screenPage__searchResult}>
-                <div className={styles.screenPage_title}><span>발주목록</span></div>
-                <SearchOrderResultTable/>
+                <div className={styles.screenPage_title}><span>발주확정대기</span></div>
+                <ConfirmItemResultTable/>
             </div>
         </div>
     
     );
 }
 
-export default SearchForItem;
+export default ConfirmForItem;

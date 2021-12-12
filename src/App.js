@@ -3,6 +3,7 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
+import ConfirmItem from "./routes/ConfirmItem";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
     },
     {
       name : "발주확정",
-      link : "/",
+      link : "/order/confirmitem",
     },
     {
       name : "발주조회",
@@ -38,6 +39,9 @@ function App() {
       <Switch>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/order/confirmitem">
+          <ConfirmItem sideMenu={orderMenuObj}/>
         </Route>
         <Route path="/order/searchorder">
           <SearchOrder sideMenu={orderMenuObj}/>
