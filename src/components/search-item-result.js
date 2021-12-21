@@ -1,4 +1,6 @@
 import styles from "./css/result-table.module.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import testImg from './test.JPG';
 
 function SearchItemResultTable(){
@@ -18,7 +20,7 @@ function SearchItemResultTable(){
             </tr>
             <tr className={styles.screenPage__searchResultTable_items}>
                 <td>1</td>
-                <td><button>추가버튼모양뭐로하지</button></td>
+                <td><button><FontAwesomeIcon icon={faStar} size="2x" /></button></td>
                 <td>39847390485729</td>
                 <td>??????</td>
                 <td><img src={testImg} alt="test img" /></td>
@@ -29,7 +31,7 @@ function SearchItemResultTable(){
             </tr>
             <tr className={styles.screenPage__searchResultTable_items}>
                 <td>2</td>
-                <td><button>추가버튼모양뭐로하지</button></td>
+                <td><button><FontAwesomeIcon icon={faStar} size="2x" /></button></td>
                 <td>345342343433729</td>
                 <td>??????</td>
                 <td><img src={testImg} alt="test img" /></td>

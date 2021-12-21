@@ -21,6 +21,11 @@
     width : 100px;
 }
 
+.screenPage__searchResultTable_items button {
+    border : none;
+    background-color:var(--main-background-color);
+}
+
 .screenPage__searchResultTable{
     border-collapse: collapse;
     background-color:var(--main-background-color);

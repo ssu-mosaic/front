@@ -4,7 +4,7 @@ import Login from "./routes/Login";
 import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
 import ConfirmItem from "./routes/ConfirmItem";
-import { PaginationTable } from "./components/paginationTable";
+
 
 function App() {
 
@@ -38,9 +38,6 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/test">
-          <PaginationTable />
-        </Route>
         <Route path="/login">
           <Login />
         </Route>

@@ -1,4 +1,6 @@
 import styles from "./css/result-table.module.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import testImg from './test.JPG';
 
 function ConfirmResultTable(){
@@ -26,8 +28,8 @@ function ConfirmResultTable(){
                 <td>?</td>
                 <td>0</td>
                 <td>?</td>
-                <td><button>취소버튼모양</button></td>
-                <td><button>확정버튼모양</button></td>
+                <td><button><FontAwesomeIcon icon={faTimes} size="2x" /></button></td>
+                <td><button><FontAwesomeIcon icon={faCheck} size="2x" /></button></td>
             </tr>
             <tr className={styles.screenPage__searchResultTable_items}>
                 <td>2</td>
@@ -38,8 +40,8 @@ function ConfirmResultTable(){
                 <td>?</td>
                 <td>0</td>
                 <td>?</td>
-                <td><button>취소버튼모양</button></td>
-                <td><button>확정버튼모양</button></td>
+                <td><button><FontAwesomeIcon icon={faTimes} size="2x" /></button></td>
+                <td><button><FontAwesomeIcon icon={faCheck} size="2x" /></button></td>
             </tr>
             
         </table>
