@@ -14,7 +14,7 @@ function SideMenuBar({sideMenu}){
             </div>
 
             {(sideMenu.elementsObj).map((sideMenuElement)=>(
-                <Link to= {sideMenuElement.link}>
+                <Link to= {sideMenuElement.link} key={sideMenuElement.id}>
                     <div className={`${styles.screenPage__sidemenu_white} ${styles.screenPage__sidemenu_attr}`}>
                         <span>{sideMenuElement.name}</span>
                     </div> 

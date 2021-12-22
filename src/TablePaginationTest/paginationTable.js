@@ -9,6 +9,10 @@ export const PaginationTable = () => {
     const columns = useMemo(() => COLUMNS, [])
     const data = useMemo(() => MOCK_DATA, [])
 
+    const onClickButton = (event) => {
+        console.log(event.target.parentElement.parentElement);
+    }
+
     const {
         getTableProps,
         getTableBodyProps,
@@ -44,7 +48,9 @@ export const PaginationTable = () => {
                                 {
                                     headerGroup.headers.map((column) => (
                                         <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                                    ))}
+                                    ))
+                                }
+                                    <th> edit?</th>
                             </tr>
 
                         ))}
@@ -56,9 +62,12 @@ export const PaginationTable = () => {
                             prepareRow(row)
                             return(
                                 <tr{...row.getRowProps()}>
-                                    {row.cells.map((cell) => {
-                                        return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                                    })}
+                                    {
+                                        row.cells.map((cell) => {
+                                            return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                        })
+                                    }
+                                        <td> <button onClick={onClickButton}> edit </button></td>
                                 </tr>
                             )
                         })
