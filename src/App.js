@@ -6,7 +6,7 @@ import SearchOrder from "./routes/SearchOrder";
 import ConfirmItem from "./routes/ConfirmItem";
 import ManageStock from "./routes/ManageStock";
 
-import PaginationTable from "./TablePaginationTest/tableRender";
+import PaginationTableRender from "./TablePaginationTest/tableRender";
 
 function App() {
 
@@ -45,7 +45,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/testTable">
-          <PaginationTable />
+          <PaginationTableRender />
         </Route>
         <Route path="/login">
           <Login />

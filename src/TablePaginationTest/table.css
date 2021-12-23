@@ -1,11 +1,22 @@
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+.testTable__thead tr th{
+    border: 1px solid rgba(200, 200, 200,1);
+    padding :15px;
 } 
 
-td, th, tfoot {
-    border: 1px solid #dddddd;
+.testTable__tbody tr td{
     text-align: center;
-    padding: 8px;
+    vertical-align: middle;
+    border: 1px solid rgba(200, 200, 200,1);
+    padding :10px;
+    font-size: 0.95em;
+}
+
+.Pagination{
+    display: flex;
+}
+
+.Pagination li{
+    margin : 10px;
+    padding : 3px;
+    border: 1px solid rgba(200, 200, 200,1);
 }

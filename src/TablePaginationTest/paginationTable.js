@@ -8,9 +8,10 @@ export const PaginationTable = () => {
 
     const columns = useMemo(() => COLUMNS, [])
     const data = useMemo(() => MOCK_DATA, [])
-
+    
     const onClickButton = (event) => {
         console.log(event.target.parentElement.parentElement);
+        console.log(MOCK_DATA);
     }
 
     const {
