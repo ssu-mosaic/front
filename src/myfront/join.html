@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>join</title>
+</head>
+<body>
+    <section class="login-form">
+        <h1><a href="login.html">Easy Stock</a></h1>
+        <form action=""> <!--join.php -->
+            <div class="int-area">
+                <input type="email" name="email" id="email" autocomplete="off" required>
+                <label for="email">E-mail</label>
+            </div>
+            <div class="int-area">
+                <input type="password" name="password" id="pw" autocomplete="off" required>
+                <label for="pw">PASSWORD</label>
+            </div>
+            <div class="int-area">
+                <input type="password" name="pwch" id="pwch" autocomplete="off" required>
+                <label for="pwch" id="pwch">PASSWORDCHECK</label>
+                <button type = "submit">check</button>
+            </div>
+            <div class="int-area">
+                <input type="text" name="name" id="name" autocomplete="off" required>
+                <label for="name">NAME</label>
+            </div>
+            <div class="int-area">
+                <input type="number" name="businessNo" id="busNo" autocomplete="off" required>
+                <label for="busNo">BUSINESS.NO</label>
+            </div>
+            <div class="int-area">
+                <input type="text" name="address" id="addr" autocomplete="off" required>
+                <label for="addr">ADDRESS</label>
+            </div>
+            <div class="int-area">
+                <input type="number" name="phone" id="ph" autocomplete="off" required>
+                <label for="ph">PHONE</label>
+            </div>
+            <div class="int-area">
+                <span>GENDER</span>
+                <select name="gender">
+                    <option value="other">other</option>
+                    <option value="woman">woman</option>
+                    <option value="man">man</option>
+                </select>
+            </div>
+            <div class="btn-area">
+                <button type = "submit" onclick="location.href='login.html'">OK</button>
+                
+            </div>
+        </form>
+    </section>
+</body>
+</html>
