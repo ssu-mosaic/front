@@ -30,34 +30,32 @@ function MakeAccount(){
 
     const onEmailChange= (event) => {
         setUserEmail(event.target.value);
-        newAccountData.email = userEmail;
+        console.log(userEmail);
     }
     const onBusinessChange= (event) => {
         setBusinessNo(event.target.value);
-        newAccountData.businessNo= businessNo;
     }
     const onIdChange= (event) => {
         setUserId(event.target.value);
-        newAccountData.name = userId;
     }
     const onPwChange= (event) => {
         setUserPw(event.target.value);
-        newAccountData.password = userPw;
     }
 
     const TestApiCall = async () => {
         const response = await axios.post(`${baseURL}/register`,newAccountData)
         setData(response.data);
         console.log(data);
+        return await response.data;
     }
 
     const onSubmit= (event) => {
         event.preventDefault();
-        // newAccountData.email = userEmail;
-        // newAccountData.name = userId;
-        // newAccountData.businessNo= businessNo;
-        // newAccountData.password = userPw;
-        // send data to server
+        newAccountData.email = userEmail;
+        newAccountData.name = userId;
+        newAccountData.businessNo= businessNo;
+        newAccountData.password = userPw;
+        //send data to server
         console.log(newAccountData);
         
         if(true){
@@ -65,11 +63,15 @@ function MakeAccount(){
             //window.location.href = "/login"
         }
         
-        axios
-        .post(`${baseURL}/register`,newAccountData)
-        .then((response) => {
-            setData(response.data);
-        });
+        // axios
+        // .post(`${baseURL}/register`,newAccountData)
+        // .then((response) => {
+        //     const test_data = response.data;
+        //     setData(test_data);
+        //     console.log(data);
+        // });
+        
+        setData(TestApiCall());
         console.log(data);
         //reset 
         newAccountData = resetAccountData;
