@@ -15,9 +15,9 @@ function ConfirmResultTable(){
                 <th scope="col">창고현재고</th>
                 <th scope="col">발주단위</th>
                 <th scope="col">발주단가{`(단위)`}</th>
-                <th scope="col">물품구분</th>
-                <th scope="col">발주취소</th>
-                <th scope="col">발주확정</th>
+                <th scope="col">수량 적는 곳</th>
+                <th scope="col">거래처삭제</th>
+                <th scope="col">주문등록</th>
             </tr>
             <tr className={styles.screenPage__searchResultTable_items}>
                 <td>1</td>

@@ -2,12 +2,13 @@ import contentStyles from "./css/screen-content.module.css";
 import styles from "./css/search-order.module.css";
 import ConfirmItemResultTable from "./order-confirm-result";
 import React from "react";
-import { DateRangePicker } from 'rsuite';
-import 'rsuite/dist/rsuite.css';
-import { useState } from "react";
+//import { DateRangePicker } from 'rsuite';
+//import 'rsuite/dist/rsuite.css';
+//import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ConfirmForItem(){
-
+    /*
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);
 
     const onDateChange = (event) =>{
@@ -20,18 +21,19 @@ function ConfirmForItem(){
             setDateRange([new Date(), new Date()]);
         }
     }
-
+    */
     return(
 
         <div className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}>
             <div className={styles.screenPage__searchItem}>
-                <span>발주확정</span>
+                <span>발주주문</span>
             </div>
             <div className={styles.screenPage__nextButton}>
-                <input type="button" value="발주등록"/>
+                <Link to={'/order/searchitem'}><input type="button" value="거래처등록"/></Link>
             </div>
             <div className={styles.screenPage__searchBox}>
-                <div className={styles.screenPage_title}><span>검색옵션</span></div>
+                
+                {/* <div className={styles.screenPage_title}><span>검색옵션</span></div>
                 <form method="get">
                     <div className={`${styles.screenPage__section_column} ${styles.screenPage__searchList}`}>
                         <div className={styles.screenPage__section_row}>
@@ -54,10 +56,12 @@ function ConfirmForItem(){
                     <div className={styles.screenPage__section_column}>
                             <input type="submit" value="조회"/>
                     </div>
-                </form>
+                </form> */}
+            
             </div>
+            
             <div className={styles.screenPage__searchResult}>
-                <div className={styles.screenPage_title}><span>발주확정대기</span></div>
+                <div className={styles.screenPage_title}><span>거래처목록</span></div>
                 <ConfirmItemResultTable/>
             </div>
         </div>

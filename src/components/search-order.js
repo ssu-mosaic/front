@@ -4,6 +4,7 @@ import SearchOrderResultTable from "./search-order-result";
 import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite.css';
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SearchForItem(){
 
@@ -27,7 +28,7 @@ function SearchForItem(){
                 <span>발주조회</span>
             </div>
             <div className={styles.screenPage__nextButton}>
-                <input type="button" value="발주확정"/>
+            <Link to={'/order/confirmitem'}><input type="button" value="발주주문"/></Link>
             </div>
             <div className={styles.screenPage__searchBox}>
                 <div className={styles.screenPage_title}><span>검색옵션</span></div>
@@ -39,6 +40,7 @@ function SearchForItem(){
                                 <DateRangePicker size="xs" value={dateRange} onChange={onDateChange} />
                             </div>
                         </div>
+                        {/* 
                         <div className={styles.screenPage__section_row}>
                             <div className={styles.screenPage__searchOption}>
                                 <label for="condition">매입거래처 </label> 
@@ -57,6 +59,7 @@ function SearchForItem(){
                                 </select>
                             </div>
                         </div>
+                        */}
                     </div>
                     <div className={styles.screenPage__section_column}>
                             <input type="submit" value="조회"/>

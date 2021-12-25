@@ -25,7 +25,7 @@ function SearchOrderResultTable(){
                 <td>숭실닭</td>
                 <td>숭숭실{` (010-0909-0909)`}</td>
                 <td>2099-12-31</td>
-                <td>미확정</td>
+                <td>확정 토글 체크</td>
                 <td>미확정</td>
                 <td>계육</td>
             </tr>
@@ -37,7 +37,7 @@ function SearchOrderResultTable(){
                 <td>매운숭실닭</td>
                 <td>매숭실{` (010-0909-0909)`}</td>
                 <td>2099-12-31</td>
-                <td>확정</td>
+                <td>확정 토글 체크</td>
                 <td>2100-01-01</td>
                 <td>계육</td>
             </tr>

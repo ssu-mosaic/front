@@ -1,12 +1,14 @@
 import { BrowserRouter as Router, Switch , Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
+import MakeAccount from "./routes/MakeAccount";
 import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
 import ConfirmItem from "./routes/ConfirmItem";
 import ManageStock from "./routes/ManageStock";
 
 import PaginationTableRender from "./TablePaginationTest/tableRender";
+import DoughnutChart from "./ChartTest/chartRender";
 
 function App() {
 
@@ -22,12 +24,12 @@ function App() {
 
     {
       id : 0,
-      name : "발주등록",
+      name :  "거래처등록",
       link : "/order/searchitem",
     },
     {
       id : 1,
-      name : "발주확정",
+      name : "발주주문",
       link : "/order/confirmitem",
     },
     {
@@ -44,11 +46,17 @@ function App() {
   return (
     <Router>
       <Switch>
+        <Route path="/testChart">
+          <DoughnutChart />
+        </Route>
         <Route path="/testTable">
           <PaginationTableRender />
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/makeaccount">
+          <MakeAccount />
         </Route>
         <Route path="/order/confirmitem">
           <ConfirmItem sideMenu={orderMenuObj}/>
