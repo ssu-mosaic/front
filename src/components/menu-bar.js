@@ -4,7 +4,7 @@ import { faSignOutAlt , faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import logo from '../image/logo.JPG';
 
-let userID = localStorage.getItem('USER_ID');
+let userID = localStorage.getItem('user')
 
 function MenuBar(){
 
@@ -26,7 +26,7 @@ function MenuBar(){
             </div>
             <div className={styles.menuBar__column}>
                 <div className={styles.menuBar__profile}>
-                    <FontAwesomeIcon icon={faUserCircle} size="2x" />
+                    <Link to={`/login`}><FontAwesomeIcon icon={faUserCircle} size="2x" /></Link>
                     <Link to={`/login`}><span>{userID}</span></Link>
                     <FontAwesomeIcon icon={faSignOutAlt} size="2x" />
                 </div>

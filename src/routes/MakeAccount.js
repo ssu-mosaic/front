@@ -30,15 +30,19 @@ function MakeAccount(){
 
     const onEmailChange= (event) => {
         setUserEmail(event.target.value);
+        newAccountData.email = userEmail;
     }
     const onBusinessChange= (event) => {
         setBusinessNo(event.target.value);
+        newAccountData.businessNo= businessNo;
     }
     const onIdChange= (event) => {
         setUserId(event.target.value);
+        newAccountData.name = userId;
     }
     const onPwChange= (event) => {
         setUserPw(event.target.value);
+        newAccountData.password = userPw;
     }
 
     const TestApiCall = async () => {
@@ -49,15 +53,13 @@ function MakeAccount(){
 
     const onSubmit= (event) => {
         event.preventDefault();
-        newAccountData.email = userEmail;
-        newAccountData.name = userId;
-        newAccountData.businessNo= businessNo;
-        newAccountData.password = userPw;
+        // newAccountData.email = userEmail;
+        // newAccountData.name = userId;
+        // newAccountData.businessNo= businessNo;
+        // newAccountData.password = userPw;
         // send data to server
         console.log(newAccountData);
         
-        //reset 
-        newAccountData = resetAccountData;
         if(true){
             console.log("로그인 화면으로 이동합니다");
             //window.location.href = "/login"
@@ -69,7 +71,8 @@ function MakeAccount(){
             setData(response.data);
         });
         console.log(data);
-        
+        //reset 
+        newAccountData = resetAccountData;
     }
 
 
