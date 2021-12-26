@@ -1,5 +1,5 @@
 
-.screenPage__searchResultTable thead tr > th[scope="col"]{
+.screenPage__searchResultTable thead tr > th{
     background-color : rgba(230, 230, 230,1);
 }
 

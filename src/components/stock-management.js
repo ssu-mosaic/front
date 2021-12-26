@@ -1,6 +1,6 @@
 import contentStyles from "./css/screen-content.module.css";
 import styles from "./css/search-item.module.css";
-import StockStatusResult from "./stock-status";
+import PaginationTableRender from "./TEST_TABLE/tableRender";
 
 function StockManagement(){
 
@@ -54,7 +54,7 @@ function StockManagement(){
             </div>
             <div className={styles.screenPage__searchResult}>
                 <div className={styles.screenPage_title}><span>검색결과</span></div>
-                <StockStatusResult/>
+                <PaginationTableRender/>
             </div>
         </div>
     
