@@ -4,9 +4,12 @@ import { faSignOutAlt , faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import logo from '../image/logo.JPG';
 
-let userID = localStorage.getItem('user')
+let userID = localStorage.getItem('USER_ID')
 
 function MenuBar(){
+    if(userID === null){
+        userID = "로그인해주세요";
+    }
 
     return(
         <div className={styles.menuBar}>

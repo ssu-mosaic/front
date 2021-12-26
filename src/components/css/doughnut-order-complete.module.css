@@ -1,0 +1,7 @@
+.doughnut_setting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding : 30px 0px;
+}

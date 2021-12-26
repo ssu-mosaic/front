@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 
 import axios from "axios";
 
-let USER_ID ="";
 
 function JeanJoin(){
 
@@ -27,28 +26,73 @@ function JeanJoin(){
     }, []);
 
     let newLoginData = {
-        userId: "",
-        userPw: "",
+        email: "",
+        businessNo: "",
+        name: "",
+        password: "",
+        address: "",
+        phone: ""
     }
     const resetLoginData = {
-        userId: "",
-        userPw: "",
+        email: "",
+        businessNo: "",
+        name: "",
+        password: "",
+        address: "",
+        phone: ""
     }
 
     const [userId, setUserId] = useState("");
     const [userPw, setUserPw] = useState("");
+    const [userPwRe, setUserPwRe] = useState("");
+    const [pwValid, setPwValid] = useState(false);
+    const [businessNo, setBusinessNo] = useState("");
+    const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
+    const [phoneNum, setPhoneNum] = useState("");
 
     const onIdChange= (event) => {
         setUserId(event.target.value);
     }
     const onPwChange= (event) => {
+        setPwValid(false);
         setUserPw(event.target.value);
+    }
+    const onPwReChange= (event) => {
+        setPwValid(false);
+        setUserPwRe(event.target.value);
+    }
+    const onPwCheckClick= () =>{
+        if(userPw === userPwRe){
+            setPwValid(true);
+            alert("비밀번호 일치확인");
+        }
+        else{
+            setPwValid(false);
+            alert("비밀번호 불일치");
+        }
+    }
+    const onBusinessNoChange= (event) => {
+        setBusinessNo(event.target.value);
+    }
+    const onEmailChange= (event) => {
+        setEmail(event.target.value);
+    }
+    const onAddressChange= (event) => {
+        setAddress(event.target.value);
+    }
+    const onPhoneChange= (event) => {
+        setPhoneNum(event.target.value);
     }
 
     const onSubmit= (event) => {
         event.preventDefault();
-        newLoginData.userId = userId;
-        newLoginData.userPw = userPw;
+        newLoginData.name = userId;
+        newLoginData.password = userPw;
+        newLoginData.businessNo = businessNo;
+        newLoginData.email = email;
+        newLoginData.address = address;
+        newLoginData.phone = phoneNum;
 
         axios
         .put(`${baseURL}/register`,newLoginData)
@@ -59,28 +103,14 @@ function JeanJoin(){
         // send data to server
         console.log(newLoginData);
         
-        // fs.readFile('./Data.json','utf8',(error, data) => {
-        //     if(error){
-        //         alert(error);
-        //     }
-        // console.log(data);
-        //});
-            //data = JSON.parse(data.toString());
-        //     data = userId.toString();
-        //     fs.writeFile('./Data.json',JSON.stringify(data), error => {
-        //         if(error){
-        //             alert(error);
-        //         }
-        //     });
-        // });
-        
         //reset 
         newLoginData = resetLoginData;
         if(true){
-            USER_ID=userId;
-            localStorage.setItem('USER_ID',USER_ID);
-            alert(`환영해요 ${userId}`);
-            window.location.href = "/"
+            alert("가입 완료 로그인 화면으로 갈게요");
+            window.location.href = "/login"
+        }
+        else{
+            alert("아이디 중복 확인 또는 비밀번호 확인해주세요");
         }
         
     }
@@ -89,39 +119,39 @@ function JeanJoin(){
         <div className={jeanStyles.jeanBody}>
             <img src={logo} className={jeanStyles.logo_Img} alt="logo_Img"/>
             <section className={jeanStyles.login_form}>
-                <form action=""> 
+                <form onSubmit={onSubmit}> 
                     <div className={jeanStyles.int_area}>
-                        <input type="email" name="email" id="email" autocomplete="off" required/>
-                        <label for="email">E-mail</label>
+                        <input type="text" name="userId" id="userId" onChange={onIdChange}  required/>
+                        <label for="userId">ID</label>
                     </div>
                     <div className={jeanStyles.int_area}>
-                        <input type="password" name="password" id="pw" autocomplete="off" required/>
+                        <input type="password" name="password" id="pw" onChange={onPwChange} required/>
                         <label for="pw">PASSWORD</label>
                     </div>
                     <div className={jeanStyles.int_area}>
-                        <input type="password" name="pwch" id="pwch" autocomplete="off" required/>
-                        <label for="pwch" id="pwch">PASSWORDCHECK</label>
-                        <button type = "submit">check</button>
+                        <input type="password" name="pwch" id="pwch" onChange={onPwReChange} required/>
+                        <label for="pwch" id="pwch">PASSWORD CHECK</label>
+                        <button type = "button" onClick={onPwCheckClick}>check</button>
                     </div>
                     <div className={jeanStyles.int_area}>
-                        <input type="text" name="name" id="name" autocomplete="off" required/>
-                        <label for="name">NAME</label>
-                    </div>
-                    <div className={jeanStyles.int_area}>
-                        <input type="text" name="businessNo" id="busNo" autocomplete="off" required/>
+                        <input type="text" name="businessNo" id="busNo" onChange={onBusinessNoChange} required/>
                         <label for="busNo">BUSINESS.NO</label>
                     </div>
                     <div className={jeanStyles.int_area}>
-                        <input type="text" name="address" id="addr" autocomplete="off" required/>
+                        <input type="email" name="email" id="email" onChange={onEmailChange} required/>
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div className={jeanStyles.int_area}>
+                        <input type="text" name="address" id="addr" onChange={onAddressChange} required/>
                         <label for="addr">ADDRESS</label>
                     </div>
                     <div className={jeanStyles.int_area}>
-                        <input type="text" name="phone" id="ph" autocomplete="off" required/>
+                        <input type="text" name="phone" id="ph" onChange={onPhoneChange} required/>
                         <label for="ph">PHONE</label>
                     </div>
 
                     <div className={jeanStyles.btn_area}>
-                        <button type = "submit" onclick="location.href='login.html'">OK</button>
+                        <button type = "submit">OK</button>
 
                     </div>
                 </form>

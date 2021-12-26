@@ -1,5 +1,5 @@
 
-.screenPage__searchResultTable tr:first-child > th[scope="col"]{
+.screenPage__searchResultTable thead tr > th[scope="col"]{
     background-color : rgba(230, 230, 230,1);
 }
 
@@ -24,6 +24,9 @@
 .screenPage__searchResultTable_items button {
     border : none;
     background-color:var(--main-background-color);
+}
+.screenPage__searchResultTable_items td button svg{
+    color : rgba(130, 130, 150,1);
 }
 
 .screenPage__searchResultTable{

@@ -1,5 +1,5 @@
-
 import styles from "./css/main-menu-content-sector.module.css";
+import DoughnutOrderComplete from "./doughnut-order-complete.js";
 
 function MainMenuContentSector(){
 
@@ -17,7 +17,7 @@ function MainMenuContentSector(){
                         <span>발주 통계 지표</span>
                     </div>
                     <div className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}>
-                        <span>발주 완료 통계 지표</span>
+                        <DoughnutOrderComplete />
                     </div>
                 </div>
                 <div className={styles.screenPage__sector_row }>

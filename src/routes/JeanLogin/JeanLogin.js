@@ -20,19 +20,17 @@ function JeanLogin(){
     }
     
     useEffect(() => {
-    // axios.get(`${baseURL}/register`).then((response) => {
-    //     setData(response.data);
-    // });
         TestApiCall();
     }, []);
 
-    let newLoginData = {
-        userId: "",
-        userPw: "",
-    }
     const resetLoginData = {
-        userId: "",
-        userPw: "",
+        name: "",
+        password: "",
+    }
+
+    let newLoginData = {
+        name: "",
+        password: "",
     }
 
     const [userId, setUserId] = useState("");
@@ -50,37 +48,13 @@ function JeanLogin(){
         newLoginData.userId = userId;
         newLoginData.userPw = userPw;
 
-        axios
-        .put(`${baseURL}/register`,newLoginData)
-        .then((response) => {
-            setData2(response.data);
-        });
-        console.log(data2);
-        // send data to server
-        console.log(newLoginData);
-        
-        // fs.readFile('./Data.json','utf8',(error, data) => {
-        //     if(error){
-        //         alert(error);
-        //     }
-        // console.log(data);
-        //});
-            //data = JSON.parse(data.toString());
-        //     data = userId.toString();
-        //     fs.writeFile('./Data.json',JSON.stringify(data), error => {
-        //         if(error){
-        //             alert(error);
-        //         }
-        //     });
-        // });
-        
-        //reset 
-        newLoginData = resetLoginData;
         if(true){
             USER_ID=userId;
             localStorage.setItem('USER_ID',USER_ID);
             alert(`환영해요 ${userId}`);
+            newLoginData = resetLoginData;
             window.location.href = "/"
+
         }
         
     }
@@ -89,13 +63,13 @@ function JeanLogin(){
         <div className={jeanStyles.jeanBody}>
             <img src={logo} className={jeanStyles.logo_Img} alt="logo_Img"/>
             <section className={jeanStyles.join_form}>
-                <form action="">
+                <form onSubmit={onSubmit}>
                     <div className={jeanStyles.int_area}>
-                        <input type="email" name="email" id="email" autocomplete="off" required/>
-                        <label for="email">E-mail</label>
+                        <input type="text" name="userId" id="userId" onChange={onIdChange}  required/>
+                        <label for="userId">ID</label>
                     </div>
                     <div className={jeanStyles.int_area}>
-                        <input type="password" name="pw" id="pw" autocomplete="off" required/>
+                        <input type="password" name="pw" id="pw" onChange={onPwChange} required/>
                         <label for="pw">PASSWORD</label>
                     </div>
                     <div className={jeanStyles.btn_area}>
@@ -107,7 +81,7 @@ function JeanLogin(){
                     {/* <a href="join.html">Join</a> */}
                 </div>
                 <div className={jeanStyles.caption}>
-                    <Link to ={"/login/makeaccount"}> 회원가입</Link>
+                    <Link to ={"/login/makeaccount"}> ID/PW 찾기</Link>
                     {/* <a href="forgetPass.html">Forgot Password?</a> */}
                 </div>
             </section>

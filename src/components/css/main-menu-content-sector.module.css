@@ -38,12 +38,12 @@
 }
 
 .screenPage__sectorBox_wide{
-    height: 80px;
+    height: 100px;
 }
 .screenPage__sectorBox_tall{
-    height: 370px;
+    height: 420px;
 }
 
 .screenPage__sectorBox_square{
-    height: 270px;
+    height: 300px;
 }
