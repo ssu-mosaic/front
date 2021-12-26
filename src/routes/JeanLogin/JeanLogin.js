@@ -10,17 +10,9 @@ let USER_ID ="";
 function JeanLogin(){
 
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
-    const [data, setData] = useState("");
-    const [data2, setData2] = useState(99999999);
-    
-    const TestApiCall = async () => {
-        const response = await axios.get(`${baseURL}/register`)
-        setData(response.data);
-        console.log(data);
-    }
+    const [data, setData] = useState(false);
     
     useEffect(() => {
-        TestApiCall();
     }, []);
 
     const resetLoginData = {
@@ -36,6 +28,15 @@ function JeanLogin(){
     const [userId, setUserId] = useState("");
     const [userPw, setUserPw] = useState("");
 
+    const ApiCall = async () => {
+        const response = await axios.post(`${baseURL}/register`,newLoginData)
+        const data = await response.data;
+        console.log(data);
+        setData(data);
+        //return await response.data;
+    }
+
+
     const onIdChange= (event) => {
         setUserId(event.target.value);
     }
@@ -45,18 +46,21 @@ function JeanLogin(){
 
     const onSubmit= (event) => {
         event.preventDefault();
-        newLoginData.userId = userId;
-        newLoginData.userPw = userPw;
+        newLoginData.name = userId;
+        newLoginData.password = userPw;
+        
+        ApiCall();
 
-        if(true){
+        if(data){
             USER_ID=userId;
             localStorage.setItem('USER_ID',USER_ID);
             alert(`환영해요 ${userId}`);
             newLoginData = resetLoginData;
             window.location.href = "/"
-
         }
-        
+        else{
+            alert("못지나간다");
+        }
     }
 
     return(

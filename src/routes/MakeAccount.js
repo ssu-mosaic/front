@@ -44,9 +44,10 @@ function MakeAccount(){
 
     const TestApiCall = async () => {
         const response = await axios.post(`${baseURL}/register`,newAccountData)
-        setData(response.data);
+        const data = await response.data;
         console.log(data);
-        return await response.data;
+        setData(data);
+        //return await response.data;
     }
 
     const onSubmit= (event) => {
@@ -71,12 +72,15 @@ function MakeAccount(){
         //     console.log(data);
         // });
         
-        setData(TestApiCall());
-        console.log(data);
+        TestApiCall();
+        //console.log(data);
         //reset 
         newAccountData = resetAccountData;
     }
 
+    const onTestClick = () => {
+        alert(`너는 받았다 ${data}를`);
+    }
 
     return(
         <div>
@@ -96,8 +100,9 @@ function MakeAccount(){
                         </div>          
                         <input  type="submit" value="제출" />
                     </div>
-
+                    
                 </form>
+                <button onClick={onTestClick}> 야호 </button>
             </div>
 
         </div>

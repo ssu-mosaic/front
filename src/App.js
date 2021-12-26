@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Switch , Route } from "react-router-dom";
 import Home from "./routes/Home";
-import Login from "./routes/Login";
+//import Login from "./routes/Login";
 import JeanLogin from "./routes/JeanLogin/JeanLogin";
 import JeanJoin from "./routes/JeanLogin/JeanJoin";
-import MakeAccount from "./routes/MakeAccount";
+//import MakeAccount from "./routes/MakeAccount";
 import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
 import ConfirmItem from "./routes/ConfirmItem";

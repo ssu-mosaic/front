@@ -9,23 +9,12 @@ import axios from "axios";
 function JeanJoin(){
 
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
-    const [data, setData] = useState("");
-    const [data2, setData2] = useState(99999999);
-    
-    const TestApiCall = async () => {
-        const response = await axios.get(`${baseURL}/register`)
-        setData(response.data);
-        console.log(data);
-    }
-    
+
     useEffect(() => {
-    // axios.get(`${baseURL}/register`).then((response) => {
-    //     setData(response.data);
-    // });
-        TestApiCall();
+        
     }, []);
 
-    let newLoginData = {
+    let newAccountData = {
         email: "",
         businessNo: "",
         name: "",
@@ -33,7 +22,7 @@ function JeanJoin(){
         address: "",
         phone: ""
     }
-    const resetLoginData = {
+    const resetAccountData = {
         email: "",
         businessNo: "",
         name: "",
@@ -41,6 +30,7 @@ function JeanJoin(){
         address: "",
         phone: ""
     }
+    const [data, setData] = useState(newAccountData);
 
     const [userId, setUserId] = useState("");
     const [userPw, setUserPw] = useState("");
@@ -50,6 +40,14 @@ function JeanJoin(){
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [phoneNum, setPhoneNum] = useState("");
+
+    const ApiCall = async () => {
+        const response = await axios.post(`${baseURL}/register`,newAccountData)
+        const data = await response.data;
+        console.log(data);
+        setData(data);
+        //return await response.data;
+    }
 
     const onIdChange= (event) => {
         setUserId(event.target.value);
@@ -87,24 +85,17 @@ function JeanJoin(){
 
     const onSubmit= (event) => {
         event.preventDefault();
-        newLoginData.name = userId;
-        newLoginData.password = userPw;
-        newLoginData.businessNo = businessNo;
-        newLoginData.email = email;
-        newLoginData.address = address;
-        newLoginData.phone = phoneNum;
+        newAccountData.name = userId;
+        newAccountData.password = userPw;
+        newAccountData.businessNo = businessNo;
+        newAccountData.email = email;
+        newAccountData.address = address;
+        newAccountData.phone = phoneNum;
 
-        axios
-        .put(`${baseURL}/register`,newLoginData)
-        .then((response) => {
-            setData2(response.data);
-        });
-        console.log(data2);
-        // send data to server
-        console.log(newLoginData);
-        
+        ApiCall();
+
         //reset 
-        newLoginData = resetLoginData;
+        newAccountData = resetAccountData;
         if(true){
             alert("가입 완료 로그인 화면으로 갈게요");
             window.location.href = "/login"
