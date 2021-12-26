@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Switch , Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
+import JeanLogin from "./routes/JeanLogin/JeanLogin";
+import JeanJoin from "./routes/JeanLogin/JeanJoin";
 import MakeAccount from "./routes/MakeAccount";
 import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
@@ -52,11 +54,11 @@ function App() {
         <Route path="/testTable">
           <PaginationTableRender />
         </Route>
-        <Route path="/login">
-          <Login />
+        <Route path="/login/makeaccount">
+          <JeanJoin />
         </Route>
-        <Route path="/makeaccount">
-          <MakeAccount />
+        <Route path="/login">
+          <JeanLogin />
         </Route>
         <Route path="/order/confirmitem">
           <ConfirmItem sideMenu={orderMenuObj}/>
