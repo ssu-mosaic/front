@@ -6,6 +6,8 @@
 .screenPage__searchResultTable_header th{
     border: 1px solid rgba(200, 200, 200,1);
     padding :15px;
+    font-weight: bold;
+    font-size: 1.02em;
 } 
 
 .screenPage__searchResultTable_items td{
@@ -27,6 +29,7 @@
 }
 .screenPage__searchResultTable_items td button svg{
     color : rgba(130, 130, 150,1);
+    margin : 0px 5px;
 }
 
 .screenPage__searchResultTable{
@@ -37,4 +40,11 @@
     width :100%;
 }
 
-
+.pagination{
+    display : flex;
+    justify-content : center;
+    align-items : center;
+}
+.pagination__pages{
+    margin : 30px 10px;
+}

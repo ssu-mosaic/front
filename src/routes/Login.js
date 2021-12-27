@@ -2,7 +2,7 @@ import backgroundImg from '../image/login.jpg';
 import logo from '../image/logo.JPG';
 import styles from "./css/Login.module.css";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 //import fs from 'fs';
 import axios from "axios";
 
@@ -20,12 +20,12 @@ function Login(){
         console.log(data);
     }
     
-    useEffect(() => {
-    // axios.get(`${baseURL}/register`).then((response) => {
-    //     setData(response.data);
-    // });
-        TestApiCall();
-    }, []);
+    // useEffect(() => {
+    // // axios.get(`${baseURL}/register`).then((response) => {
+    // //     setData(response.data);
+    // // });
+    //     TestApiCall();
+    // }, []);
 
     let newLoginData = {
         userId: "",

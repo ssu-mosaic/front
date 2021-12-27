@@ -2,7 +2,6 @@ import jeanStyles from "./jeanStyle.module.css";
 import logo from '../../image/jeanLogo.JPG';
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-
 import axios from "axios";
 
 let USER_ID ="";
@@ -29,8 +28,9 @@ function JeanLogin(){
     const [userPw, setUserPw] = useState("");
 
     const ApiCall = async () => {
-        const response = await axios.post(`${baseURL}/register`,newLoginData)
+        const response = await axios.post(`${baseURL}/login`,newLoginData)
         const data = await response.data;
+        console.log(newLoginData);
         console.log(data);
         setData(data);
         //return await response.data;
@@ -51,7 +51,7 @@ function JeanLogin(){
         
         ApiCall();
 
-        if(data){
+        if(data === true){
             USER_ID=userId;
             localStorage.setItem('USER_ID',USER_ID);
             alert(`환영해요 ${userId}`);
@@ -59,7 +59,7 @@ function JeanLogin(){
             window.location.href = "/"
         }
         else{
-            alert("못지나간다");
+            alert("없는 아이디거나 비밀번호가 틀렸어요");
         }
     }
 

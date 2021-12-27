@@ -1,5 +1,5 @@
 import jeanStyles from "./jeanStyle.module.css";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import logo from '../../image/jeanLogo.JPG';
 import React, { useState, useEffect } from 'react';
 
@@ -96,12 +96,12 @@ function JeanJoin(){
 
         //reset 
         newAccountData = resetAccountData;
-        if(true){
+        if((pwValid === true)&&(data === true)){
             alert("가입 완료 로그인 화면으로 갈게요");
             window.location.href = "/login"
         }
         else{
-            alert("아이디 중복 확인 또는 비밀번호 확인해주세요");
+            alert("비밀번호 확인해주세요");
         }
         
     }

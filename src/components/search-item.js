@@ -1,40 +1,79 @@
 import contentStyles from "./css/screen-content.module.css";
 import styles from "./css/search-item.module.css";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from "axios";
 //import SearchItemResultTable from "./search-item-result";
+
+const userID = localStorage.getItem('USER_ID')
 
 function SearchForItem(){
 
-    const [option1, setOption1] = useState("");
-    const [option2, setOption2] = useState("");
-    const [option3, setOption3] = useState("");
-    const [option4, setOption4] = useState("");
-    const [option5, setOption5] = useState("");
-    const [option6, setOption6] = useState("");
+    const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
-    const onOption1Change = (event) => {
-        setOption1(event.target.value);
+    let newRetailerData = {
+        name: "",
+        retailerName: "",
+        retailerPhone: "",
+        retailerEmail: "",
+        retailerAddress: "",
+        retailerMemo: "",
     }
-    const onOption2Change = (event) => {
-        setOption2(event.target.value);
+    const resetRetailerData = {
+        name: "",
+        retailerName: "",
+        retailerPhone: "",
+        retailerEmail: "",
+        retailerAddress: "",
+        retailerMemo: "",
     }
-    const onOption3Change = (event) => {
-        setOption3(event.target.value);
+
+    const [userId] = useState(userID);
+    const [retailerName, setRetailerName] = useState("");
+    const [retailerPhone, setRetailerPhone] = useState("");
+    const [retailerEmail, setRetailerEmail] = useState("");
+    const [retailerAddress, setRetailerAddress] = useState("");
+    const [retailerMemo, setRetailerMemo] = useState("");
+
+    const ApiCall = async () => {
+        //const response = 
+        await axios.post(`${baseURL}/retailer/add`,newRetailerData)
+        //const data = await response.data;
+        console.log(newRetailerData);
+        //console.log(data);
+        //setData(data);
+        //return await response.data;
     }
-    const onOption4Change = (event) => {
-        setOption4(event.target.value);
+
+    const onRetailerNameChange = (event) => {
+        setRetailerName(event.target.value);
     }
-    const onOption5Change = (event) => {
-        setOption5(event.target.value);
+    const onRetailerPhoneChange = (event) => {
+        setRetailerPhone(event.target.value);
     }
-    const onOption6Change = (event) => {
-        setOption6(event.target.value);
+    const onRetailerEmailChange = (event) => {
+        setRetailerEmail(event.target.value);
+    }
+    const onRetailerAddressChange = (event) => {
+        setRetailerAddress(event.target.value);
+    }
+    const onRetailerMemoChange = (event) => {
+        setRetailerMemo(event.target.value);
     }
 
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log(`${option1} ${option2} ${option3} ${option4} ${option5} ${option6}`);
+        newRetailerData.name = userId;
+        newRetailerData.retailerName = retailerName;
+        newRetailerData.retailerPhone = retailerPhone;
+        newRetailerData.retailerEmail = retailerEmail;
+        newRetailerData.retailerAddress = retailerAddress;
+        newRetailerData.retailerMemo = retailerMemo;
+        console.log(newRetailerData);
+
+        ApiCall();
+
+        newRetailerData = resetRetailerData;
     }
 
     return(
@@ -44,7 +83,7 @@ function SearchForItem(){
                 <span>거래처등록</span>
             </div>
             <div className={styles.screenPage__nextButton}>
-                <Link to={'/order/confirmitem'}><input type="button" value="발주주문"/></Link>
+                <Link to={'/order/confirmitem'}><input type="button" value="거래처목록"/></Link>
             </div>
             <div className={styles.screenPage__searchBox}>
                 <div className={styles.screenPage_title}><span>거래처정보입력</span></div>
@@ -52,32 +91,29 @@ function SearchForItem(){
                     <div className={`${styles.screenPage__section_row} ${styles.screenPage__searchList}`}>
                         <div className={styles.screenPage__section_column}>
                             <div className={styles.screenPage__searchOption}>
-                                <label for="company">거래처정보 </label> 
-                                <input type="text" name="company" onChange={onOption1Change} required/>
+                                <label for="company">거래처이름 </label> 
+                                <input type="text" onChange={onRetailerNameChange} required/>
                             </div>
                             <div className={styles.screenPage__searchOption}>
-                                <label for="company">거래처정보 </label> 
-                                <input type="text" name="company" onChange={onOption2Change} required/>
+                                <label for="company">거래처연락처 </label> 
+                                <input type="text" onChange={onRetailerPhoneChange} required/>
                             </div>
-                            <div className={styles.screenPage__searchOption}>
-                                <label for="itemName">거래처정보 </label> 
-                                <input type="text" name="itemName" onChange={onOption3Change} required/>
-                            </div>
+
                         </div>
                         <div className={styles.screenPage__section_column}>
                             <div className={styles.screenPage__searchOption}>
-                                <label for="condition">거래처정보? </label> 
-                                <input type="text" name="condition" onChange={onOption4Change} required/>
+                                <label for="condition">거래처주소 </label> 
+                                <input type="text" onChange={onRetailerAddressChange} required/>
                             </div>
                             <div className={styles.screenPage__searchOption}>
-                                <label for="condition">거래처정보? </label> 
-                                <input type="text" name="condition" onChange={onOption5Change} required/>
+                                <label for="itemName">거래처이메일 </label> 
+                                <input type="text" onChange={onRetailerEmailChange} required/>
                             </div>
                         </div>
                         <div className={styles.screenPage__section_column}>
                                 <div className={styles.screenPage__searchOption}>
-                                    <label for="condition">거래처정보? </label> 
-                                    <input type="number" name="condition" onChange={onOption6Change} required/>
+                                    <label for="condition">메모 </label> 
+                                    <textarea onChange={onRetailerMemoChange} required/>
                                 </div>
                         </div>
                     </div>

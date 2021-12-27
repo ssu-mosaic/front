@@ -7,6 +7,12 @@ import logo from '../image/logo.JPG';
 let userID = localStorage.getItem('USER_ID')
 
 function MenuBar(){
+
+    const onLogoutClick = () => {
+        localStorage.setItem('USER_ID',null);
+        userID = null;
+    }
+
     if(userID === null){
         userID = "로그인해주세요";
     }
@@ -21,7 +27,7 @@ function MenuBar(){
                 <nav className={styles.menuBar__nav}>
                     <ul className={styles.menuBar__list}>
                         <Link to={`/order/searchitem`}><li className={styles.menuBar__btn}><span>발주관리</span></li></Link>
-                        <Link to={`/stock`}><li className={styles.menuBar__btn}><span>재고관리</span></li></Link>
+                        <Link to={`/stock/add`}><li className={styles.menuBar__btn}><span>재고관리</span></li></Link>
                         {/* <Link to={`/`}><li className={styles.menuBar__btn}><span>고객센터</span></li></Link> */}
                     </ul>
                 </nav>
@@ -31,7 +37,7 @@ function MenuBar(){
                 <div className={styles.menuBar__profile}>
                     <Link to={`/login`}><FontAwesomeIcon icon={faUserCircle} size="2x" /></Link>
                     <Link to={`/login`}><span>{userID}</span></Link>
-                    <FontAwesomeIcon icon={faSignOutAlt} size="2x" />
+                    <Link to={`/login`}><FontAwesomeIcon icon={faSignOutAlt} size="2x" onClick={onLogoutClick}/></Link>
                 </div>
                 {/* <!--who login and icon--> */}
             </div>

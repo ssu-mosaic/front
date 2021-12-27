@@ -62,7 +62,13 @@
 .screenPage__searchOption input{
     border :var(--main-border);
     width : 200px;
-    height : 20px;
+    height : 23px;
+}
+
+.screenPage__searchOption textarea{
+    border :var(--main-border);
+    width : 270px;
+    height : 120px;
 }
 
 .screenPage__searchOption label{

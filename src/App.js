@@ -8,6 +8,8 @@ import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
 import ConfirmItem from "./routes/ConfirmItem";
 import ManageStock from "./routes/ManageStock";
+import EditStock from "./routes/EditStock";
+import OrderRequest from "./routes/OrderRequest";
 
 import PaginationTableRender from "./TablePaginationTest/tableRender";
 import DoughnutChart from "./ChartTest/chartRender";
@@ -23,27 +25,44 @@ function App() {
   };
 
   const orderSideMenuElements =[
-
     {
-      id : 0,
+      id : "searchitem",
       name :  "거래처등록",
       link : "/order/searchitem",
     },
     {
-      id : 1,
-      name : "발주주문",
+      id : "confirmitem",
+      name : "거래처목록",
       link : "/order/confirmitem",
     },
     {
-      id : 2,
+      id : "requestorder",
+      name : "발주요청",
+      link : "/order/requestorder",
+    },
+    {
+      id : "searchorder",
       name : "발주조회",
       link : "/order/searchorder",
     },
   ];
 
+  const stockSideMenuElements =[
+    {
+      id : "stockadd",
+      name :  "재고등록",
+      link : "/stock/add",
+    },
+    {
+      id : "stockedit",
+      name : "재고편집",
+      link : "/stock/edit",
+    },
+  ];
+
   const homeMenuObj = sideMenuObj("홈",[]);
   const orderMenuObj = sideMenuObj("발주관리",orderSideMenuElements);
-  const stockMenuObj = sideMenuObj("재고관리",[]);
+  const stockMenuObj = sideMenuObj("재고관리",stockSideMenuElements);
 
   return (
     <Router>
@@ -66,10 +85,16 @@ function App() {
         <Route path="/order/searchorder">
           <SearchOrder sideMenu={orderMenuObj}/>
         </Route>
+        <Route path="/order/requestorder">
+          <OrderRequest sideMenu={orderMenuObj}/>
+        </Route>
         <Route path="/order/searchitem">
           <SearchItem sideMenu={orderMenuObj}/>
         </Route>
-        <Route path="/stock">
+        <Route path="/stock/edit">
+          <EditStock sideMenu={stockMenuObj}/>
+        </Route>
+        <Route path="/stock/add">
           <ManageStock sideMenu={stockMenuObj}/>
         </Route>
         <Route path="/">

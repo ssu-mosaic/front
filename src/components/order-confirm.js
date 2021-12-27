@@ -1,6 +1,7 @@
 import contentStyles from "./css/screen-content.module.css";
 import styles from "./css/search-order.module.css";
-import ConfirmItemResultTable from "./order-confirm-result";
+//import ConfirmItemResultTable from "./order-confirm-result";
+import RetailerListTable from "./RETAILER_LIST/tableRender";
 import React from "react";
 //import { DateRangePicker } from 'rsuite';
 //import 'rsuite/dist/rsuite.css';
@@ -26,7 +27,7 @@ function ConfirmForItem(){
 
         <div className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}>
             <div className={styles.screenPage__searchItem}>
-                <span>발주주문</span>
+                <span>거래처목록</span>
             </div>
             <div className={styles.screenPage__nextButton}>
                 <Link to={'/order/searchitem'}><input type="button" value="거래처등록"/></Link>
@@ -61,8 +62,8 @@ function ConfirmForItem(){
             </div>
             
             <div className={styles.screenPage__searchResult}>
-                <div className={styles.screenPage_title}><span>거래처목록</span></div>
-                <ConfirmItemResultTable/>
+                <div className={styles.screenPage_title}><span>거래처리스트</span></div>
+                <RetailerListTable/>
             </div>
         </div>
     
