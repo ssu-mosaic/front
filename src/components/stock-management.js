@@ -50,9 +50,11 @@ function StockManagement(){
         console.log(newStockData);
 
         //ApiCall();
-        const response = axios.post(`${baseURL}/stock/add`,newStockData);
-        console.log(response.data);
-        
+        axios.post(`${baseURL}/stock/add`,newStockData)
+            .then((response) => {
+                console.log(response.data);
+            });
+
         newStockData = resetStockData;
     }
 
@@ -78,7 +80,7 @@ function StockManagement(){
                         <div className={styles.screenPage__section_row}>
                             <div className={styles.screenPage__searchOption}>
                                 <label for="stockCount">잔여재고 </label> 
-                                <input type="text" onChange={onStockCountChange} name="stockCount" required/>
+                                <input type="number" onChange={onStockCountChange} name="stockCount" required/>
                             </div>
                         </div>
                         

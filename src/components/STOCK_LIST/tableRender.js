@@ -38,6 +38,7 @@ function StockListTable(){
         axios.post(`${baseURL}/stock/list`,userData)
             .then((response) => {
                 setLoading(false);
+                console.log(response.data);
                 setTable(response.data);
             });
     },[]);
@@ -89,18 +90,19 @@ function StockListTable(){
         event.preventDefault();
 
         const editedForm={
-            name:userID,
+            userName:userID,
             stockId: rowId,
             stockName: editFormData.stockName,
             stockCount: editFormData.stockCount,
         }
 
-        const ApiCallForEdit = async () => {
-            //const response = 
-            await axios.post(`${baseURL}/stock/edit`,editedForm)
-            //const data = await response.data;
-            //console.log(data);
-        }
+        // const ApiCallForEdit = async () => {
+        //     //const response = 
+        //     await axios.post(`${baseURL}/stock/edit`,editedForm)
+        //     //const data = await response.data;
+        //     //console.log(data);
+        // }
+        axios.post(`${baseURL}/stock/edit`,editedForm)
         
         const newTable = [...table];
         const index = table.findIndex((row) => row.stockId === rowId);
@@ -120,13 +122,18 @@ function StockListTable(){
     const handleDeleteClick = (rowId) => {
         const deleteForm={
             stockId: rowId,
+            userName: userID,
         }
-        const ApiCallForDelete = async () => {
-            //const response = 
-            await axios.post(`${baseURL}/stock/delete`,deleteForm)
-            //const data = await response.data;
-            //console.log(data);
-        }
+        // const ApiCallForDelete = async () => {
+        //     //const response = 
+        //     await axios.post(`${baseURL}/stock/delete`,deleteForm)
+        //     //const data = await response.data;
+        //     //console.log(data);
+        // }
+        axios.post(`${baseURL}/stock/delete`,deleteForm)
+            .then((response => {
+                console.log(response.data);
+            }))
         const newTable =  [...table];
         const index = table.findIndex((row) => row.stockId === rowId);
         newTable.splice(index,1);
