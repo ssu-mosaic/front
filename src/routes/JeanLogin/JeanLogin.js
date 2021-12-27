@@ -5,14 +5,13 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
 let USER_ID ="";
+//let loginValid = false;
 
 function JeanLogin(){
 
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
-    const [data, setData] = useState(false);
     
-    useEffect(() => {
-    }, []);
+    
 
     const resetLoginData = {
         name: "",
@@ -24,18 +23,29 @@ function JeanLogin(){
         password: "",
     }
 
+    const [loginValid, setLoginValid] = useState(false);
     const [userId, setUserId] = useState("");
     const [userPw, setUserPw] = useState("");
 
-    const ApiCall = async () => {
-        const response = await axios.post(`${baseURL}/login`,newLoginData)
-        const data = await response.data;
-        console.log(newLoginData);
-        console.log(data);
-        setData(data);
-        //return await response.data;
-    }
 
+
+    //const ApiCall = () => {
+        //useEffect(() => {
+        //    axios.post(`${baseURL}/login`,newLoginData)
+        //        .then((response) => {
+        //            console.log(response.data);
+                    //setLoginValid(response.data);
+                    //console.log(newLoginData);
+        //       });
+        //let validCheck = await response.data;
+        //loginValid = await response.data;
+        
+        //console.log(validCheck);
+        //console.log(loginValid);
+
+        //return await response.data;
+        //}, []);
+    //}
 
     const onIdChange= (event) => {
         setUserId(event.target.value);
@@ -48,19 +58,27 @@ function JeanLogin(){
         event.preventDefault();
         newLoginData.name = userId;
         newLoginData.password = userPw;
-        
-        ApiCall();
 
-        if(data === true){
-            USER_ID=userId;
-            localStorage.setItem('USER_ID',USER_ID);
-            alert(`환영해요 ${userId}`);
-            newLoginData = resetLoginData;
-            window.location.href = "/"
-        }
-        else{
-            alert("없는 아이디거나 비밀번호가 틀렸어요");
-        }
+        axios.post(`${baseURL}/login`,newLoginData)
+            .then((response) => {
+                console.log(response.data);
+                //setLoginValid(response.data);
+                //console.log(newLoginData);
+                if(response.data === true){
+                    USER_ID=userId;
+                    localStorage.setItem('USER_ID',USER_ID);
+                    alert(`환영해요 ${userId}`);
+                    newLoginData = resetLoginData;
+                    window.location.href = "/"
+                }
+                else{
+                    alert("없는 아이디거나 비밀번호가 틀렸어요");
+                }
+            
+            });
+            //ApiCall();
+
+
     }
 
     return(

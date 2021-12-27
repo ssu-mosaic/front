@@ -30,7 +30,7 @@ function JeanJoin(){
         address: "",
         phone: ""
     }
-    const [data, setData] = useState(newAccountData);
+    const [data, setData] = useState(false);
 
     const [userId, setUserId] = useState("");
     const [userPw, setUserPw] = useState("");
@@ -45,7 +45,7 @@ function JeanJoin(){
         const response = await axios.post(`${baseURL}/register`,newAccountData)
         const data = await response.data;
         console.log(data);
-        setData(data);
+        //setData(data);
         //return await response.data;
     }
 
@@ -96,12 +96,12 @@ function JeanJoin(){
 
         //reset 
         newAccountData = resetAccountData;
-        if((pwValid === true)&&(data === true)){
+        if((pwValid === true)){
             alert("가입 완료 로그인 화면으로 갈게요");
             window.location.href = "/login"
         }
         else{
-            alert("비밀번호 확인해주세요");
+            alert("가입 실패 비밀번호 등을 살펴보세요 ");
         }
         
     }

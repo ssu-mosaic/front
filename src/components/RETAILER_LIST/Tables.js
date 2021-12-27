@@ -2,9 +2,12 @@ import styles from "../css/result-table.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes, faHammer } from '@fortawesome/free-solid-svg-icons';
 
+let userID = localStorage.getItem('USER_ID')
+
 function Tables({ retailerId, retailerName, retailerPhone, retailerEmail, retailerAddress, retailerMemo, handleEditClick, handleDeleteClick }) {
     
     const rowData = {
+        userName : userID,
         retailerId: retailerId,
         retailerName: retailerName,
         retailerPhone: retailerPhone,

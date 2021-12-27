@@ -14,24 +14,36 @@ function RetailerListTable(){
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
     
     // If purpose for testing without server useState(false)
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [tablePerPage] = useState(10);
     const [table , setTable] = useState([]);
     
     //get data from server
-    useEffect(() => {
-        const ApiCallForList = async () => {
-            const response = await axios.post(`${baseURL}/retailer/list`)
-            const data = await response.data;
-            console.log(data);
-            setTable(data);
-            setLoading(false);
-            //return await response.data;
-        }
-        //ApiCallForList();
-        setTable(MOCK_DATA);
+    // 
+    //     const ApiCallForList = async () => {
+    //         const response = await axios.post(`${baseURL}/retailer/list`)
+    //         const data = await response.data;
+    //         console.log(data);
+    //         setTable(data);
+    //         setLoading(false);
+    //         //return await response.data;
+    //     }
+    //     ApiCallForList();
+    //     //setTable(MOCK_DATA);
         
+    // 
+
+    const userData = {
+        userName: userID
+    }
+    useEffect(() => {
+    axios.post(`${baseURL}/retailer/list`,userData)
+        .then((response) => {
+            console.log(response.data);
+            setTable(response.data);
+            setLoading(false);
+        });
     },[]);
 
     // Get current tables
@@ -50,7 +62,7 @@ function RetailerListTable(){
         setRowId(rowData.retailerId);
         
         const formValues = {
-            name: userID,
+            userName: userID,
             retailerId: rowData.retailerId,
             retailerName: rowData.retailerName,
             retailerPhone: rowData.retailerPhone,
@@ -62,7 +74,7 @@ function RetailerListTable(){
         setEditFormData(formValues);
     };
     const [editFormData, setEditFormData] = useState({
-        name: userID,
+        userName: userID,
         retailerId: "",
         retailerName: "",
         retailerPhone: "",
@@ -87,7 +99,7 @@ function RetailerListTable(){
         event.preventDefault();
 
         const editedForm={
-            name:userID,
+            userName:userID,
             retailerId: rowId,
             retailerName: editFormData.retailerName,
             retailerPhone: editFormData.retailerPhone,
@@ -96,13 +108,15 @@ function RetailerListTable(){
             retailerMemo: editFormData.retailerMemo,
         }
 
-        const ApiCallForEdit = async () => {
-            //const response = 
-            await axios.post(`${baseURL}/retailer/edit`,editedForm)
-            //const data = await response.data;
-            //console.log(data);
-        }
-        
+        // const ApiCallForEdit = async () => {
+        //     //const response = 
+        //     await axios.post(`${baseURL}/retailer/edit`,editedForm)
+        //     //const data = await response.data;
+        //     //console.log(data);
+        // }
+        axios.post(`${baseURL}/retailer/edit`,editedForm)
+
+
         const newTable = [...table];
         const index = table.findIndex((row) => row.retailerId === rowId);
 
@@ -120,15 +134,17 @@ function RetailerListTable(){
 
     const handleDeleteClick = (rowId) => {
         const deleteForm={
-            name:userID,
+            userName:userID,
             retailerId: rowId,
         }
-        const ApiCallForDelete = async () => {
-            //const response = 
-            await axios.post(`${baseURL}/retailer/delete`,deleteForm)
-            //const data = await response.data;
-            //console.log(data);
-        }
+        // const ApiCallForDelete = async () => {
+        //     //const response = 
+        //     await axios.post(`${baseURL}/retailer/delete`,deleteForm)
+        //     //const data = await response.data;
+        //     //console.log(data);
+        // }
+        axios.post(`${baseURL}/retailer/delete`,deleteForm)
+
         const newTable =  [...table];
         const index = table.findIndex((row) => row.retailerId === rowId);
         newTable.splice(index,1);

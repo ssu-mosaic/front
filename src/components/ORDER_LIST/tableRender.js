@@ -14,7 +14,7 @@ function OrderList(){
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
     
     // If purpose for testing without server useState(false)
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [tablePerPage] = useState(7);
     const [table , setTable] = useState([]);
@@ -26,20 +26,26 @@ function OrderList(){
     //get data from server
     useEffect(() => {
 
-        const userName = {
-            name: userID,
+        const userData = {
+            userName: userID,
         }
 
-        const ApiCallForList = async () => {
-            const response = await axios.post(`${baseURL}/retailer/orderList`,userName)
-            const data = await response.data;
-            console.log(data);
-            setTable(data);
-            setLoading(false);
-            //return await response.data;
-        }
+        // const ApiCallForList = async () => {
+        //     const response = await axios.post(`${baseURL}/retailer/orderList`,userName)
+        //     const data = await response.data;
+        //     console.log(data);
+        //     setTable(data);
+        //     setLoading(false);
+        //     //return await response.data;
+        // }
         //ApiCallForList();
-        setTable(MOCK_DATA);
+        //setTable(MOCK_DATA);
+        axios.post(`${baseURL}/retailer/orderList`,userData)
+            .then((response) => {
+                setTable(response.data);
+                setLoading(false);
+            });
+
         
     },[]);
 

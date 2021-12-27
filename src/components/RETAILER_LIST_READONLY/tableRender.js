@@ -14,7 +14,7 @@ function RetailerListTable(){
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
     
     // If purpose for testing without server useState(false)
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [tablePerPage] = useState(7);
     const [table , setTable] = useState([]);
@@ -25,16 +25,25 @@ function RetailerListTable(){
 
     //get data from server
     useEffect(() => {
-        const ApiCallForList = async () => {
-            const response = await axios.post(`${baseURL}/retailer/list`)
-            const data = await response.data;
-            console.log(data);
-            setTable(data);
-            setLoading(false);
-            //return await response.data;
+        // const ApiCallForList = async () => {
+        //     const response = await axios.post(`${baseURL}/retailer/list`)
+        //     const data = await response.data;
+        //     console.log(data);
+        //     setTable(data);
+        //     setLoading(false);
+        //     //return await response.data;
+        // }
+        // ApiCallForList();
+        //setTable(MOCK_DATA);
+        const userData = {
+            userName: userID
         }
-        //ApiCallForList();
-        setTable(MOCK_DATA);
+
+        axios.post(`${baseURL}/retailer/list`,userData)
+            .then((response) => {
+                setTable(response.data);
+                setLoading(false);
+            })
         
     },[]);
 
@@ -62,21 +71,29 @@ function RetailerListTable(){
 
     const onSubmitOrderClick = () => {
         const submitData = {
-            name:userID,
+            userName:userID,
             retailerId: requestId,
             orderDetail: orderDetail,
         }
         console.log(submitData);
-        const ApiCallForSubmit = async () => {
-            const response = await axios.post(`${baseURL}/retailer/order`,submitData);
-            const data = await response.data;
-            console.log(data);
+        // const ApiCallForSubmit = async () => {
+        //     const response = await axios.post(`${baseURL}/retailer/order`,submitData);
+        //     const data = await response.data;
+        //     console.log(data);
+        axios.post(`${baseURL}/retailer/order/add`,submitData)
+            .then((response) => {
+                console.log(response.data);
+                setTable(response.data);
+                setLoading(false);
 
-            if(data === true){
-                alert("주문이 완료되었습니다");
-            }
+                if(response.data === true){
+                    alert("주문이 완료되었습니다");
+                }
+            });
+
+
             //return await response.data;
-        }
+        
         //ApiCallForSubmit();
 
     }

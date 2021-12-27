@@ -12,7 +12,7 @@ function SearchForItem(){
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
     let newRetailerData = {
-        name: "",
+        userName: "",
         retailerName: "",
         retailerPhone: "",
         retailerEmail: "",
@@ -20,7 +20,7 @@ function SearchForItem(){
         retailerMemo: "",
     }
     const resetRetailerData = {
-        name: "",
+        userName: "",
         retailerName: "",
         retailerPhone: "",
         retailerEmail: "",
@@ -36,11 +36,10 @@ function SearchForItem(){
     const [retailerMemo, setRetailerMemo] = useState("");
 
     const ApiCall = async () => {
-        //const response = 
-        await axios.post(`${baseURL}/retailer/add`,newRetailerData)
-        //const data = await response.data;
+        const response = await axios.post(`${baseURL}/retailer/add`,newRetailerData)
+        const data = await response.data;
         console.log(newRetailerData);
-        //console.log(data);
+        console.log(data);
         //setData(data);
         //return await response.data;
     }
@@ -63,7 +62,7 @@ function SearchForItem(){
 
     const onSubmit = (event) => {
         event.preventDefault();
-        newRetailerData.name = userId;
+        newRetailerData.userName = userId;
         newRetailerData.retailerName = retailerName;
         newRetailerData.retailerPhone = retailerPhone;
         newRetailerData.retailerEmail = retailerEmail;
