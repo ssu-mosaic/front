@@ -9,6 +9,7 @@ import axios from "axios";
 
 let userID = localStorage.getItem('USER_ID')
 
+//발주요청
 function RetailerListTable(){
 
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
@@ -39,9 +40,10 @@ function RetailerListTable(){
             userName: userID
         }
 
-        axios.post(`${baseURL}/retailer/list`,userData)
+        axios.post(`${baseURL}/order/list`,userData)
             .then((response) => {
                 setTable(response.data);
+                //console.log("왔어요");
                 setLoading(false);
             })
         
@@ -80,7 +82,7 @@ function RetailerListTable(){
         //     const response = await axios.post(`${baseURL}/retailer/order`,submitData);
         //     const data = await response.data;
         //     console.log(data);
-        axios.post(`${baseURL}/retailer/order/add`,submitData)
+        axios.post(`${baseURL}/order/add`,submitData)
             .then((response) => {
                 console.log(response.data);
                 setTable(response.data);

@@ -9,6 +9,7 @@ import axios from "axios";
 
 let userID = localStorage.getItem('USER_ID')
 
+//거래처목록
 function RetailerListTable(){
 
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";

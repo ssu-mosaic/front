@@ -40,6 +40,7 @@ function SearchForItem(){
         const data = await response.data;
         console.log(newRetailerData);
         console.log(data);
+
         //setData(data);
         //return await response.data;
     }
@@ -71,7 +72,12 @@ function SearchForItem(){
         console.log(newRetailerData);
 
         ApiCall();
-
+        
+        // setRetailerName("");
+        // setRetailerPhone("");
+        // setRetailerEmail("");
+        // setRetailerAddress("");
+        // setRetailerMemo("");
         newRetailerData = resetRetailerData;
     }
 

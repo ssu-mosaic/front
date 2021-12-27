@@ -9,6 +9,7 @@ import axios from "axios";
 
 let userID = localStorage.getItem('USER_ID')
 
+//발주조회
 function OrderList(){
 
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";

@@ -12,28 +12,28 @@ function StockManagement(){
     const baseURL = "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
     let newStockData = {
-        name: "",
+        userName: "",
         stockName: "",
         stockCount: "",
     }
     const resetStockData = {
-        name: "",
+        userName: "",
         stockName: "",
         stockCount: "",
     }
-    const [userId] = useState(userID);
+
     const [stockName, setStockName] = useState(""); 
     const [stockCount, setStockCount] = useState(""); 
 
-    const ApiCall = async () => {
-        //const response = 
-        await axios.post(`${baseURL}/stock/add`,newStockData)
-        //const data = await response.data;
-        console.log(newStockData);
-        //console.log(data);
-        //setData(data);
-        //return await response.data;
-    }
+    // const ApiCall = async () => {
+    //     const response = await axios.post(`${baseURL}/stock/add`,newStockData)
+    //     //const data = await response.data;
+    //     console.log(response.data);
+    //     console.log(newStockData);
+    //     //console.log(data);
+    //     //setData(data);
+    //     //return await response.data;
+    // }
 
     const onStockNameChange = (event) => {
         setStockName(event.target.value);
@@ -44,20 +44,22 @@ function StockManagement(){
 
     const onSubmit = (event) => {
         event.preventDefault();
-        newStockData.name = userId;
+        newStockData.userName = userID;
         newStockData.stockName = stockName;
         newStockData.stockCount = stockCount;
         console.log(newStockData);
 
-        ApiCall();
-
+        //ApiCall();
+        const response = axios.post(`${baseURL}/stock/add`,newStockData);
+        console.log(response.data);
+        
         newStockData = resetStockData;
     }
 
     return(
         <div className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}>
             <div className={styles.screenPage__searchItem}>
-                <span>재고확인</span>
+                <span>재고등록</span>
             </div>
             <div className={styles.screenPage__nextButton}>
             <Link to={'/order/requestorder'}><input type="button" value="발주요청"/></Link>
@@ -76,7 +78,7 @@ function StockManagement(){
                         <div className={styles.screenPage__section_row}>
                             <div className={styles.screenPage__searchOption}>
                                 <label for="stockCount">잔여재고 </label> 
-                                <input type="number" onChange={onStockCountChange} name="stockCount" required/>
+                                <input type="text" onChange={onStockCountChange} name="stockCount" required/>
                             </div>
                         </div>
                         
