@@ -17,7 +17,7 @@ function Tables({ retailerName, orderDate, retailerPhone, orderDetail }) {
                 <td key={'retailerName_td'}>{retailerName}</td>
                 <td key={'retailerPhone_td'}>{orderDate}</td>
                 <td key={'retailerEmail_td'}>{retailerPhone}</td>
-                <td key={'retailerAddress_td'}>{`${orderDetail.slice(0,20)}...`}</td>
+                <td key={'orderDetail_td'}>{`${orderDetail.slice(0,20)}...`}</td>
             </tr>
     );
 }

@@ -40,7 +40,7 @@ function RetailerListTable(){
             userName: userID
         }
 
-        axios.post(`${baseURL}/order/list`,userData)
+        axios.post(`${baseURL}/retailer/list`,userData)
             .then((response) => {
                 setTable(response.data);
                 //console.log("왔어요");
@@ -85,8 +85,8 @@ function RetailerListTable(){
         axios.post(`${baseURL}/order/add`,submitData)
             .then((response) => {
                 console.log(response.data);
-                setTable(response.data);
-                setLoading(false);
+                //setTable(response.data);
+                //setLoading(false);
 
                 if(response.data === true){
                     alert("주문이 완료되었습니다");
