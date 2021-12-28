@@ -14,7 +14,7 @@ function MenuBar(){
     }
 
     if(userID === null){
-        userID = "로그인해주세요";
+        userID = "로그인해볼까요";
     }
 
     return(

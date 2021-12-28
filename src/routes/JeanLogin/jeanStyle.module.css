@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Rock+3D&display=swap'); 
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Rock+3D&display=swap');  */
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 .logo_Img{
@@ -10,7 +10,7 @@
 
 .jeanBody{
     margin : 150px;
-    font-family: 'Noto Sans KR', sans-serif;
+    /* font-family: 'Noto Sans KR', sans-serif; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,8 +30,8 @@
 h1{
     text-align: center;
     margin-bottom: 60px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-family: 'Rock 3D', cursive;
+    /* font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Rock 3D', cursive; */
     font-size: 50px; color:#000;
 }
 h1 a{
