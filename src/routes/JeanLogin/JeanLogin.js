@@ -69,7 +69,8 @@ function JeanLogin(){
                     localStorage.setItem('USER_ID',USER_ID);
                     alert(`환영해요 ${userId}`);
                     newLoginData = resetLoginData;
-                    window.location.href = "/"
+                    window.location.href = "https://ssu-mosaic.github.io/front"
+                    //window.location.href = "/"
                 }
                 else{
                     alert("없는 아이디거나 비밀번호가 틀렸어요");

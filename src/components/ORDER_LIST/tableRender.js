@@ -30,7 +30,7 @@ function OrderList(){
         const userData = {
             userName: userID,
         }
-        console.log(userData);
+        //console.log(userData);
         // const ApiCallForList = async () => {
         //     const response = await axios.post(`${baseURL}/retailer/orderList`,userName)
         //     const data = await response.data;
@@ -45,7 +45,7 @@ function OrderList(){
             .then((response) => {
                 setTable(response.data);
                 setLoading(false);
-                
+                console.log(userData);
             });
 
         
