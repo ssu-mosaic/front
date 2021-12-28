@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/front/static/css/main.3ec22a77.chunk.css",
-    "main.js": "/front/static/js/main.e4c39bd2.chunk.js",
-    "main.js.map": "/front/static/js/main.e4c39bd2.chunk.js.map",
+    "main.css": "/front/static/css/main.be1a80c1.chunk.css",
+    "main.js": "/front/static/js/main.87da5993.chunk.js",
+    "main.js.map": "/front/static/js/main.87da5993.chunk.js.map",
     "runtime-main.js": "/front/static/js/runtime-main.56ef6089.js",
     "runtime-main.js.map": "/front/static/js/runtime-main.56ef6089.js.map",
     "static/js/2.87e08ced.chunk.js": "/front/static/js/2.87e08ced.chunk.js",
     "static/js/2.87e08ced.chunk.js.map": "/front/static/js/2.87e08ced.chunk.js.map",
     "index.html": "/front/index.html",
-    "static/css/main.3ec22a77.chunk.css.map": "/front/static/css/main.3ec22a77.chunk.css.map",
+    "static/css/main.be1a80c1.chunk.css.map": "/front/static/css/main.be1a80c1.chunk.css.map",
     "static/js/2.87e08ced.chunk.js.LICENSE.txt": "/front/static/js/2.87e08ced.chunk.js.LICENSE.txt",
     "static/media/jeanLogo.4d1a538a.JPG": "/front/static/media/jeanLogo.4d1a538a.JPG",
     "static/media/logo.005d68d9.JPG": "/front/static/media/logo.005d68d9.JPG"
@@ -16,7 +16,7 @@
   "entrypoints": [
     "static/js/runtime-main.56ef6089.js",
     "static/js/2.87e08ced.chunk.js",
-    "static/css/main.3ec22a77.chunk.css",
-    "static/js/main.e4c39bd2.chunk.js"
+    "static/css/main.be1a80c1.chunk.css",
+    "static/js/main.87da5993.chunk.js"
   ]
 }
