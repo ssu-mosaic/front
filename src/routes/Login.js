@@ -81,7 +81,7 @@ function Login(){
             USER_ID=userId;
             localStorage.setItem('USER_ID',USER_ID);
             alert(`환영해요 ${userId}`);
-            window.location.href = "/"
+            window.location.href = "https://ssu-mosaic.github.io/front"
             // should put real https addr
         }
         
