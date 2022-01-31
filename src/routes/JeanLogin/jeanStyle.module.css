@@ -1,81 +1,110 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Rock+3D&display=swap');  */
 
-*{margin: 0; padding: 0; box-sizing: border-box;}
-.logo_Img{
-    width: 400px;
-    height: 100px;
-    margin: 30px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.logo_Img {
+  width: 400px;
+  height: 100px;
+  margin: 30px;
 }
 
-.jeanBody{
-    margin : 150px;
-    /* font-family: 'Noto Sans KR', sans-serif; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.jeanBody {
+  margin: 150px;
+  /* font-family: 'Noto Sans KR', sans-serif; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.jeanBody::before{
-    content: "";
-    position: absolute; z-index: 1;
-    top: 0; right: 0; bottom: 0; left: 0;
-} 
-
-.login_form, .join_form {
-    position: relative; z-index: 2;
+.jeanBody::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-h1{
-    text-align: center;
-    margin-bottom: 60px;
-    /* font-family: 'Noto Sans KR', sans-serif;
+.login_form,
+.join_form {
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 60px;
+  /* font-family: 'Noto Sans KR', sans-serif;
     font-family: 'Rock 3D', cursive; */
-    font-size: 50px; color:#000;
+  font-size: 50px;
+  color: #000;
 }
-h1 a{
-    text-decoration: none; color:#000;
+h1 a {
+  text-decoration: none;
+  color: #000;
 }
 
 .int_area {
-    width: 400px; position: relative;
+  width: 400px;
+  position: relative;
 }
-.int_area:first-child {margin-top: 0;}
-.int_area input{
-    width: 100%;
-    padding: 20px 10px 10px;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #999;
-    font-size: 18px; color: #000;
-    outline: none;
+.int_area:first-child {
+  margin-top: 0;
 }
-.int_area label{
-    position: absolute; left: 10px; top: 15px;
-    font-size: 15px; color: #999;
-    transition: all .5s ease;
+.int_area input {
+  width: 100%;
+  padding: 20px 10px 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #999;
+  font-size: 18px;
+  color: #000;
+  outline: none;
 }
-.int_area span{
-    position: relative; left: 10px; top: 15px;
-    font-size: 15px; color: #999;
+.int_area label {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  font-size: 15px;
+  color: #999;
+  transition: all 0.5s ease;
+}
+.int_area span {
+  position: relative;
+  left: 10px;
+  top: 15px;
+  font-size: 15px;
+  color: #999;
 }
 
-.int_area select{
-    position: relative; left: 50px; top: 15px;
+.int_area select {
+  position: relative;
+  left: 50px;
+  top: 15px;
 }
 
-.int_area label #pwch, .int_area button{
-    position: relative; width: 50%;
+.int_area label #pwch,
+.int_area button {
+  position: relative;
+  width: 50%;
 }
 
-.int_area button{
-    width: 20%; height: 40px; left:320px; bottom: 45px;
-    background: #000;
-    color: #fff;
-    font-size: 20px;
-    border:none;
-    border-radius: 25px;
+.int_area button {
+  width: 20%;
+  height: 40px;
+  left: 320px;
+  bottom: 45px;
+  background: #000;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  border-radius: 25px;
 }
 /* .int_area label.warning {
     color: red !important;
@@ -90,35 +119,40 @@ h1 a{
 } */
 .int_area input:focus + label,
 .int_area input:valid + label {
-    top: -1px;
-    font-size: 13px; color: #166cea;
+  top: -1px;
+  font-size: 13px;
+  color: #166cea;
 }
 
 .btn_area {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 .btn_area a {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 .btn_area button {
-    width: 100%; height: 50px;
-    background: #166cea;
-    color: #fff;
-    font-size: 20px;
-    border:none;
-    border-radius: 25px;
-    cursor: pointer;
+  width: 100%;
+  height: 50px;
+  background: #166cea;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
 }
-
 
 .caption {
-    float: left; width: 50%;
-    margin-top: 20px;
-    text-align: center;
+  float: left;
+  width: 33%;
+  margin-top: 20px;
+  text-align: center;
 }
-.caption:first-child {margin-top: 0;}
+.caption:first-child {
+  margin-top: 0;
+}
 .caption a {
-    font-size: 15px; color: #999;
-    text-decoration: none;
+  font-size: 15px;
+  color: #999;
+  text-decoration: none;
 }

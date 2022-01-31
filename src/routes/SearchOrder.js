@@ -4,25 +4,20 @@ import SideMenuBar from "../components/sidemenu-bar";
 import SearchForOrder from "../components/search-order";
 import PropTypes from "prop-types";
 
-function SearchOrder({sideMenu}){
-
-    return(
-        <div>
-            <MenuBar/>
-            <div className={styles.screenPage}>
-                <SideMenuBar sideMenu={sideMenu}/>
-                <SearchForOrder/>
-            </div>
-            
-        </div>
-
-    
-    );
+function SearchOrder({ sideMenu }) {
+  return (
+    <div>
+      <MenuBar />
+      <div className={styles.screenPage}>
+        <SideMenuBar sideMenu={sideMenu} />
+        <SearchForOrder />
+      </div>
+    </div>
+  );
 }
 
-SearchOrder.propTypes ={
-
-    sideMenu : PropTypes.object.isRequired,
+SearchOrder.propTypes = {
+  sideMenu: PropTypes.object.isRequired,
 };
 
 export default SearchOrder;
