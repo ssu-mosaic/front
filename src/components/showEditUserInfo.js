@@ -34,7 +34,7 @@ function ShowEditUserInfo() {
 
   //while testing loading : false
   const [loading, setLoading] = useState(false);
-  // testing useState : testUserData
+  // testing useState : testUserData real: emptyUserData
   const [userData, setUserData] = useState(testUserData);
   const [editData, setEditData] = useState(false);
 

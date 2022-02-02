@@ -42,15 +42,18 @@ function MenuBar() {
                 <span>회원정보</span>
               </li>
             </Link>
+            <Link to={`/qna`}>
+              <li className={styles.menuBar__btn}>
+                <span>문의센터</span>
+              </li>
+            </Link>
             {/* <Link to={`/`}><li className={styles.menuBar__btn}><span>고객센터</span></li></Link> */}
           </ul>
         </nav>
       </div>
       <div className={styles.menuBar__column}>
         <div className={styles.menuBar__profile}>
-          <Link to={`/login`}>
-            <FontAwesomeIcon icon={faUserCircle} size="2x" />
-          </Link>
+          <FontAwesomeIcon icon={faUserCircle} size="2x" />
           <Link to={`/login`}>
             <span>{userID === "null" ? "로그인해주세요" : userID}</span>
           </Link>

@@ -71,7 +71,7 @@ function OrderList() {
                   <th>주문상세</th>
                 </tr>
               </thead>
-              <tbody className="testTable__tbody">
+              <tbody className={styles.testTable__tbody}>
                 {tables.map((tables) => (
                   <Tables
                     key={tables.retailerPhone}

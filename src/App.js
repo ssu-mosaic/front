@@ -13,6 +13,8 @@ import ManageStock from "./routes/ManageStock";
 import EditStock from "./routes/EditStock";
 import OrderRequest from "./routes/OrderRequest";
 import UserInfo from "./routes/UserInfo";
+import CustomerCenter from "./routes/CustomerCenter";
+import QnaDetails from "./routes/QnaDetails";
 
 import PaginationTableRender from "./TablePaginationTest/tableRender";
 import DoughnutChart from "./ChartTest/chartRender";
@@ -25,7 +27,15 @@ function App() {
     };
   };
 
-  const userMenuObjElements = [
+  const customerCenterElements = [
+    {
+      id: "qnaList",
+      name: "문의목록",
+      link: "/qna",
+    },
+  ];
+
+  const userMenuElements = [
     {
       id: "showEditUserInfo",
       name: "회원정보",
@@ -72,7 +82,8 @@ function App() {
   const homeMenuObj = sideMenuObj("홈", []);
   const orderMenuObj = sideMenuObj("발주관리", orderSideMenuElements);
   const stockMenuObj = sideMenuObj("재고관리", stockSideMenuElements);
-  const userMenuObj = sideMenuObj("회원정보", userMenuObjElements);
+  const userMenuObj = sideMenuObj("회원정보", userMenuElements);
+  const customerCenterObj = sideMenuObj("문의센터", customerCenterElements);
 
   return (
     <Router>
@@ -94,6 +105,12 @@ function App() {
         </Route>
         <Route path="/login">
           <JeanLogin />
+        </Route>
+        <Route path="/qna/:id">
+          <QnaDetails sideMenu={customerCenterObj} />
+        </Route>
+        <Route path="/qna">
+          <CustomerCenter sideMenu={customerCenterObj} />
         </Route>
         <Route path="/user/info">
           <UserInfo sideMenu={userMenuObj} />
