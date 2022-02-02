@@ -1,0 +1,30 @@
+.userInfoBox {
+  padding: 20px;
+}
+
+.userInfoList li {
+  display: flex;
+  margin-top: 30px;
+}
+
+.userInfoList li div {
+  font-size: 15px;
+}
+
+.userInfoList__readonly {
+  margin-left: 15px;
+  color: grey;
+}
+
+.userInfoList li input {
+  margin-left: 15px;
+}
+
+.userInfoList__saveChange {
+  margin-top: 20px;
+  background-color: var(--dark-blue);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}

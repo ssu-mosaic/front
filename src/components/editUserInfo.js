@@ -1,3 +1,5 @@
+import styles from "./css/userInfo.module.css";
+
 function EditUserInfo({
   userId,
   userPwd,
@@ -12,11 +14,11 @@ function EditUserInfo({
   const blind = "*";
 
   return (
-    <div>
-      <ul>
+    <div className={styles.userInfoBox}>
+      <ul className={styles.userInfoList}>
         <li>
           <div>아이디 : </div>
-          <div>{userId}</div>
+          <div className={styles.userInfoList__readonly}>{userId}</div>
         </li>
         <li>
           <div>비밀번호 : </div>
@@ -27,16 +29,10 @@ function EditUserInfo({
             onChange={handleEditFormChange}
             required
           />
-          <input
-            type="password"
-            name="userPwdRe"
-            placeholder="비밀번호 재입력"
-            required
-          />
         </li>
         <li>
           <div>이름 : </div>
-          <div>{userName}</div>
+          <div className={styles.userInfoList__readonly}>{userName}</div>
         </li>
         <li>
           <div>주소 : </div>
@@ -60,7 +56,7 @@ function EditUserInfo({
         </li>
         <li>
           <div>사업자번호 : </div>
-          <div>{userBusinessNo}</div>
+          <div className={styles.userInfoList__readonly}>{userBusinessNo}</div>
         </li>
         <li>
           <div>이메일 : </div>
@@ -73,7 +69,12 @@ function EditUserInfo({
           />
         </li>
       </ul>
-      <input type="button" value="수정완료" onClick={onSaveClick} />
+      <input
+        type="button"
+        value="수정완료"
+        onClick={onSaveClick}
+        className={styles.userInfoList__saveChange}
+      />
     </div>
   );
 }
