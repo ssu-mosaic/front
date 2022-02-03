@@ -2,6 +2,7 @@ import contentStyles from "../css/screen-content.module.css";
 import styles from "../css/search-order.module.css";
 import tableStyles from "../css/result-table.module.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Fragment from "render-fragment";
 import Pagination from "./paginationForQna";
@@ -50,7 +51,9 @@ function QnaList() {
         <span>문의센터</span>
       </div>
       <div className={styles.screenPage__nextButton}>
-        <input type="button" value="문의작성" />
+        <Link to={`/qna/write`}>
+          <input type="button" value="문의작성" />
+        </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>

@@ -1,23 +1,23 @@
 import MenuBar from "../components/menu-bar";
 import styles from "./css/Home.module.css";
 import SideMenuBar from "../components/sidemenu-bar";
-import ShowEditUserInfo from "../components/USER_INFO/showEditUserInfo";
 import PropTypes from "prop-types";
+import QNAWrite from "../components/QNA/qna_write";
 
-function UserInfo({ sideMenu }) {
+function QnaWrite({ sideMenu }) {
   return (
     <div>
       <MenuBar />
       <div className={styles.screenPage}>
         <SideMenuBar sideMenu={sideMenu} />
-        <ShowEditUserInfo />
+        <QNAWrite />
       </div>
     </div>
   );
 }
 
-UserInfo.propTypes = {
+QnaWrite.propTypes = {
   sideMenu: PropTypes.object.isRequired,
 };
 
-export default UserInfo;
+export default QnaWrite;

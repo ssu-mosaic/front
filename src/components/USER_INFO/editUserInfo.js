@@ -1,4 +1,4 @@
-import styles from "./css/userInfo.module.css";
+import styles from "../css/userInfo.module.css";
 
 function EditUserInfo({
   userId,
@@ -9,6 +9,7 @@ function EditUserInfo({
   userBusinessNo,
   userEmail,
   onSaveClick,
+  onCancelClick,
   handleEditFormChange,
 }) {
   const blind = "*";
@@ -73,6 +74,12 @@ function EditUserInfo({
         type="button"
         value="수정완료"
         onClick={onSaveClick}
+        className={styles.userInfoList__saveChange}
+      />
+      <input
+        type="button"
+        value="수정취소"
+        onClick={onCancelClick}
         className={styles.userInfoList__saveChange}
       />
     </div>

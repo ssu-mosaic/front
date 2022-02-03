@@ -1,0 +1,50 @@
+.qnaBox {
+  padding: 10px 20px;
+}
+
+.qnaTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: grey;
+}
+
+.qnaBox__row:not(:nth-of-type(1)) {
+  border: var(--main-border);
+  background-color: var(--main-background-color);
+}
+
+.qnaBox__row {
+  margin-bottom: 20px;
+}
+
+.qnaBox__row div {
+  margin: 10px;
+}
+
+.qnaBox__row textarea {
+  margin: 10px;
+  width: 95%;
+}
+
+.qnaBox__row input {
+  margin: 10px;
+}
+
+.qnaBox__row_title {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.qnaContent {
+  height: 150px;
+  color: grey;
+}
+
+.qnaEditButton {
+  margin-right: 20px;
+  background-color: var(--dark-blue);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}

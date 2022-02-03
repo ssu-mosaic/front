@@ -1,5 +1,5 @@
-import contentStyles from "./css/screen-content.module.css";
-import styles from "./css/search-order.module.css";
+import contentStyles from "../css/screen-content.module.css";
+import styles from "../css/search-order.module.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Fragment from "render-fragment";
@@ -63,7 +63,12 @@ function ShowEditUserInfo() {
     newFormData[fieldName] = fieldValue;
 
     setUserData(newFormData);
-    console.log(userData);
+    //console.log(userData);
+  };
+
+  const onCancelClick = (event) => {
+    event.preventDefault();
+    setEditData(false);
   };
 
   const onSaveClick = (event) => {
@@ -74,7 +79,7 @@ function ShowEditUserInfo() {
         alert("회원 정보 수정 완료");
       } else {
         alert(
-          "회원 정보 수정 실패 \n 회원 정보 중 타 계정과 중복되는 정보가 있습니다 "
+          "회원 정보 수정 실패 \n 잘못된 비밀번호 또는 회원 정보 중 타 계정과 중복되는 정보가 있습니다 "
         );
       }
     });
@@ -113,6 +118,7 @@ function ShowEditUserInfo() {
                     userBusinessNo={userData.userBusinessNo}
                     userEmail={userData.userEmail}
                     onSaveClick={onSaveClick}
+                    onCancelClick={onCancelClick}
                     handleEditFormChange={handleEditFormChange}
                   />
                 ) : (

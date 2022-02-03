@@ -4,6 +4,8 @@ import axios from "axios";
 import contentStyles from "../css/screen-content.module.css";
 import styles from "../css/search-order.module.css";
 import Fragment from "render-fragment";
+import QnaRead from "./qna_read";
+import QnaEdit from "./qna_edit";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -24,12 +26,13 @@ function Detail() {
   };
 
   const [qnaDetails, setQnaDetails] = useState(emptyQnaDetails);
+  const [qnaEdit, setQnaEdit] = useState(false);
 
   useEffect(() => {
     const identification = {
       userId: userID,
     };
-    axios.get(`${baseURL}/${id}`, identification).then((response) => {
+    axios.get(`${baseURL}/qna/${id}`, identification).then((response) => {
       setQnaDetails(response.data);
       setLoading(false);
     });
@@ -46,6 +49,52 @@ function Detail() {
     setQnaDetails(testQnaDetails);
   }, []);
 
+  const onQnaEditClick = () => {
+    setQnaEdit(true);
+  };
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    const newFormData = { ...qnaDetails };
+    newFormData[fieldName] = fieldValue;
+
+    setQnaDetails(newFormData);
+  };
+
+  const onCancelClick = (event) => {
+    event.preventDefault();
+    setQnaEdit(false);
+  };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    setQnaEdit(false);
+    axios.put(`${baseURL}/qna/edit/${id}`, qnaDetails).then((response) => {
+      if (response.data === true) {
+        alert("문의 내역 수정 완료");
+      } else {
+        alert("문의 내역 수정 실패");
+      }
+    });
+  };
+  const onDeleteClick = (event) => {
+    event.preventDefault();
+    const identification = {
+      userId: userID,
+    };
+    setQnaEdit(false);
+    axios.delete(`${baseURL}/qna/${id}`, identification).then((response) => {
+      if (response.data === true) {
+        alert("문의 내역 삭제 완료");
+      } else {
+        alert("문의 내역 삭제 실패");
+      }
+    });
+  };
+
   return (
     <div
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
@@ -54,8 +103,18 @@ function Detail() {
         <span>문의상세</span>
       </div>
       <div className={styles.screenPage__nextButton}>
-        <input type="button" value="문의수정" />
-        <input type="button" value="문의삭제" />
+        <input
+          type="button"
+          value="문의수정"
+          disabled={qnaEdit || qnaDetails.inquiryAnswer.length > 0}
+          onClick={onQnaEditClick}
+        />
+        <input
+          type="button"
+          value="문의삭제"
+          onClick={onDeleteClick}
+          disabled={qnaEdit}
+        />
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
@@ -66,9 +125,21 @@ function Detail() {
             <strong>로딩중...</strong>
           ) : (
             <Fragment>
-              <form>
-                <div>{qnaDetails.inquiryTitle}</div>
-              </form>
+              {qnaEdit ? (
+                <QnaEdit
+                  inquiryTitle={qnaDetails.inquiryTitle}
+                  inquiryContent={qnaDetails.inquiryContent}
+                  handleEditFormChange={handleEditFormChange}
+                  onFormSubmit={onFormSubmit}
+                  onCancelClick={onCancelClick}
+                />
+              ) : (
+                <QnaRead
+                  inquiryTitle={qnaDetails.inquiryTitle}
+                  inquiryContent={qnaDetails.inquiryContent}
+                  inquiryAnswer={qnaDetails.inquiryAnswer}
+                />
+              )}
             </Fragment>
           )}
         </div>

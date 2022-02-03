@@ -1,0 +1,25 @@
+.userInfoBox {
+  margin: 20px;
+  color: grey;
+  font-weight: bold;
+}
+
+.userInfoBox__row {
+  display: flex;
+  margin-bottom: 20px;
+}
+.userInfoBox__title {
+  margin-right: 15px;
+}
+
+.alertMessage {
+  color: red;
+}
+
+.button {
+  background-color: var(--dark-blue);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}

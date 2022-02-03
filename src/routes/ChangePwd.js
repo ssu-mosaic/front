@@ -1,23 +1,23 @@
 import MenuBar from "../components/menu-bar";
 import styles from "./css/Home.module.css";
 import SideMenuBar from "../components/sidemenu-bar";
-import ShowEditUserInfo from "../components/USER_INFO/showEditUserInfo";
+import ChangeUserPwd from "../components/USER_INFO/changePwd";
 import PropTypes from "prop-types";
 
-function UserInfo({ sideMenu }) {
+function ChangePwd({ sideMenu }) {
   return (
     <div>
       <MenuBar />
       <div className={styles.screenPage}>
         <SideMenuBar sideMenu={sideMenu} />
-        <ShowEditUserInfo />
+        <ChangeUserPwd />
       </div>
     </div>
   );
 }
 
-UserInfo.propTypes = {
+ChangePwd.propTypes = {
   sideMenu: PropTypes.object.isRequired,
 };
 
-export default UserInfo;
+export default ChangePwd;

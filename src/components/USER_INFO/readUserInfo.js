@@ -1,4 +1,4 @@
-import styles from "./css/userInfo.module.css";
+import styles from "../css/userInfo.module.css";
 
 function ReadUserInfo({
   userId,

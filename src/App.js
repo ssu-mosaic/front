@@ -12,11 +12,18 @@ import ConfirmItem from "./routes/ConfirmItem";
 import ManageStock from "./routes/ManageStock";
 import EditStock from "./routes/EditStock";
 import OrderRequest from "./routes/OrderRequest";
+
+//user information management
 import UserInfo from "./routes/UserInfo";
+import UserDelete from "./routes/DeleteUser";
+import UserPwdChange from "./routes/ChangePwd";
+
+//customer service center
 import CustomerCenter from "./routes/CustomerCenter";
 import QnaDetails from "./routes/QnaDetails";
-
+import QnaWrite from "./routes/QnaWrite";
 import PaginationTableRender from "./TablePaginationTest/tableRender";
+
 import DoughnutChart from "./ChartTest/chartRender";
 
 function App() {
@@ -33,6 +40,11 @@ function App() {
       name: "문의목록",
       link: "/qna",
     },
+    {
+      id: "qnaWrite",
+      name: "문의작성",
+      link: "/qna/write",
+    },
   ];
 
   const userMenuElements = [
@@ -40,6 +52,16 @@ function App() {
       id: "showEditUserInfo",
       name: "회원정보",
       link: "/user/info",
+    },
+    {
+      id: "changeUserPwd",
+      name: "비밀번호 수정",
+      link: "/user/changepwd",
+    },
+    {
+      id: "deleteUserInfo",
+      name: "회원탈퇴",
+      link: "/user/delete",
     },
   ];
 
@@ -106,11 +128,20 @@ function App() {
         <Route path="/login">
           <JeanLogin />
         </Route>
+        <Route path="/qna/write">
+          <QnaWrite sideMenu={customerCenterObj} />
+        </Route>
         <Route path="/qna/:id">
           <QnaDetails sideMenu={customerCenterObj} />
         </Route>
         <Route path="/qna">
           <CustomerCenter sideMenu={customerCenterObj} />
+        </Route>
+        <Route path="/user/changepwd">
+          <UserPwdChange sideMenu={userMenuObj} />
+        </Route>
+        <Route path="/user/delete">
+          <UserDelete sideMenu={userMenuObj} />
         </Route>
         <Route path="/user/info">
           <UserInfo sideMenu={userMenuObj} />
