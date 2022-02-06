@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import ReadDetail from "./readRetailerDetail";
 import EditData from "./editRetailerDetail";
 import AddProduct from "./addProduct";
+import ProductListTable from "../PRODUCT_LIST/tableRender";
+import ProductDetail from "./productDetail";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -40,7 +42,13 @@ function Detail() {
   const [retailerDetailEdit, setRetailerDetailEdit] = useState(false);
   const [addProductToggle, setAddProductToggle] = useState(false);
   const [newProduct, setNewProduct] = useState(emptyProductForm);
-
+  const [productDetailData, setProductDetailData] = useState({
+    productName: "",
+    productPrice: "",
+    productUnit: "",
+    productDesc: "",
+  });
+  const [showProductDetail, setShowProductDetail] = useState(false);
   useEffect(() => {
     const identification = {
       userId: userID,
@@ -62,6 +70,22 @@ function Detail() {
     setNewRetailerDetails(testRetailerDetails);
   }, []);
 
+  const handleBackToProducts = (event) => {
+    event.preventDefault();
+    setShowProductDetail(false);
+  };
+  const onProductDetailClick = (event, rowData) => {
+    event.preventDefault();
+    const formValues = {
+      productName: rowData.productName,
+      productPrice: rowData.productPrice,
+      productUnit: rowData.productUnit,
+      productDesc: rowData.productDesc,
+    };
+    //console.log(formValues);
+    setShowProductDetail(true);
+    setProductDetailData(formValues);
+  };
   const onAddProductClick = () => {
     setAddProductToggle(true);
   };
@@ -185,12 +209,33 @@ function Detail() {
                   onRetailerFormSubmit={onRetailerFormSubmit}
                 />
               ) : (
-                <ReadDetail
-                  retailerName={retailerDetails.retailerName}
-                  retailerEmail={retailerDetails.retailerEmail}
-                  retailerPhoneNo={retailerDetails.retailerPhoneNo}
-                  retailerDesc={retailerDetails.retailerDesc}
-                />
+                <Fragment>
+                  <ReadDetail
+                    retailerName={retailerDetails.retailerName}
+                    retailerEmail={retailerDetails.retailerEmail}
+                    retailerPhoneNo={retailerDetails.retailerPhoneNo}
+                    retailerDesc={retailerDetails.retailerDesc}
+                  />
+                  <div className={styles.tableTitle}>
+                    {showProductDetail
+                      ? `${productDetailData.productName} 세부정보`
+                      : `${retailerDetails.retailerName} 판매 상품`}
+                  </div>
+                  {showProductDetail ? (
+                    <ProductDetail
+                      productName={productDetailData.productName}
+                      productPrice={productDetailData.productPrice}
+                      productUnit={productDetailData.productUnit}
+                      productDesc={productDetailData.productDesc}
+                      handleBackToProducts={handleBackToProducts}
+                    />
+                  ) : (
+                    <ProductListTable
+                      retailerId={id}
+                      onProductDetailClick={onProductDetailClick}
+                    />
+                  )}
+                </Fragment>
               )}
             </Fragment>
           )}

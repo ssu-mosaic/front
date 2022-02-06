@@ -12,36 +12,31 @@ import TEST_PRODUCT_DATA from "./MOCK_DATA.json";
 let userID = localStorage.getItem("USER_ID");
 
 //거래처목록
-function ProductListTable() {
+function ProductListTable({ retailerId, onProductDetailClick }) {
   const baseURL =
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [tablePerPage] = useState(10);
+  const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
-
-  //get data from server
-  //
-  //     const ApiCallForList = async () => {
-  //         const response = await axios.post(`${baseURL}/retailer/list`)
-  //         const data = await response.data;
-  //         console.log(data);
-  //         setTable(data);
-  //         setLoading(false);
-  //         //return await response.data;
-  //     }
-  //     ApiCallForList();
-  //     //setTable(MOCK_DATA);
-
-  //
+  const [editFormData, setEditFormData] = useState({
+    userId: userID,
+    retailerId: retailerId,
+    productId: "",
+    productName: "",
+    productPrice: "",
+    productUnit: "",
+    productDesc: "",
+  });
 
   useEffect(() => {
     const userData = {
       userId: userID,
+      retailerId: retailerId,
     };
-    axios.post(`${baseURL}/retailer`, userData).then((response) => {
+    axios.post(`${baseURL}/retailer/products`, userData).then((response) => {
       //console.log(response.data);
       setTable(response.data);
       setLoading(false);
@@ -49,8 +44,6 @@ function ProductListTable() {
     //only for testing erase when real
     setTable(TEST_PRODUCT_DATA);
   }, []);
-
-  console.log(table);
 
   // Get current tables
   const indexOfLastTable = currentPage * tablePerPage;
@@ -64,27 +57,21 @@ function ProductListTable() {
   const [rowId, setRowId] = useState(null);
   const handleEditClick = (event, rowData) => {
     event.preventDefault();
-    setRowId(rowData.retailerId);
+    setRowId(rowData.productId);
 
     const formValues = {
       userId: userID,
-      retailerId: rowData.retailerId,
-      retailerName: rowData.retailerName,
-      retailerPhoneNo: rowData.retailerPhoneNo,
-      retailerEmail: rowData.retailerEmail,
-      retailerDesc: rowData.retailerDesc,
+      retailerId: retailerId,
+      productId: rowData.productId,
+      productName: rowData.productName,
+      productPrice: rowData.productPrice,
+      productUnit: rowData.productUnit,
+      productDesc: rowData.productDesc,
     };
 
     setEditFormData(formValues);
   };
-  const [editFormData, setEditFormData] = useState({
-    userId: userID,
-    retailerId: "",
-    retailerName: "",
-    retailerPhoneNo: "",
-    retailerEmail: "",
-    retailerDesc: "",
-  });
+
   const handleEditFormChange = (event) => {
     event.preventDefault();
 
@@ -103,11 +90,12 @@ function ProductListTable() {
 
     const editedForm = {
       userId: userID,
-      retailerId: rowId,
-      retailerName: editFormData.retailerName,
-      retailerPhoneNo: editFormData.retailerPhoneNo,
-      retailerEmail: editFormData.retailerEmail,
-      retailerDesc: editFormData.retailerDesc,
+      retailerId: retailerId,
+      productId: rowId,
+      productName: editFormData.productName,
+      productPrice: editFormData.productPrice,
+      productUnit: editFormData.productUnit,
+      productDesc: editFormData.productDesc,
     };
 
     // const ApiCallForEdit = async () => {
@@ -116,16 +104,16 @@ function ProductListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.put(`${baseURL}/retailer/${rowId}`, editedForm).then((response) => {
+    axios.put(`${baseURL}/product/${rowId}`, editedForm).then((response) => {
       if (response.data === true) {
-        alert("거래처 정보 수정 완료");
+        alert("물품 수정 완료");
       } else {
-        alert("거래처 정보 수정 실패 재시도 해주세요");
+        alert("물품 수정 실패 재시도 해주세요");
       }
     });
 
     const newTable = [...table];
-    const index = table.findIndex((row) => row.retailerId === rowId);
+    const index = table.findIndex((row) => row.productId === rowId);
 
     newTable[index] = editedForm;
     //console.log(newTable);
@@ -142,7 +130,8 @@ function ProductListTable() {
   const handleDeleteClick = (rowId) => {
     const deleteForm = {
       userId: userID,
-      retailerId: rowId,
+      retailerId: retailerId,
+      productId: rowId,
     };
     // const ApiCallForDelete = async () => {
     //     //const response =
@@ -150,18 +139,16 @@ function ProductListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios
-      .delete(`${baseURL}/retailer/${rowId}`, deleteForm)
-      .then((response) => {
-        if (response.data === true) {
-          alert("거래처 정보 삭제 완료");
-        } else {
-          alert("거래처 정보 삭제 실패 재시도 해주세요");
-        }
-      });
+    axios.delete(`${baseURL}/product/${rowId}`, deleteForm).then((response) => {
+      if (response.data === true) {
+        alert("거래처 정보 삭제 완료");
+      } else {
+        alert("거래처 정보 삭제 실패 재시도 해주세요");
+      }
+    });
 
     const newTable = [...table];
-    const index = table.findIndex((row) => row.retailerId === rowId);
+    const index = table.findIndex((row) => row.productId === rowId);
     newTable.splice(index, 1);
     setTable(newTable);
     //ApiCallForDelete();
@@ -189,28 +176,29 @@ function ProductListTable() {
               <tbody className="testTable__tbody">
                 {tables.map((tables) => (
                   <Fragment>
-                    {rowId === tables.retailerId ? (
+                    {rowId === tables.productId ? (
                       <EditRow
-                        key={tables.retailerId}
-                        retailerId={tables.retailerId}
-                        retailerName={tables.retailerName}
-                        retailerPhoneNo={tables.retailerPhoneNo}
-                        retailerEmail={tables.retailerEmail}
-                        retailerDesc={tables.retailerDesc}
+                        key={tables.productId}
+                        productId={tables.productId}
+                        productName={tables.productName}
+                        productPrice={tables.productPrice}
+                        productUnit={tables.productUnit}
+                        productDesc={tables.productDesc}
                         editFormData={editFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
                       />
                     ) : (
                       <Tables
-                        key={tables.retailerId}
-                        retailerId={tables.retailerId}
-                        retailerName={tables.retailerName}
-                        retailerPhoneNo={tables.retailerPhoneNo}
-                        retailerEmail={tables.retailerEmail}
-                        retailerDesc={tables.retailerDesc}
+                        key={tables.productId}
+                        productId={tables.productId}
+                        productName={tables.productName}
+                        productPrice={tables.productPrice}
+                        productUnit={tables.productUnit}
+                        productDesc={tables.productDesc}
                         handleEditClick={handleEditClick}
                         handleDeleteClick={handleDeleteClick}
+                        onProductDetailClick={onProductDetailClick}
                       />
                     )}
                   </Fragment>

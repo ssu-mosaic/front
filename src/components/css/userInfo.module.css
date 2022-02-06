@@ -55,3 +55,8 @@
   color: black;
   font-weight: bold;
 }
+
+.userInfoList__item {
+  color: grey;
+  margin-left: 20px;
+}

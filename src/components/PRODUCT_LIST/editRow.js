@@ -3,24 +3,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function EditRow({
-  retailerId,
-  retailerName,
-  retailerPhoneNo,
-  retailerEmail,
-  retailerDesc,
+  productId,
+  productName,
+  productPrice,
+  productUnit,
+  productDesc,
   editFormData,
   handleEditFormChange,
   handleCancelClick,
 }) {
   return (
-    <tr key={retailerId} className={styles.screenPage__searchResultTable_items}>
+    <tr key={productId} className={styles.screenPage__searchResultTable_items}>
       <td key={"retailerName_edit"}>
         <input
           type="text"
           required="required"
-          placeholder={retailerName}
-          name="retailerName"
-          value={editFormData.retailerName}
+          placeholder={productName}
+          name="productName"
+          value={editFormData.productName}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -28,9 +28,9 @@ function EditRow({
         <input
           type="text"
           required="required"
-          placeholder={retailerPhoneNo}
-          name="retailerPhoneNo"
-          value={editFormData.retailerPhoneNo}
+          placeholder={productPrice}
+          name="productPrice"
+          value={editFormData.productPrice}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -38,9 +38,9 @@ function EditRow({
         <input
           type="text"
           required="required"
-          placeholder={retailerEmail}
-          name="retailerEmail"
-          value={editFormData.retailerEmail}
+          placeholder={productUnit}
+          name="productUnit"
+          value={editFormData.productUnit}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -48,9 +48,9 @@ function EditRow({
         <textarea
           type="text"
           required="required"
-          placeholder={retailerDesc}
-          name="retailerDesc"
-          value={editFormData.retailerDesc}
+          placeholder={productDesc}
+          name="productDesc"
+          value={editFormData.productDesc}
           onChange={handleEditFormChange}
         ></textarea>
       </td>

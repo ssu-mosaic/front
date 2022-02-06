@@ -1,24 +1,62 @@
 import styles from "../css/result-table.module.css";
-////import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-//import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faHammer } from "@fortawesome/free-solid-svg-icons";
 
-function Tables({ retailerName, orderDate, retailerPhone, orderDetail }) {
-  // const rowData = {
-  //     retailerName: retailerName,
-  //     orderDate: orderDate,
-  //     retailerPhone: retailerPhone,
-  //     orderDetail: orderDetail,
-  // }
-  //console.log(orderDetail);
+let userID = localStorage.getItem("USER_ID");
+
+function Tables({
+  productId,
+  productName,
+  productPrice,
+  productUnit,
+  productDesc,
+  handleEditClick,
+  handleDeleteClick,
+  onProductDetailClick,
+}) {
+  const rowData = {
+    userId: userID,
+    productId: productId,
+    productName: productName,
+    productPrice: productPrice,
+    productUnit: productUnit,
+    productDesc: productDesc,
+  };
+  const productDetailData = {
+    productName: productName,
+    productPrice: productPrice,
+    productUnit: productUnit,
+    productDesc: productDesc,
+  };
+
+  //console.log(retailerAddress);
+
   return (
-    <tr
-      key={retailerPhone}
-      className={styles.screenPage__searchResultTable_items}
-    >
-      <td key={"retailerName_td"}>{retailerName}</td>
-      <td key={"retailerPhone_td"}>{orderDate}</td>
-      <td key={"retailerEmail_td"}>{retailerPhone}</td>
-      <td key={"orderDetail_td"}>{`${orderDetail.slice(0, 20)}...`}</td>
+    <tr key={productId} className={styles.screenPage__searchResultTable_items}>
+      <td
+        key={"productName_td"}
+        onClick={(event) => onProductDetailClick(event, productDetailData)}
+      >
+        {productName}
+      </td>
+      <td key={"productPrice_td"}>{productPrice}</td>
+      <td key={"productUnit_td"}>{productUnit}</td>
+      <td key={"productDesc_td"}>{`${productDesc.slice(0, 10)}...`}</td>
+      <td key={"edit_td"}>
+        <button
+          type="button"
+          onClick={(event) => handleEditClick(event, rowData)}
+        >
+          {" "}
+          <FontAwesomeIcon icon={faHammer} size="2x" />{" "}
+        </button>
+      </td>
+      <td key={"delete_td"}>
+        <button type="button" onClick={() => handleDeleteClick(productId)}>
+          {" "}
+          <FontAwesomeIcon icon={faTimes} size="2x" />{" "}
+        </button>
+      </td>
     </tr>
   );
 }

@@ -59,7 +59,7 @@ function AddProduct({
         />
         <input
           className={styles.userInfoList__saveChange}
-          type="submit"
+          type="button"
           onClick={onAddProductCancelClick}
           value="취소"
         />
