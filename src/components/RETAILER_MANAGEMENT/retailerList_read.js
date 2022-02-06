@@ -1,15 +1,15 @@
-import contentStyles from "./css/screen-content.module.css";
-import styles from "./css/search-order.module.css";
+import contentStyles from "../css/screen-content.module.css";
+import styles from "../css/search-order.module.css";
 //import ConfirmItemResultTable from "./order-confirm-result";
-import RetailerListTable from "./RETAILER_LIST/tableRender";
+import RetailerListTable from "../RETAILER_LIST/tableRender";
 import React from "react";
 //import { DateRangePicker } from 'rsuite';
 //import 'rsuite/dist/rsuite.css';
 //import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function ConfirmForItem(){
-    /*
+function RetailerListRead() {
+  /*
     const [dateRange, setDateRange] = useState([new Date(), new Date()]);
 
     const onDateChange = (event) =>{
@@ -23,18 +23,20 @@ function ConfirmForItem(){
         }
     }
     */
-    return(
-
-        <div className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}>
-            <div className={styles.screenPage__searchItem}>
-                <span>거래처목록</span>
-            </div>
-            <div className={styles.screenPage__nextButton}>
-                <Link to={'/order/searchitem'}><input type="button" value="거래처등록"/></Link>
-            </div>
-            <div className={styles.screenPage__searchBox}>
-                
-                {/* <div className={styles.screenPage_title}><span>검색옵션</span></div>
+  return (
+    <div
+      className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
+    >
+      <div className={styles.screenPage__searchItem}>
+        <span>거래처목록</span>
+      </div>
+      <div className={styles.screenPage__nextButton}>
+        <Link to={"/order/retailer/add"}>
+          <input type="button" value="거래처등록" />
+        </Link>
+      </div>
+      <div className={styles.screenPage__searchBox}>
+        {/* <div className={styles.screenPage_title}><span>검색옵션</span></div>
                 <form method="get">
                     <div className={`${styles.screenPage__section_column} ${styles.screenPage__searchList}`}>
                         <div className={styles.screenPage__section_row}>
@@ -58,16 +60,16 @@ function ConfirmForItem(){
                             <input type="submit" value="조회"/>
                     </div>
                 </form> */}
-            
-            </div>
-            
-            <div className={styles.screenPage__searchResult}>
-                <div className={styles.screenPage_title}><span>거래처리스트</span></div>
-                <RetailerListTable/>
-            </div>
+      </div>
+
+      <div className={styles.screenPage__searchResult}>
+        <div className={styles.screenPage_title}>
+          <span>거래처리스트</span>
         </div>
-    
-    );
+        <RetailerListTable />
+      </div>
+    </div>
+  );
 }
 
-export default ConfirmForItem;
+export default RetailerListRead;

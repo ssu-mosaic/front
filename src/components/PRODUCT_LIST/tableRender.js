@@ -7,12 +7,12 @@ import styles from "../css/result-table.module.css";
 import axios from "axios";
 
 //only for testing
-import TEST_RETAILER_DATA from "./MOCK_DATA.json";
+import TEST_PRODUCT_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
 //거래처목록
-function RetailerListTable() {
+function ProductListTable() {
   const baseURL =
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
@@ -47,7 +47,7 @@ function RetailerListTable() {
       setLoading(false);
     });
     //only for testing erase when real
-    setTable(TEST_RETAILER_DATA);
+    setTable(TEST_PRODUCT_DATA);
   }, []);
 
   console.log(table);
@@ -177,10 +177,10 @@ function RetailerListTable() {
             <table className={styles.screenPage__searchResultTable}>
               <thead>
                 <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>거래처 이름</th>
-                  <th>거래처 연락처</th>
-                  <th>거래처 이메일</th>
-                  <th>거래처 메모</th>
+                  <th>상품 이름</th>
+                  <th>상품 가격</th>
+                  <th>상품 단위</th>
+                  <th>상품 설명</th>
                   <th>수정</th>
                   <th>삭제</th>
                 </tr>
@@ -229,4 +229,4 @@ function RetailerListTable() {
   );
 }
 
-export default RetailerListTable;
+export default ProductListTable;

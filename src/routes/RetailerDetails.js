@@ -1,23 +1,23 @@
 import MenuBar from "../components/menu-bar";
 import styles from "./css/Home.module.css";
 import SideMenuBar from "../components/sidemenu-bar";
-import SearchForItem from "../components/search-item";
+import Detail from "../components/RETAILER_MANAGEMENT/retailer_details";
 import PropTypes from "prop-types";
 
-function SearchItem({ sideMenu }) {
+function RetailerDetails({ sideMenu }) {
   return (
     <div>
       <MenuBar />
       <div className={styles.screenPage}>
         <SideMenuBar sideMenu={sideMenu} />
-        <SearchForItem />
+        <Detail />
       </div>
     </div>
   );
 }
 
-SearchItem.propTypes = {
+RetailerDetails.propTypes = {
   sideMenu: PropTypes.object.isRequired,
 };
 
-export default SearchItem;
+export default RetailerDetails;

@@ -27,7 +27,7 @@ function MenuBar() {
       <div className={styles.menuBar__column}>
         <nav className={styles.menuBar__nav}>
           <ul className={styles.menuBar__list}>
-            <Link to={`/order/searchitem`}>
+            <Link to={`/order/retailer/add`}>
               <li className={styles.menuBar__btn}>
                 <span>발주관리</span>
               </li>

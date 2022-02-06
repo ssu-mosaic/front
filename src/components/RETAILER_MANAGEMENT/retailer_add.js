@@ -1,5 +1,5 @@
-import contentStyles from "./css/screen-content.module.css";
-import styles from "./css/search-item.module.css";
+import contentStyles from "../css/screen-content.module.css";
+import styles from "../css/search-item.module.css";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
@@ -7,46 +7,43 @@ import axios from "axios";
 
 const userID = localStorage.getItem("USER_ID");
 
-function SearchForItem() {
+function RetailerAdd() {
   const baseURL =
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
   let newRetailerData = {
-    userName: "",
+    userId: "",
     retailerName: "",
-    retailerPhone: "",
+    retailerPhoneNo: "",
     retailerEmail: "",
-    retailerAddress: "",
-    retailerMemo: "",
+    retailerDesc: "",
   };
   const resetRetailerData = {
-    userName: "",
+    userId: "",
     retailerName: "",
-    retailerPhone: "",
+    retailerPhoneNo: "",
     retailerEmail: "",
-    retailerAddress: "",
-    retailerMemo: "",
+    retailerDesc: "",
   };
 
   const [userId] = useState(userID);
   const [retailerName, setRetailerName] = useState("");
   const [retailerPhone, setRetailerPhone] = useState("");
   const [retailerEmail, setRetailerEmail] = useState("");
-  const [retailerAddress, setRetailerAddress] = useState("");
   const [retailerMemo, setRetailerMemo] = useState("");
 
-  const ApiCall = async () => {
-    const response = await axios.post(
-      `${baseURL}/retailer/add`,
-      newRetailerData
-    );
-    const data = await response.data;
-    console.log(newRetailerData);
-    console.log(data);
+  // const ApiCall = async () => {
+  //   const response = await axios.post(
+  //     `${baseURL}/retailer/add`,
+  //     newRetailerData
+  //   );
+  //   const data = await response.data;
+  //   //console.log(newRetailerData);
+  //   //console.log(data);
 
-    //setData(data);
-    //return await response.data;
-  };
+  //   //setData(data);
+  //   //return await response.data;
+  // };
 
   const onRetailerNameChange = (event) => {
     setRetailerName(event.target.value);
@@ -57,30 +54,27 @@ function SearchForItem() {
   const onRetailerEmailChange = (event) => {
     setRetailerEmail(event.target.value);
   };
-  const onRetailerAddressChange = (event) => {
-    setRetailerAddress(event.target.value);
-  };
   const onRetailerMemoChange = (event) => {
     setRetailerMemo(event.target.value);
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    newRetailerData.userName = userId;
+    newRetailerData.userId = userId;
     newRetailerData.retailerName = retailerName;
-    newRetailerData.retailerPhone = retailerPhone;
+    newRetailerData.retailerPhoneNo = retailerPhone;
     newRetailerData.retailerEmail = retailerEmail;
-    newRetailerData.retailerAddress = retailerAddress;
-    newRetailerData.retailerMemo = retailerMemo;
+    newRetailerData.retailerDesc = retailerMemo;
     console.log(newRetailerData);
 
-    ApiCall();
+    axios.post(`${baseURL}/retailer/add`, newRetailerData).then((response) => {
+      if (response.data === true) {
+        alert("거래처 등록 완료");
+      } else {
+        alert("거래처 등록 실패 재시도 해주세요 ");
+      }
+    });
 
-    // setRetailerName("");
-    // setRetailerPhone("");
-    // setRetailerEmail("");
-    // setRetailerAddress("");
-    // setRetailerMemo("");
     newRetailerData = resetRetailerData;
   };
 
@@ -92,7 +86,7 @@ function SearchForItem() {
         <span>거래처등록</span>
       </div>
       <div className={styles.screenPage__nextButton}>
-        <Link to={"/order/confirmitem"}>
+        <Link to={"/order/retailer"}>
           <input type="button" value="거래처목록" />
         </Link>
       </div>
@@ -106,32 +100,43 @@ function SearchForItem() {
           >
             <div className={styles.screenPage__section_column}>
               <div className={styles.screenPage__searchOption}>
-                <label for="company">거래처이름 </label>
-                <input type="text" onChange={onRetailerNameChange} required />
-              </div>
-              <div className={styles.screenPage__searchOption}>
-                <label for="company">거래처연락처 </label>
-                <input type="text" onChange={onRetailerPhoneChange} required />
+                <label for="retailerName">거래처이름 </label>
+                <input
+                  type="text"
+                  name="retailerName"
+                  onChange={onRetailerNameChange}
+                  required
+                />
               </div>
             </div>
             <div className={styles.screenPage__section_column}>
               <div className={styles.screenPage__searchOption}>
-                <label for="condition">거래처주소 </label>
+                <label for="retailerEmail">거래처이메일 </label>
                 <input
                   type="text"
-                  onChange={onRetailerAddressChange}
+                  name="retailerEmail"
+                  onChange={onRetailerEmailChange}
                   required
                 />
               </div>
               <div className={styles.screenPage__searchOption}>
-                <label for="itemName">거래처이메일 </label>
-                <input type="text" onChange={onRetailerEmailChange} required />
+                <label for="retailerPhoneNo">거래처연락처 </label>
+                <input
+                  type="text"
+                  name="retailerPhoneNo"
+                  onChange={onRetailerPhoneChange}
+                  required
+                />
               </div>
             </div>
             <div className={styles.screenPage__section_column}>
               <div className={styles.screenPage__searchOption}>
-                <label for="condition">메모 </label>
-                <textarea onChange={onRetailerMemoChange} required />
+                <label for="retailerDesc">메모 </label>
+                <textarea
+                  name="retailerDesc"
+                  onChange={onRetailerMemoChange}
+                  required
+                />
               </div>
             </div>
           </div>
@@ -149,4 +154,4 @@ function SearchForItem() {
   );
 }
 
-export default SearchForItem;
+export default RetailerAdd;

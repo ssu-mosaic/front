@@ -6,12 +6,13 @@ import JeanJoin from "./routes/JeanLogin/JeanJoin";
 import JeanFindPw from "./routes/JeanLogin/JeanForgetPw";
 import JeanFindId from "./routes/JeanLogin/JeanForgetId";
 //import MakeAccount from "./routes/MakeAccount";
-import SearchItem from "./routes/SearchItem";
 import SearchOrder from "./routes/SearchOrder";
-import ConfirmItem from "./routes/ConfirmItem";
 import ManageStock from "./routes/ManageStock";
 import EditStock from "./routes/EditStock";
 import OrderRequest from "./routes/OrderRequest";
+import AddRetailer from "./routes/AddRetailer";
+import RetailerList from "./routes/RetailerList";
+import RetailerDetails from "./routes/RetailerDetails";
 
 //user information management
 import UserInfo from "./routes/UserInfo";
@@ -69,12 +70,12 @@ function App() {
     {
       id: "searchitem",
       name: "거래처등록",
-      link: "/order/searchitem",
+      link: "/order/retailer/add",
     },
     {
       id: "confirmitem",
       name: "거래처목록",
-      link: "/order/confirmitem",
+      link: "/order/retailer",
     },
     {
       id: "requestorder",
@@ -146,17 +147,20 @@ function App() {
         <Route path="/user/info">
           <UserInfo sideMenu={userMenuObj} />
         </Route>
-        <Route path="/order/confirmitem">
-          <ConfirmItem sideMenu={orderMenuObj} />
-        </Route>
         <Route path="/order/searchorder">
           <SearchOrder sideMenu={orderMenuObj} />
         </Route>
         <Route path="/order/requestorder">
           <OrderRequest sideMenu={orderMenuObj} />
         </Route>
-        <Route path="/order/searchitem">
-          <SearchItem sideMenu={orderMenuObj} />
+        <Route path="/order/retailer/add">
+          <AddRetailer sideMenu={orderMenuObj} />
+        </Route>
+        <Route path="/order/retailer/:id">
+          <RetailerDetails sideMenu={orderMenuObj} />
+        </Route>
+        <Route path="/order/retailer">
+          <RetailerList sideMenu={orderMenuObj} />
         </Route>
         <Route path="/stock/edit">
           <EditStock sideMenu={stockMenuObj} />

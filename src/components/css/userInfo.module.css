@@ -1,10 +1,27 @@
 .userInfoBox {
   padding: 20px;
 }
+.userInfoBox__grey {
+  background-color: var(--main-background-color);
+  border: var(--main-border);
+}
 
 .userInfoList li {
   display: flex;
   margin-top: 30px;
+}
+
+.userInfo_row {
+  margin-bottom: 15px;
+  display: flex;
+}
+.userInfo_row input {
+  margin-left: 15px;
+}
+.userInfo_row textarea {
+  margin-left: 15px;
+  height: 100px;
+  width: 500px;
 }
 
 .userInfoList li div {
@@ -19,6 +36,11 @@
 .userInfoList li input {
   margin-left: 15px;
 }
+.userInfoList li textarea {
+  margin-left: 15px;
+  height: 90px;
+  width: 500px;
+}
 
 .userInfoList__saveChange {
   margin: 20px 10px;
@@ -27,4 +49,9 @@
   padding: 5px 10px;
   font-weight: bold;
   border-radius: 5px;
+}
+
+.userInfoList__title {
+  color: black;
+  font-weight: bold;
 }

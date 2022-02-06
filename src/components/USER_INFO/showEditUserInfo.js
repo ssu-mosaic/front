@@ -22,6 +22,7 @@ function ShowEditUserInfo() {
     userBusinessNo: "",
     userEmail: "",
   };
+
   const testUserData = {
     userId: "lomantic",
     userPwd: "12345678",
@@ -36,6 +37,7 @@ function ShowEditUserInfo() {
   const [loading, setLoading] = useState(false);
   // testing useState : testUserData real: emptyUserData
   const [userData, setUserData] = useState(testUserData);
+  const [newUserData, setNewUserData] = useState(testUserData);
   const [editData, setEditData] = useState(false);
 
   useEffect(() => {
@@ -45,6 +47,7 @@ function ShowEditUserInfo() {
 
     axios.post(`${baseURL}/myinfo`, identification).then((response) => {
       setUserData(response.data);
+      setNewUserData(response.data);
       setLoading(false);
     });
   }, []);
@@ -62,13 +65,14 @@ function ShowEditUserInfo() {
     const newFormData = { ...userData };
     newFormData[fieldName] = fieldValue;
 
-    setUserData(newFormData);
+    setNewUserData(newFormData);
     //console.log(userData);
   };
 
   const onCancelClick = (event) => {
     event.preventDefault();
     setEditData(false);
+    setNewUserData(userData);
   };
 
   const onSaveClick = (event) => {
@@ -110,13 +114,13 @@ function ShowEditUserInfo() {
                 <span>회원정보</span>
                 {editData ? (
                   <EditUserInfo
-                    userId={userData.userId}
-                    userPwd={userData.userPwd}
-                    userAddress={userData.userAddress}
-                    userName={userData.userName}
-                    userPhoneNo={userData.userPhoneNo}
-                    userBusinessNo={userData.userBusinessNo}
-                    userEmail={userData.userEmail}
+                    userId={newUserData.userId}
+                    userPwd={newUserData.userPwd}
+                    userAddress={newUserData.userAddress}
+                    userName={newUserData.userName}
+                    userPhoneNo={newUserData.userPhoneNo}
+                    userBusinessNo={newUserData.userBusinessNo}
+                    userEmail={newUserData.userEmail}
                     onSaveClick={onSaveClick}
                     onCancelClick={onCancelClick}
                     handleEditFormChange={handleEditFormChange}
