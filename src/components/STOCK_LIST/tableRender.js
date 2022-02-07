@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-//import MOCK_DATA from './MOCK_DATA.json';
 import Tables from "./Tables";
 import EditRow from "./editRow";
 import Pagination from "./paginationNoHook";
 import Fragment from "render-fragment";
 import styles from "../css/result-table.module.css";
 import axios from "axios";
+
+//test
+import TEST_STOCK_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -15,7 +17,7 @@ function StockListTable() {
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(10);
   const [table, setTable] = useState([]);
@@ -23,7 +25,7 @@ function StockListTable() {
   //get data from server
   useEffect(() => {
     const userData = {
-      userName: userID,
+      userId: userID,
     };
     // const ApiCallForList = async () => {
     //     const response = await axios.post(`${baseURL}/stock/list`,userData)
@@ -35,11 +37,14 @@ function StockListTable() {
     // }
     // //ApiCallForList();
     // setTable(MOCK_DATA);
-    axios.post(`${baseURL}/stock/list`, userData).then((response) => {
+    axios.post(`${baseURL}/stock`, userData).then((response) => {
       setLoading(false);
       console.log(response.data);
       setTable(response.data);
     });
+
+    // only for testing erase when real
+    setTable(TEST_STOCK_DATA);
   }, []);
 
   // Get current tables
@@ -54,22 +59,26 @@ function StockListTable() {
   const [rowId, setRowId] = useState(null);
   const handleEditClick = (event, rowData) => {
     event.preventDefault();
-    setRowId(rowData.stockId);
+    setRowId(rowData.stockRowId);
 
     const formValues = {
-      name: userID,
-      stockId: rowData.stockId,
-      stockName: rowData.stockName,
-      stockCount: rowData.stockCount,
+      userId: userID,
+      stockRowId: rowData.stockRowId,
+      retailerName: rowData.retailerName,
+      productName: rowData.productName,
+      stockCnt: rowData.stockCnt,
+      productUnit: rowData.productUnit,
     };
 
     setEditFormData(formValues);
   };
   const [editFormData, setEditFormData] = useState({
-    name: userID,
-    stockId: "",
-    stockName: "",
-    stockCount: "",
+    userId: userID,
+    stockRowId: "",
+    productName: "",
+    retailerName: "",
+    stockCnt: -1,
+    productUnit: "",
   });
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -88,10 +97,12 @@ function StockListTable() {
     event.preventDefault();
 
     const editedForm = {
-      userName: userID,
-      stockId: rowId,
-      stockName: editFormData.stockName,
-      stockCount: editFormData.stockCount,
+      userId: userID,
+      stockRowId: rowId,
+      productName: editFormData.productName,
+      retailerName: editFormData.retailerName,
+      stockCnt: editFormData.stockCnt,
+      productUnit: editFormData.productUnit,
     };
 
     // const ApiCallForEdit = async () => {
@@ -100,10 +111,16 @@ function StockListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.post(`${baseURL}/stock/edit`, editedForm);
+    axios.put(`${baseURL}/stock`, editedForm).then((response) => {
+      if (response.data === true) {
+        alert("재고 정보 수정 완료");
+      } else {
+        alert("재고 정보 수정 실패 재시도 해주세요");
+      }
+    });
 
     const newTable = [...table];
-    const index = table.findIndex((row) => row.stockId === rowId);
+    const index = table.findIndex((row) => row.stockRowId === rowId);
 
     newTable[index] = editedForm;
     //console.log(newTable);
@@ -119,8 +136,8 @@ function StockListTable() {
 
   const handleDeleteClick = (rowId) => {
     const deleteForm = {
-      stockId: rowId,
-      userName: userID,
+      stockRowId: rowId,
+      userId: userID,
     };
     // const ApiCallForDelete = async () => {
     //     //const response =
@@ -128,11 +145,15 @@ function StockListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.post(`${baseURL}/stock/delete`, deleteForm).then((response) => {
-      console.log(response.data);
+    axios.delete(`${baseURL}/stock`, deleteForm).then((response) => {
+      if (response.data === true) {
+        alert("재고 정보 삭제 완료");
+      } else {
+        alert("재고 정보 삭제 실패 재시도 해주세요");
+      }
     });
     const newTable = [...table];
-    const index = table.findIndex((row) => row.stockId === rowId);
+    const index = table.findIndex((row) => row.stockRowId === rowId);
     newTable.splice(index, 1);
     setTable(newTable);
     //ApiCallForDelete();
@@ -148,8 +169,10 @@ function StockListTable() {
             <table className={styles.screenPage__searchResultTable}>
               <thead>
                 <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>재고명</th>
+                  <th>재고이름</th>
+                  <th>거래처이름</th>
                   <th>잔여재고</th>
+                  <th>재고단위</th>
                   <th>수정</th>
                   <th>삭제</th>
                 </tr>
@@ -158,22 +181,26 @@ function StockListTable() {
               <tbody className="testTable__tbody">
                 {tables.map((tables) => (
                   <Fragment>
-                    {rowId === tables.stockId ? (
+                    {rowId === tables.stockRowId ? (
                       <EditRow
-                        key={tables.stockId}
-                        stockId={tables.stockId}
-                        stockName={tables.stockName}
-                        stockCount={tables.stockCount}
+                        key={tables.stockRowId}
+                        stockRowId={tables.stockRowId}
+                        productName={tables.productName}
+                        retailerName={tables.retailerName}
+                        stockCnt={tables.stockCnt}
+                        productUnit={tables.productUnit}
                         editFormData={editFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
                       />
                     ) : (
                       <Tables
-                        key={tables.stockId}
-                        stockId={tables.stockId}
-                        stockName={tables.stockName}
-                        stockCount={tables.stockCount}
+                        key={tables.stockRowId}
+                        stockRowId={tables.stockRowId}
+                        productName={tables.productName}
+                        retailerName={tables.retailerName}
+                        stockCnt={tables.stockCnt}
+                        productUnit={tables.productUnit}
                         handleEditClick={handleEditClick}
                         handleDeleteClick={handleDeleteClick}
                       />

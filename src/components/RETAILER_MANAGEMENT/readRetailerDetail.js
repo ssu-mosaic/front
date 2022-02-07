@@ -1,6 +1,6 @@
 import styles from "../css/userInfo.module.css";
 
-let userID = localStorage.getItem("USER_ID");
+//let userID = localStorage.getItem("USER_ID");
 
 function ReadUserInfo({
   retailerName,

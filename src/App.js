@@ -97,7 +97,7 @@ function App() {
     },
     {
       id: "stockedit",
-      name: "재고편집",
+      name: "재고목록",
       link: "/stock/edit",
     },
   ];
