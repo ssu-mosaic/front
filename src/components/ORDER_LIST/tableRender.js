@@ -15,7 +15,7 @@ function OrderList() {
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(7);
   const [table, setTable] = useState([]);

@@ -50,8 +50,6 @@ function RetailerListTable() {
     setTable(TEST_RETAILER_DATA);
   }, []);
 
-  console.log(table);
-
   // Get current tables
   const indexOfLastTable = currentPage * tablePerPage;
   const indexOfFirstTable = indexOfLastTable - tablePerPage;
@@ -188,7 +186,7 @@ function RetailerListTable() {
 
               <tbody className="testTable__tbody">
                 {tables.map((tables) => (
-                  <Fragment>
+                  <Fragment key={`${tables.retailerId}_fragment`}>
                     {rowId === tables.retailerId ? (
                       <EditRow
                         key={tables.retailerId}

@@ -43,7 +43,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     });
     //only for testing erase when real
     setTable(TEST_PRODUCT_DATA);
-  }, []);
+  }, [retailerId]);
 
   // Get current tables
   const indexOfLastTable = currentPage * tablePerPage;

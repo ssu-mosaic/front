@@ -7,6 +7,7 @@ function EditRow({
   productName,
   productPrice,
   productUnit,
+  productCnt,
   productDesc,
   editFormData,
   handleEditFormChange,
@@ -14,45 +15,24 @@ function EditRow({
 }) {
   return (
     <tr key={productId} className={styles.screenPage__searchResultTable_items}>
-      <td key={"retailerName_edit"}>
-        <input
-          type="text"
-          required="required"
-          placeholder={productName}
-          name="productName"
-          value={editFormData.productName}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td key={"retailerPhone_edit"}>
+      <td key={"productName_td"}>{productName}</td>
+      <td key={"productPrice_td"}>{productPrice}</td>
+      <td key={"productUnit_td"}>{productUnit}</td>
+      <td key={"productCnt_td"}>
         <input
           type="number"
-          required="required"
-          placeholder={productPrice}
-          name="productPrice"
-          value={editFormData.productPrice}
+          required
+          min="1"
+          placeholder={productCnt}
+          name="productCnt"
+          value={editFormData.productCnt}
           onChange={handleEditFormChange}
         ></input>
       </td>
-      <td key={"retailerEmail_edit"}>
-        <input
-          type="text"
-          required="required"
-          placeholder={productUnit}
-          name="productUnit"
-          value={editFormData.productUnit}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td key={"retailerMemo_edit"}>
-        <textarea
-          type="text"
-          required="required"
-          placeholder={productDesc}
-          name="productDesc"
-          value={editFormData.productDesc}
-          onChange={handleEditFormChange}
-        ></textarea>
+      <td key={"productDesc_td"}>
+        {productDesc.length > 10
+          ? `${productDesc.slice(0, 10)}...`
+          : `${productDesc}`}
       </td>
       <td key={"button_edit"}>
         <button type="submit">

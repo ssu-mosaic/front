@@ -180,7 +180,7 @@ function StockListTable() {
 
               <tbody className="testTable__tbody">
                 {tables.map((tables) => (
-                  <Fragment>
+                  <Fragment key={`${tables.stockRowId}_fragment`}>
                     {rowId === tables.stockRowId ? (
                       <EditRow
                         key={tables.stockRowId}

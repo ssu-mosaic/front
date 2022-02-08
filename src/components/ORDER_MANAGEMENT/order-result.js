@@ -1,10 +1,10 @@
-import contentStyles from "./css/screen-content.module.css";
-import styles from "./css/search-order.module.css";
+import contentStyles from "../css/screen-content.module.css";
+import styles from "../css/search-order.module.css";
 //import styles fromSearchOrderResultTable from "./search-order-result";
 //import { DateRangePicker } from 'rsuite';
 //import 'rsuite/dist/rsuite.css';
 //import Fragment from 'render-fragment';
-import OrderList from "./ORDER_LIST/tableRender";
+import OrderList from "../ORDER_LIST/tableRender";
 //import { useState } from "react";
 import { Link } from "react-router-dom";
 

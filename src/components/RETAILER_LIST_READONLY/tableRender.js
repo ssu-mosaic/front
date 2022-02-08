@@ -34,8 +34,6 @@ function RetailerListTable() {
     setTable(TEST_RETAILER_DATA);
   }, []);
 
-  console.log(table);
-
   // Get current tables
   const indexOfLastTable = currentPage * tablePerPage;
   const indexOfFirstTable = indexOfLastTable - tablePerPage;
@@ -44,146 +42,38 @@ function RetailerListTable() {
   //change page number
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  //edit data
-  const [rowId, setRowId] = useState(null);
-  const handleEditClick = (event, rowData) => {
-    event.preventDefault();
-    setRowId(rowData.retailerId);
-
-    const formValues = {
-      userId: userID,
-      retailerId: rowData.retailerId,
-      retailerName: rowData.retailerName,
-      retailerPhoneNo: rowData.retailerPhoneNo,
-      retailerEmail: rowData.retailerEmail,
-      retailerDesc: rowData.retailerDesc,
-    };
-
-    setEditFormData(formValues);
-  };
-  const [editFormData, setEditFormData] = useState({
-    userId: userID,
-    retailerId: "",
-    retailerName: "",
-    retailerPhoneNo: "",
-    retailerEmail: "",
-    retailerDesc: "",
-  });
-  const handleEditFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...editFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setEditFormData(newFormData);
-  };
-
-  //save changes
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault();
-
-    const editedForm = {
-      userId: userID,
-      retailerId: rowId,
-      retailerName: editFormData.retailerName,
-      retailerPhoneNo: editFormData.retailerPhoneNo,
-      retailerEmail: editFormData.retailerEmail,
-      retailerDesc: editFormData.retailerDesc,
-    };
-
-    // const ApiCallForEdit = async () => {
-    //     //const response =
-    //     await axios.post(`${baseURL}/retailer/edit`,editedForm)
-    //     //const data = await response.data;
-    //     //console.log(data);
-    // }
-    axios.put(`${baseURL}/retailer/${rowId}`, editedForm).then((response) => {
-      if (response.data === true) {
-        alert("거래처 정보 수정 완료");
-      } else {
-        alert("거래처 정보 수정 실패 재시도 해주세요");
-      }
-    });
-
-    const newTable = [...table];
-    const index = table.findIndex((row) => row.retailerId === rowId);
-
-    newTable[index] = editedForm;
-    //console.log(newTable);
-    setTable(newTable);
-    //ApiCallForEdit();
-    setRowId(null);
-    //console.log(table);
-  };
-
-  const handleCancelClick = () => {
-    setRowId(null);
-  };
-
-  const handleDeleteClick = (rowId) => {
-    const deleteForm = {
-      userId: userID,
-      retailerId: rowId,
-    };
-    // const ApiCallForDelete = async () => {
-    //     //const response =
-    //     await axios.post(`${baseURL}/retailer/delete`,deleteForm)
-    //     //const data = await response.data;
-    //     //console.log(data);
-    // }
-    axios
-      .delete(`${baseURL}/retailer/${rowId}`, deleteForm)
-      .then((response) => {
-        if (response.data === true) {
-          alert("거래처 정보 삭제 완료");
-        } else {
-          alert("거래처 정보 삭제 실패 재시도 해주세요");
-        }
-      });
-
-    const newTable = [...table];
-    const index = table.findIndex((row) => row.retailerId === rowId);
-    newTable.splice(index, 1);
-    setTable(newTable);
-    //ApiCallForDelete();
-  };
-
   return (
     <div>
       {loading ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
-          <form onSubmit={handleEditFormSubmit}>
-            <table className={styles.screenPage__searchResultTable}>
-              <thead>
-                <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>거래처 이름</th>
-                  <th>거래처 연락처</th>
-                  <th>거래처 이메일</th>
-                  <th>거래처 메모</th>
-                </tr>
-              </thead>
+          <table className={styles.screenPage__searchResultTable}>
+            <thead>
+              <tr className={styles.screenPage__searchResultTable_header}>
+                <th>거래처 이름</th>
+                <th>거래처 연락처</th>
+                <th>거래처 이메일</th>
+                <th>거래처 메모</th>
+              </tr>
+            </thead>
 
-              <tbody className="testTable__tbody">
-                {tables.map((tables) => (
-                  <Fragment>
-                    <Tables
-                      key={tables.retailerId}
-                      retailerId={tables.retailerId}
-                      retailerName={tables.retailerName}
-                      retailerPhoneNo={tables.retailerPhoneNo}
-                      retailerEmail={tables.retailerEmail}
-                      retailerDesc={tables.retailerDesc}
-                    />
-                  </Fragment>
-                ))}
-              </tbody>
-            </table>
-          </form>
+            <tbody className="testTable__tbody">
+              {tables.map((tables) => (
+                <Fragment key={`${tables.retailerId}_fragment`}>
+                  <Tables
+                    key={tables.retailerId}
+                    retailerId={tables.retailerId}
+                    retailerName={tables.retailerName}
+                    retailerPhoneNo={tables.retailerPhoneNo}
+                    retailerEmail={tables.retailerEmail}
+                    retailerDesc={tables.retailerDesc}
+                  />
+                </Fragment>
+              ))}
+            </tbody>
+          </table>
+
           <Pagination
             tablePerPage={tablePerPage}
             totalTables={table.length}

@@ -44,7 +44,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     });
     //only for testing erase when real
     setTable(TEST_PRODUCT_DATA);
-  }, []);
+  }, [retailerId]);
 
   // Get current tables
   const indexOfLastTable = currentPage * tablePerPage;
@@ -130,33 +130,6 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
 
   const handleCancelClick = () => {
     setRowId(null);
-  };
-
-  const handleDeleteClick = (rowId) => {
-    const deleteForm = {
-      userId: userID,
-      retailerId: retailerId,
-      productId: rowId,
-    };
-    // const ApiCallForDelete = async () => {
-    //     //const response =
-    //     await axios.post(`${baseURL}/retailer/delete`,deleteForm)
-    //     //const data = await response.data;
-    //     //console.log(data);
-    // }
-    axios.delete(`${baseURL}/product/${rowId}`, deleteForm).then((response) => {
-      if (response.data === true) {
-        alert("거래처 정보 삭제 완료");
-      } else {
-        alert("거래처 정보 삭제 실패 재시도 해주세요");
-      }
-    });
-
-    const newTable = [...table];
-    const index = table.findIndex((row) => row.productId === rowId);
-    newTable.splice(index, 1);
-    setTable(newTable);
-    //ApiCallForDelete();
   };
 
   return (

@@ -26,20 +26,8 @@ function Detail() {
     retailerDesc: "",
   };
 
-  const emptyProductForm = {
-    userId: userID,
-    productName: "",
-    productPrice: -1,
-    productUnit: "",
-    productDesc: "",
-  };
-
   const [retailerDetails, setRetailerDetails] = useState(emptyRetailerDetails);
-  const [newRetailerDetails, setNewRetailerDetails] =
-    useState(emptyRetailerDetails);
-  const [retailerDetailEdit, setRetailerDetailEdit] = useState(false);
-  const [addProductToggle, setAddProductToggle] = useState(false);
-  const [newProduct, setNewProduct] = useState(emptyProductForm);
+
   const [productDetailData, setProductDetailData] = useState({
     productName: "",
     productPrice: "",
@@ -51,6 +39,7 @@ function Detail() {
     const identification = {
       userId: userID,
     };
+
     axios.post(`${baseURL}/retailer/${id}`, identification).then((response) => {
       setRetailerDetails(response.data);
       setLoading(false);
@@ -65,8 +54,7 @@ function Detail() {
       retailerDesc: "this is test retailer description",
     };
     setRetailerDetails(testRetailerDetails);
-    setNewRetailerDetails(testRetailerDetails);
-  }, []);
+  }, [id]);
 
   const handleBackToProducts = (event) => {
     event.preventDefault();
@@ -83,74 +71,6 @@ function Detail() {
     //console.log(formValues);
     setShowProductDetail(true);
     setProductDetailData(formValues);
-  };
-  const onAddProductClick = () => {
-    setAddProductToggle(true);
-  };
-  const onRetailerEditClick = () => {
-    setRetailerDetailEdit(true);
-  };
-  const handleRetailerFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...retailerDetails };
-    newFormData[fieldName] = fieldValue;
-
-    setNewRetailerDetails(newFormData);
-  };
-
-  const onRetailerDetailCancelClick = (event) => {
-    event.preventDefault();
-    setRetailerDetailEdit(false);
-    setNewRetailerDetails(retailerDetails);
-  };
-
-  const onRetailerFormSubmit = (event) => {
-    event.preventDefault();
-    setRetailerDetailEdit(false);
-    setRetailerDetails(newRetailerDetails);
-    axios.put(`${baseURL}/retailer/${id}`, retailerDetails).then((response) => {
-      if (response.data === true) {
-        alert("거래처 정보 수정 완료");
-      } else {
-        alert("거래처 정보 수정 실패");
-      }
-    });
-  };
-
-  const handleProductFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...newProduct };
-    newFormData[fieldName] = fieldValue;
-    setNewProduct(newFormData);
-  };
-
-  const onAddProductCancelClick = (event) => {
-    event.preventDefault();
-    setAddProductToggle(false);
-    setNewProduct(emptyProductForm);
-  };
-  const onProductFormSubmit = (event) => {
-    event.preventDefault();
-    setAddProductToggle(false);
-    //console.log(newProduct);
-    axios
-      .post(`${baseURL}/retailer/product/add`, newProduct)
-      .then((response) => {
-        if (response.data === true) {
-          alert("물품 등록 완료");
-        } else {
-          alert("물품 등록 실패 재시도 해주세요");
-        }
-        setNewProduct(emptyProductForm);
-      });
   };
 
   return (
@@ -170,11 +90,7 @@ function Detail() {
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>
-            {addProductToggle
-              ? `거래처 ${retailerDetails.retailerName} 물품추가`
-              : "거래처 상세 정보"}
-          </span>
+          <span>거래처 상세 정보</span>
         </div>
         <div>
           {loading ? (

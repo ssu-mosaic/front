@@ -6,7 +6,7 @@ import JeanJoin from "./routes/JeanLogin/JeanJoin";
 import JeanFindPw from "./routes/JeanLogin/JeanForgetPw";
 import JeanFindId from "./routes/JeanLogin/JeanForgetId";
 //import MakeAccount from "./routes/MakeAccount";
-import SearchOrder from "./routes/SearchOrder";
+import OrderResult from "./routes/OrderResult";
 import ManageStock from "./routes/ManageStock";
 import EditStock from "./routes/EditStock";
 import OrderRequest from "./routes/OrderRequest";
@@ -151,7 +151,7 @@ function App() {
           <UserInfo sideMenu={userMenuObj} />
         </Route>
         <Route path="/order/searchorder">
-          <SearchOrder sideMenu={orderMenuObj} />
+          <OrderResult sideMenu={orderMenuObj} />
         </Route>
         <Route path="/order/requestorder/basket">
           <OrderRequestBasket sideMenu={orderMenuObj} />

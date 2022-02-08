@@ -47,7 +47,7 @@ function Detail() {
       inquiryAnsDate: "2999/99/99",
     };
     setQnaDetails(testQnaDetails);
-  }, []);
+  }, [id]);
 
   const onQnaEditClick = () => {
     setQnaEdit(true);

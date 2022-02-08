@@ -68,7 +68,7 @@ function Detail() {
     };
     setRetailerDetails(testRetailerDetails);
     setNewRetailerDetails(testRetailerDetails);
-  }, []);
+  }, [id]);
 
   const handleBackToProducts = (event) => {
     event.preventDefault();

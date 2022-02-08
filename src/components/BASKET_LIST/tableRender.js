@@ -5,14 +5,15 @@ import Fragment from "render-fragment";
 import styles from "../css/result-table.module.css";
 import axios from "axios";
 import EditRow from "./editRow";
+import ProductDetail from "../ORDER_MANAGEMENT/productDetail";
 
 //only for testing
-import TEST_PRODUCT_DATA from "./MOCK_DATA.json";
+import TEST_BASKET_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
 //거래처목록
-function BasketTable({ retailerId, onProductDetailClick }) {
+function BasketTable() {
   const baseURL =
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
 
@@ -21,28 +22,35 @@ function BasketTable({ retailerId, onProductDetailClick }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
+  const [showProductDetail, setShowProductDetail] = useState(false);
+
   const [editFormData, setEditFormData] = useState({
     userId: userID,
-    retailerId: retailerId,
     productId: "",
     productName: "",
     productPrice: "",
     productUnit: "",
+    productCnt: 0,
     productDesc: "",
   });
-
+  const [productDetailData, setProductDetailData] = useState({
+    productName: "",
+    productPrice: "",
+    productUnit: "",
+    productCnt: 0,
+    productDesc: "",
+  });
   useEffect(() => {
     const userData = {
       userId: userID,
-      retailerId: retailerId,
     };
-    axios.post(`${baseURL}/retailer/products`, userData).then((response) => {
+    axios.post(`${baseURL}/order/cart`, userData).then((response) => {
       //console.log(response.data);
       setTable(response.data);
       setLoading(false);
     });
     //only for testing erase when real
-    setTable(TEST_PRODUCT_DATA);
+    setTable(TEST_BASKET_DATA);
   }, []);
 
   // Get current tables
@@ -61,17 +69,34 @@ function BasketTable({ retailerId, onProductDetailClick }) {
 
     const formValues = {
       userId: userID,
-      retailerId: retailerId,
       productId: rowData.productId,
       productName: rowData.productName,
       productPrice: rowData.productPrice,
       productUnit: rowData.productUnit,
+      productCnt: rowData.productCnt,
       productDesc: rowData.productDesc,
     };
 
     setEditFormData(formValues);
   };
 
+  const onProductDetailClick = (event, rowData) => {
+    event.preventDefault();
+    const formValues = {
+      productName: rowData.productName,
+      productPrice: rowData.productPrice,
+      productUnit: rowData.productUnit,
+      productCnt: rowData.productCnt,
+      productDesc: rowData.productDesc,
+    };
+    //console.log(formValues);
+    setShowProductDetail(true);
+    setProductDetailData(formValues);
+  };
+  const handleBackToProducts = (event) => {
+    event.preventDefault();
+    setShowProductDetail(false);
+  };
   const handleEditFormChange = (event) => {
     event.preventDefault();
 
@@ -90,11 +115,11 @@ function BasketTable({ retailerId, onProductDetailClick }) {
 
     const editedForm = {
       userId: userID,
-      retailerId: retailerId,
       productId: rowId,
       productName: editFormData.productName,
       productPrice: editFormData.productPrice,
       productUnit: editFormData.productUnit,
+      productCnt: editFormData.productCnt,
       productDesc: editFormData.productDesc,
     };
 
@@ -104,7 +129,7 @@ function BasketTable({ retailerId, onProductDetailClick }) {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.put(`${baseURL}/product/${rowId}`, editedForm).then((response) => {
+    axios.put(`${baseURL}/order/cart/${rowId}`, editedForm).then((response) => {
       if (response.data === true) {
         alert("물품 수정 완료");
       } else {
@@ -130,7 +155,6 @@ function BasketTable({ retailerId, onProductDetailClick }) {
   const handleDeleteClick = (rowId) => {
     const deleteForm = {
       userId: userID,
-      retailerId: retailerId,
       productId: rowId,
     };
     // const ApiCallForDelete = async () => {
@@ -139,13 +163,15 @@ function BasketTable({ retailerId, onProductDetailClick }) {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.delete(`${baseURL}/product/${rowId}`, deleteForm).then((response) => {
-      if (response.data === true) {
-        alert("거래처 정보 삭제 완료");
-      } else {
-        alert("거래처 정보 삭제 실패 재시도 해주세요");
-      }
-    });
+    axios
+      .delete(`${baseURL}/order/cart/${rowId}`, deleteForm)
+      .then((response) => {
+        if (response.data === true) {
+          alert("거래처 정보 삭제 완료");
+        } else {
+          alert("거래처 정보 삭제 실패 재시도 해주세요");
+        }
+      });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.productId === rowId);
@@ -160,57 +186,73 @@ function BasketTable({ retailerId, onProductDetailClick }) {
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
-          <form onSubmit={handleEditFormSubmit}>
-            <table className={styles.screenPage__searchResultTable}>
-              <thead>
-                <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>상품 이름</th>
-                  <th>상품 가격</th>
-                  <th>상품 단위</th>
-                  <th>상품 설명</th>
-                  <th>수정</th>
-                  <th>삭제</th>
-                </tr>
-              </thead>
+          {showProductDetail ? (
+            <ProductDetail
+              productName={productDetailData.productName}
+              productPrice={productDetailData.productPrice}
+              productUnit={productDetailData.productUnit}
+              productDesc={productDetailData.productDesc}
+              productCnt={productDetailData.productCnt}
+              handleBackToProducts={handleBackToProducts}
+            />
+          ) : (
+            <Fragment>
+              <form onSubmit={handleEditFormSubmit}>
+                <table className={styles.screenPage__searchResultTable}>
+                  <thead>
+                    <tr className={styles.screenPage__searchResultTable_header}>
+                      <th>상품 이름</th>
+                      <th>상품 가격</th>
+                      <th>상품 단위</th>
+                      <th>주문 수량</th>
+                      <th>상품 설명</th>
+                      <th>수량 수정</th>
+                      <th>삭제</th>
+                    </tr>
+                  </thead>
 
-              <tbody className="testTable__tbody">
-                {tables.map((tables) => (
-                  <Fragment key={`${tables.productId}_fragment`}>
-                    {rowId === tables.productId ? (
-                      <EditRow
-                        key={tables.productId}
-                        productId={tables.productId}
-                        productName={tables.productName}
-                        productPrice={tables.productPrice}
-                        productUnit={tables.productUnit}
-                        productDesc={tables.productDesc}
-                        editFormData={editFormData}
-                        handleEditFormChange={handleEditFormChange}
-                        handleCancelClick={handleCancelClick}
-                      />
-                    ) : (
-                      <Tables
-                        key={tables.productId}
-                        productId={tables.productId}
-                        productName={tables.productName}
-                        productPrice={tables.productPrice}
-                        productUnit={tables.productUnit}
-                        productDesc={tables.productDesc}
-                        handleEditClick={handleEditClick}
-                        handleDeleteClick={handleDeleteClick}
-                        onProductDetailClick={onProductDetailClick}
-                      />
-                    )}
-                  </Fragment>
-                ))}
-              </tbody>
-            </table>
-          </form>
-          <Pagination
-            tablePerPage={tablePerPage}
-            totalTables={table.length}
-            paginate={paginate}
-          />
+                  <tbody className="testTable__tbody">
+                    {tables.map((tables) => (
+                      <Fragment key={`${tables.productId}_fragment`}>
+                        {rowId === tables.productId ? (
+                          <EditRow
+                            key={tables.productId}
+                            productId={tables.productId}
+                            productName={tables.productName}
+                            productPrice={tables.productPrice}
+                            productUnit={tables.productUnit}
+                            productCnt={tables.productCnt}
+                            productDesc={tables.productDesc}
+                            editFormData={editFormData}
+                            handleEditFormChange={handleEditFormChange}
+                            handleCancelClick={handleCancelClick}
+                          />
+                        ) : (
+                          <Tables
+                            key={tables.productId}
+                            productId={tables.productId}
+                            productName={tables.productName}
+                            productPrice={tables.productPrice}
+                            productUnit={tables.productUnit}
+                            productCnt={tables.productCnt}
+                            productDesc={tables.productDesc}
+                            handleEditClick={handleEditClick}
+                            handleDeleteClick={handleDeleteClick}
+                            onProductDetailClick={onProductDetailClick}
+                          />
+                        )}
+                      </Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </form>
+              <Pagination
+                tablePerPage={tablePerPage}
+                totalTables={table.length}
+                paginate={paginate}
+              />
+            </Fragment>
+          )}
         </Fragment>
       )}
     </div>

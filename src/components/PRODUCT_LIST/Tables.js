@@ -41,7 +41,11 @@ function Tables({
       </td>
       <td key={"productPrice_td"}>{productPrice}</td>
       <td key={"productUnit_td"}>{productUnit}</td>
-      <td key={"productDesc_td"}>{`${productDesc.slice(0, 10)}...`}</td>
+      <td key={"productDesc_td"}>
+        {productDesc.length > 10
+          ? `${productDesc.slice(0, 10)}...`
+          : `${productDesc}`}
+      </td>
       <td key={"edit_td"}>
         <button
           type="button"

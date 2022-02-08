@@ -1,6 +1,6 @@
 import styles from "../css/result-table.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -43,7 +43,11 @@ function Tables({
       </td>
       <td key={"productPrice_td"}>{productPrice}</td>
       <td key={"productUnit_td"}>{productUnit}</td>
-      <td key={"productDesc_td"}>{`${productDesc.slice(0, 10)}...`}</td>
+      <td key={"productDesc_td"}>
+        {productDesc.length > 10
+          ? `${productDesc.slice(0, 10)}...`
+          : `${productDesc}`}
+      </td>
       <td key={"edit_td"}>
         <button
           type="button"
