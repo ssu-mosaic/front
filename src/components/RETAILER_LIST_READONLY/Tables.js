@@ -1,32 +1,29 @@
 import styles from "../css/result-table.module.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
-function Tables({ retailerId, retailerName, retailerPhone, retailerEmail, retailerAddress, retailerMemo, handleRequestClick }) {
-    
-    const rowData = {
-        retailerId: retailerId,
-        retailerName: retailerName,
-        retailerPhone: retailerPhone,
-        retailerEmail: retailerEmail,
-        retailerAddress: retailerAddress,
-        retailerMemo: retailerMemo,
-    }
-    //console.log(retailerAddress);
-    return (
-            <tr key ={retailerId} className={styles.screenPage__searchResultTable_items}>
-                <td key={'retailerName_td'}>{retailerName}</td>
-                <td key={'retailerPhone_td'}>{retailerPhone}</td>
-                <td key={'retailerEmail_td'}>{retailerEmail}</td>
-                <td key={'retailerAddress_td'}>{`${retailerAddress.slice(0,10)}...`}</td>
-                <td key={'retailerMemo_td'}>{`${retailerMemo.slice(0,10)}...`}</td>
-                <td key={'request_td'}>
-                    <button type="button" onClick={()=> handleRequestClick(rowData)}> <FontAwesomeIcon icon={faCheck} size="2x" /> </button>
-                </td>
-                    
+function Tables({
+  retailerId,
+  retailerName,
+  retailerPhoneNo,
+  retailerEmail,
+  retailerDesc,
+}) {
+  //console.log(retailerAddress);
 
-            </tr>
-    );
+  return (
+    <tr key={retailerId} className={styles.screenPage__searchResultTable_items}>
+      <td key={"retailerName_td"}>
+        <Link to={`/order/requestorder/${retailerId}`}>{retailerName}</Link>
+      </td>
+      <td key={"retailerPhone_td"}>{retailerPhoneNo}</td>
+      <td key={"retailerEmail_td"}>{retailerEmail}</td>
+      <td key={"retailerMemo_td"}>
+        {retailerDesc.length > 30
+          ? `${retailerDesc.slice(0, 30)}...`
+          : `${retailerDesc}`}
+      </td>
+    </tr>
+  );
 }
 
 export default Tables;

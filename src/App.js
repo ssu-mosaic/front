@@ -10,6 +10,9 @@ import SearchOrder from "./routes/SearchOrder";
 import ManageStock from "./routes/ManageStock";
 import EditStock from "./routes/EditStock";
 import OrderRequest from "./routes/OrderRequest";
+import OrderRequestProduct from "./routes/OrderRequestProduct";
+import OrderRequestBasket from "./routes/OrderRequestBasket";
+
 import AddRetailer from "./routes/AddRetailer";
 import RetailerList from "./routes/RetailerList";
 import RetailerDetails from "./routes/RetailerDetails";
@@ -149,6 +152,12 @@ function App() {
         </Route>
         <Route path="/order/searchorder">
           <SearchOrder sideMenu={orderMenuObj} />
+        </Route>
+        <Route path="/order/requestorder/basket">
+          <OrderRequestBasket sideMenu={orderMenuObj} />
+        </Route>
+        <Route path="/order/requestorder/:id">
+          <OrderRequestProduct sideMenu={orderMenuObj} />
         </Route>
         <Route path="/order/requestorder">
           <OrderRequest sideMenu={orderMenuObj} />

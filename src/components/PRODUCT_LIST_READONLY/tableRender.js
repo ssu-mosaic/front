@@ -21,14 +21,15 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
-  const [editFormData, setEditFormData] = useState({
+  const [orderFormData, setOrderFormData] = useState({
     userId: userID,
     retailerId: retailerId,
     productId: "",
     productName: "",
-    productPrice: "",
+    productPrice: 0,
     productUnit: "",
     productDesc: "",
+    productCnt: 0,
   });
 
   useEffect(() => {
@@ -67,9 +68,10 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       productPrice: rowData.productPrice,
       productUnit: rowData.productUnit,
       productDesc: rowData.productDesc,
+      productCnt: rowData.productCnt,
     };
 
-    setEditFormData(formValues);
+    setOrderFormData(formValues);
   };
 
   const handleEditFormChange = (event) => {
@@ -78,10 +80,10 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
 
-    const newFormData = { ...editFormData };
+    const newFormData = { ...orderFormData };
     newFormData[fieldName] = fieldValue;
 
-    setEditFormData(newFormData);
+    setOrderFormData(newFormData);
   };
 
   //save changes
@@ -92,10 +94,11 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       userId: userID,
       retailerId: retailerId,
       productId: rowId,
-      productName: editFormData.productName,
-      productPrice: editFormData.productPrice,
-      productUnit: editFormData.productUnit,
-      productDesc: editFormData.productDesc,
+      productName: orderFormData.productName,
+      productPrice: orderFormData.productPrice,
+      productUnit: orderFormData.productUnit,
+      productCnt: orderFormData.productCnt,
+      productDesc: orderFormData.productDesc,
     };
 
     // const ApiCallForEdit = async () => {
@@ -104,11 +107,13 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.put(`${baseURL}/product/${rowId}`, editedForm).then((response) => {
+    axios.post(`${baseURL}/order/cart/add`, editedForm).then((response) => {
       if (response.data === true) {
-        alert("물품 수정 완료");
+        alert(
+          `물품 :${orderFormData.productName} \n수량:${orderFormData.productCnt} ${orderFormData.productUnit}\n장바구니 추가 성공`
+        );
       } else {
-        alert("물품 수정 실패 재시도 해주세요");
+        alert("장바구니 추가 실패 재시도 해주세요");
       }
     });
 
@@ -168,8 +173,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
                   <th>상품 가격</th>
                   <th>상품 단위</th>
                   <th>상품 설명</th>
-                  <th>수정</th>
-                  <th>삭제</th>
+                  <th>장바구니에 담기</th>
                 </tr>
               </thead>
 
@@ -178,26 +182,26 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
                   <Fragment key={`${tables.productId}_fragment`}>
                     {rowId === tables.productId ? (
                       <EditRow
-                        key={tables.productId}
+                        key={`${tables.productId}_edit`}
                         productId={tables.productId}
                         productName={tables.productName}
                         productPrice={tables.productPrice}
                         productUnit={tables.productUnit}
                         productDesc={tables.productDesc}
-                        editFormData={editFormData}
+                        productCnt={tables.productCnt}
+                        orderFormData={orderFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
                       />
                     ) : (
                       <Tables
-                        key={tables.productId}
+                        key={`${tables.productId}_read`}
                         productId={tables.productId}
                         productName={tables.productName}
                         productPrice={tables.productPrice}
                         productUnit={tables.productUnit}
                         productDesc={tables.productDesc}
                         handleEditClick={handleEditClick}
-                        handleDeleteClick={handleDeleteClick}
                         onProductDetailClick={onProductDetailClick}
                       />
                     )}

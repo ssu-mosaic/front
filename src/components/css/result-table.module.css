@@ -1,50 +1,54 @@
-
-.screenPage__searchResultTable thead tr > th{
-    background-color : rgba(230, 230, 230,1);
+.screenPage__searchResultTable thead tr > th {
+  background-color: rgba(230, 230, 230, 1);
 }
 
-.screenPage__searchResultTable_header th{
-    border: 1px solid rgba(200, 200, 200,1);
-    padding :15px;
-    font-weight: bold;
-    font-size: 1.02em;
-} 
-
-.screenPage__searchResultTable_items td{
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid rgba(200, 200, 200,1);
-    padding :10px;
-    font-size: 0.95em;
+.screenPage__searchResultTable_header th {
+  border: 1px solid rgba(200, 200, 200, 1);
+  padding: 15px;
+  font-weight: bold;
+  font-size: 1.02em;
 }
 
-.screenPage__searchResultTable_items td img{
-    height :70px;
-    width : 100px;
+.screenPage__searchResultTable_items td {
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid rgba(200, 200, 200, 1);
+  padding: 10px;
+  font-size: 0.95em;
+}
+
+.screenPage__searchResultTable_items td img {
+  height: 70px;
+  width: 100px;
+}
+
+.screenPage__searchResultTable_items td input {
+  padding-top: 5px;
+  margin-right: 5px;
 }
 
 .screenPage__searchResultTable_items button {
-    border : none;
-    background-color:var(--main-background-color);
+  border: none;
+  background-color: var(--main-background-color);
 }
-.screenPage__searchResultTable_items td button svg{
-    color : rgba(130, 130, 150,1);
-    margin : 0px 5px;
-}
-
-.screenPage__searchResultTable{
-    border-collapse: collapse;
-    background-color:var(--main-background-color);
-    table-layout: auto;
-    border: var(--main-border);
-    width :100%;
+.screenPage__searchResultTable_items td button svg {
+  color: rgba(130, 130, 150, 1);
+  margin: 0px 5px;
 }
 
-.pagination{
-    display : flex;
-    justify-content : center;
-    align-items : center;
+.screenPage__searchResultTable {
+  border-collapse: collapse;
+  background-color: var(--main-background-color);
+  table-layout: auto;
+  border: var(--main-border);
+  width: 100%;
 }
-.pagination__pages{
-    margin : 30px 10px;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination__pages {
+  margin: 30px 10px;
 }
