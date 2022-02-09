@@ -27,11 +27,7 @@ function BasketTable() {
   const [editFormData, setEditFormData] = useState({
     userId: userID,
     productId: "",
-    productName: "",
-    productPrice: "",
-    productUnit: "",
     productCnt: 0,
-    productDesc: "",
   });
   const [productDetailData, setProductDetailData] = useState({
     productName: "",
@@ -70,11 +66,7 @@ function BasketTable() {
     const formValues = {
       userId: userID,
       productId: rowData.productId,
-      productName: rowData.productName,
-      productPrice: rowData.productPrice,
-      productUnit: rowData.productUnit,
       productCnt: rowData.productCnt,
-      productDesc: rowData.productDesc,
     };
 
     setEditFormData(formValues);
@@ -116,31 +108,23 @@ function BasketTable() {
     const editedForm = {
       userId: userID,
       productId: rowId,
-      productName: editFormData.productName,
-      productPrice: editFormData.productPrice,
-      productUnit: editFormData.productUnit,
       productCnt: editFormData.productCnt,
-      productDesc: editFormData.productDesc,
     };
 
-    // const ApiCallForEdit = async () => {
-    //     //const response =
-    //     await axios.post(`${baseURL}/retailer/edit`,editedForm)
-    //     //const data = await response.data;
-    //     //console.log(data);
-    // }
+    //console.log(editedForm);
+
     axios.put(`${baseURL}/order/cart/${rowId}`, editedForm).then((response) => {
       if (response.data === true) {
-        alert("물품 수정 완료");
+        alert("물품 수량 수정 완료");
       } else {
-        alert("물품 수정 실패 재시도 해주세요");
+        alert("물품 수량 수정 실패 재시도 해주세요");
       }
     });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.productId === rowId);
 
-    newTable[index] = editedForm;
+    newTable[index].productCnt = editedForm.productCnt;
     //console.log(newTable);
     setTable(newTable);
     //ApiCallForEdit();

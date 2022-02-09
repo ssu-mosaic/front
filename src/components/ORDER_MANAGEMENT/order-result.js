@@ -34,45 +34,9 @@ function SearchForItem() {
           <input type="button" value="발주요청" />
         </Link>
       </div>
-      {/* <div className={styles.screenPage__searchBox}>
-                <div className={styles.screenPage_title}><span>검색옵션</span></div>
-                <form method="get">
-                    <div className={`${styles.screenPage__section_column} ${styles.screenPage__searchList}`}>
-                        <div className={styles.screenPage__section_row}>
-                            <div className={styles.screenPage__searchOption}>
-                                <label>조회기간 </label> 
-                                
-                            </div>
-                        </div>
-                        
-                        <div className={styles.screenPage__section_row}>
-                            <div className={styles.screenPage__searchOption}>
-                                <label for="condition">매입거래처 </label> 
-                                <input type="text" name="condition" required/>
-                            </div>
-                            <div className={styles.screenPage__searchOption}>
-                                <label for="condition">물품명 </label> 
-                                <input type="text" name="condition" required/>
-                            </div>
-                            <div className={styles.screenPage__searchOption}>
-                                <label for="condition">확정</label> 
-                                <select name="condition">
-                                    <option value="all">전체</option>
-                                    <option value="positive">확정</option>
-                                    <option value="negative">미확정</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div className={styles.screenPage__section_column}>
-                            <input type="submit" value="조회"/>
-                    </div>
-                </form>
-            </div>   */}
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>발주목록</span>
+          <span>주문목록</span>
         </div>
         <OrderList />
       </div>

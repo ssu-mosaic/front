@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-//import MOCK_DATA from "./MOCK_DATA.json";
 import Tables from "./Tables";
+import ProductTables from "./ProductTables";
 import Pagination from "./paginationNoHook";
 import Fragment from "render-fragment";
 import styles from "../css/result-table.module.css";
+import buttonStyles from "../css/userInfo.module.css";
 //import resultStyles from "./retailer-list-readonly.module.css";
 import axios from "axios";
+//test
+import TEST_ORDER_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -17,43 +20,115 @@ function OrderList() {
   // If purpose for testing without server useState(false)
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [tablePerPage] = useState(7);
+  const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
-  //const [request, setRequest] = useState(false);
-  //const [requestId, setRequestId] = useState("");
-  //const [requestName, setRequestName] = useState("");
-  //const [orderDetail, setOrderDetail] = useState("");
+  const [orderDetail, setOrderDetail] = useState(false);
+  const [productList, setProductList] = useState([]);
+  const [orderId, setOrderId] = useState(-1);
 
   //get data from server
   useEffect(() => {
     const userData = {
-      userName: userID,
+      userId: userID,
     };
-    //console.log(userData);
-    // const ApiCallForList = async () => {
-    //     const response = await axios.post(`${baseURL}/retailer/orderList`,userName)
-    //     const data = await response.data;
-    //     console.log(data);
-    //     setTable(data);
-    //     setLoading(false);
-    //     //return await response.data;
-    // }
-    //ApiCallForList();
-    //setTable(MOCK_DATA);
+
     axios.post(`${baseURL}/order/list`, userData).then((response) => {
       setTable(response.data);
       setLoading(false);
       //console.log(userData);
     });
+    //only for test erase when real
+    setTable(TEST_ORDER_DATA);
   }, []);
 
   // Get current tables
   const indexOfLastTable = currentPage * tablePerPage;
   const indexOfFirstTable = indexOfLastTable - tablePerPage;
   const tables = table.slice(indexOfFirstTable, indexOfLastTable);
+  const productLists = productList.slice(indexOfFirstTable, indexOfLastTable);
 
   //change page number
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const onOrderDetailClick = (event, orderProducts, orderId) => {
+    event.preventDefault();
+    setOrderId(orderId);
+    setProductList(orderProducts);
+    console.log(orderId);
+    setOrderDetail(true);
+  };
+
+  const onOrderMenuClick = () => {
+    setOrderDetail(false);
+  };
+
+  const handleCancelClick = (event, productId) => {
+    event.preventDefault();
+
+    const orderCancel = {
+      userId: userID,
+      orderId: orderId,
+      productId: productId,
+    };
+    axios.put(`${baseURL}/order/cancel`, orderCancel).then((response) => {
+      if (response.data === true) {
+        alert("주문 취소 완료");
+      } else {
+        alert("주문 취소 실패 재시도 해주세요");
+      }
+    });
+
+    let newOrderForm = [...table];
+    for (let index = 0; index < newOrderForm.length; index++) {
+      if (newOrderForm[index].orderId === orderId) {
+        for (
+          let idx = 0;
+          idx < newOrderForm[index].orderProducts.length;
+          idx++
+        ) {
+          if (newOrderForm[index].orderProducts[idx].productId === productId) {
+            newOrderForm[index].orderProducts[idx].orderStatus = "canceled";
+            setTable(newOrderForm);
+            return;
+          }
+        }
+      }
+    }
+  };
+
+  const handleCompleteClick = (event, productId) => {
+    event.preventDefault();
+
+    const orderComplete = {
+      userId: userID,
+      orderId: orderId,
+      productId: productId,
+    };
+    axios.put(`${baseURL}/order/complete`, orderComplete).then((response) => {
+      if (response.data === true) {
+        alert("수치 확인 완료");
+      } else {
+        alert("수취 확인 실패 재시도 해주세요");
+      }
+    });
+
+    let newOrderForm = [...table];
+    for (let index = 0; index < newOrderForm.length; index++) {
+      if (newOrderForm[index].orderId === orderId) {
+        for (
+          let idx = 0;
+          idx < newOrderForm[index].orderProducts.length;
+          idx++
+        ) {
+          if (newOrderForm[index].orderProducts[idx].productId === productId) {
+            newOrderForm[index].orderProducts[idx].orderStatus = "complete";
+            setTable(newOrderForm);
+            return;
+          }
+        }
+      }
+    }
+  };
 
   return (
     <div>
@@ -61,34 +136,78 @@ function OrderList() {
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
-          <form>
-            <table className={styles.screenPage__searchResultTable}>
-              <thead>
-                <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>거래처 이름</th>
-                  <th>주문 날짜</th>
-                  <th>거래처 연락처</th>
-                  <th>주문상세</th>
-                </tr>
-              </thead>
-              <tbody className={styles.testTable__tbody}>
-                {tables.map((tables) => (
-                  <Tables
-                    key={tables.retailerPhone}
-                    retailerName={tables.retailerName}
-                    orderDate={tables.orderDate}
-                    retailerPhone={tables.retailerPhone}
-                    orderDetail={tables.orderDetail}
-                  />
-                ))}
-              </tbody>
-            </table>
-          </form>
-          <Pagination
-            tablePerPage={tablePerPage}
-            totalTables={table.length}
-            paginate={paginate}
-          />
+          {orderDetail === false ? (
+            <Fragment>
+              <table className={styles.screenPage__searchResultTable}>
+                <thead>
+                  <tr className={styles.screenPage__searchResultTable_header}>
+                    <th>주문 아이디</th>
+                    <th>주문 날짜</th>
+                    <th>주문 내역</th>
+                    <th>주문 완료율</th>
+                  </tr>
+                </thead>
+                <tbody className={styles.testTable__tbody}>
+                  {tables.map((tables) => (
+                    <Tables
+                      key={tables.orderId}
+                      orderId={tables.orderId}
+                      orderDate={tables.orderDate}
+                      orderProducts={tables.orderProducts}
+                      onOrderDetailClick={onOrderDetailClick}
+                    />
+                  ))}
+                </tbody>
+              </table>
+              <Pagination
+                tablePerPage={tablePerPage}
+                totalTables={table.length}
+                paginate={paginate}
+              />
+            </Fragment>
+          ) : (
+            <Fragment>
+              <table className={styles.screenPage__searchResultTable}>
+                <thead>
+                  <tr className={styles.screenPage__searchResultTable_header}>
+                    <th>상품 이름</th>
+                    <th>거래처 이름</th>
+                    <th>상품 수량</th>
+                    <th>상품 단위</th>
+                    <th>발주 상태</th>
+                    <th>주문 취소</th>
+                    <th>수취 완료</th>
+                  </tr>
+                </thead>
+                <tbody className={styles.testTable__tbody}>
+                  {productLists.map((product) => (
+                    <ProductTables
+                      key={product.productId}
+                      productId={product.productId}
+                      retailerName={product.retailerName}
+                      productName={product.productName}
+                      productUnit={product.productUnit}
+                      productCnt={product.productCnt}
+                      orderStatus={product.orderStatus}
+                      handleCancelClick={handleCancelClick}
+                      handleCompleteClick={handleCompleteClick}
+                    />
+                  ))}
+                </tbody>
+              </table>
+              <Pagination
+                tablePerPage={tablePerPage}
+                totalTables={productList.length}
+                paginate={paginate}
+              />
+              <input
+                type="button"
+                value="주문목록 돌아가기"
+                onClick={onOrderMenuClick}
+                className={buttonStyles.userInfoList__saveChange}
+              />
+            </Fragment>
+          )}
         </Fragment>
       )}
     </div>

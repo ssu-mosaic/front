@@ -18,10 +18,7 @@ function Tables({
   const rowData = {
     userId: userID,
     productId: productId,
-    productName: productName,
-    productPrice: productPrice,
-    productUnit: productUnit,
-    productDesc: productDesc,
+    productCnt: productCnt,
   };
   const productDetailData = {
     productName: productName,

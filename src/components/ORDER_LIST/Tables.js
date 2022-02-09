@@ -2,27 +2,36 @@ import styles from "../css/result-table.module.css";
 ////import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 //import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-function Tables({ retailerName, orderDate, retailerPhone, orderDetail }) {
-  // const rowData = {
-  //     retailerName: retailerName,
-  //     orderDate: orderDate,
-  //     retailerPhone: retailerPhone,
-  //     orderDetail: orderDetail,
-  // }
-  //console.log(orderDetail);
+function Tables({ orderId, orderDate, orderProducts, onOrderDetailClick }) {
+  const orderTotal = orderProducts.length;
+  let orderComplete = 0;
+  let orderCanceled = 0;
+
+  for (let index = 0; index < orderTotal; index++) {
+    if (orderProducts[index].orderStatus === "canceled") {
+      orderCanceled++;
+    } else if (orderProducts[index].orderStatus === "complete") {
+      orderComplete++;
+    }
+  }
+
   return (
-    <tr
-      key={retailerPhone}
-      className={styles.screenPage__searchResultTable_items}
-    >
-      <td key={"retailerName_td"}>{retailerName}</td>
-      <td key={"retailerPhone_td"}>{orderDate}</td>
-      <td key={"retailerEmail_td"}>{retailerPhone}</td>
-      <td key={"orderDetail_td"}>
-        {orderDetail.length > 10
-          ? `${orderDetail.slice(0, 10)}...`
-          : `${orderDetail}`}
+    <tr key={orderId} className={styles.screenPage__searchResultTable_items}>
+      <td key={"orderId_td"}>{orderId}</td>
+      <td key={"orderDate_td"}>{orderDate}</td>
+      <td
+        key={"orderProducts_td"}
+        onClick={(event) => onOrderDetailClick(event, orderProducts, orderId)}
+      >
+        {`거래처 ${orderProducts[0].retailerName}`}
+        {orderProducts.length < 2 ? "" : `, ${orderProducts[1].retailerName} `}
+        {orderProducts.length > 2 ? "등 " : ""}
+        {`에서 ${orderProducts.length} 건의 상품`}
       </td>
+      <td key={"orderProgress_td"}>{`${(
+        (orderComplete / (orderTotal - orderCanceled)) *
+        100
+      ).toFixed(1)} %`}</td>
     </tr>
   );
 }
