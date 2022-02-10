@@ -1,0 +1,20 @@
+.chart_setting {
+  height: 200px;
+  width: 100%;
+  margin: 10px 0px;
+  /* width: 100%; */
+}
+
+.miniMenu_title {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  color: grey;
+}
+
+.miniMenu_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

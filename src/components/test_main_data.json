@@ -1,0 +1,52 @@
+{
+    "data":{
+        "Spending": {
+          "labels":[
+            "2020/09/09",
+            "2020/10/09",
+            "2021/11/09",
+            "2021/12/09",
+            "2022/01/09",
+            "2023/01/09",
+            "2024/02/09"
+          ],
+          "datasets": [{
+            "data": [111000, 222000, 333000, 444000 ,555000, 666000, 777000],
+            "backgroundColor": [
+              "rgba(255, 199, 132, 0.6)",
+              "rgba(255, 199, 132, 0.6)",
+              "rgba(255, 199, 132, 0.6)",
+              "rgba(255, 199, 132, 0.6)",
+              "rgba(255, 199, 132, 0.6)",
+              "rgba(255, 199, 132, 0.6)",
+              "rgba(255, 199, 132, 0.6)"
+            ]
+            }]
+        },
+        "OrderComplete":{
+          "labels":["발주진행중","완료","주문취소"],
+          "datasets": [{
+            "data": [12,32,20],
+            "backgroundColor": [
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(255, 99, 132, 0.2)"
+            ],
+            "borderWidth": 1
+          }]
+        },
+        "Stock":[
+          {"productId": 111,"retailerName": "숭실","productName" : "숭실계육","productCnt":12,"productUnit" : "kg"},
+          {"productId": 112,"retailerName": "삼성","productName" : "삼성계육","productCnt":22,"productUnit" : "L"},
+          {"productId": 113,"retailerName": "롯데","productName" : "롯데계육","productCnt":24,"productUnit" : "kg"},
+          {"productId": 114,"retailerName": "환화","productName" : "한화계육","productCnt":30,"productUnit" : "ml"},
+          {"productId": 115,"retailerName": "기아","productName" : "기아계육","productCnt":42,"productUnit" : "cm"}
+        ],
+        "Notice":[
+          {"noticeId": 1,"noticeData":"2099/09/09","noticeTitle": "공지테스트제목입니다"},
+          {"noticeId": 2,"noticeData":"2999/12/19","noticeTitle": "이것도 공지 테스트 제목이랍니다"},
+          {"noticeId": 3,"noticeData":"9999/12/31","noticeTitle": "이건 공지 테스트 제목일까요?"}
+        ]
+      }
+    
+}

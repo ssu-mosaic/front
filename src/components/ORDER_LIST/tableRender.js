@@ -20,6 +20,7 @@ function OrderList() {
   // If purpose for testing without server useState(false)
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [menuPage, setMenuPage] = useState(1);
   const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
   const [orderDetail, setOrderDetail] = useState(false);
@@ -53,12 +54,15 @@ function OrderList() {
   const onOrderDetailClick = (event, orderProducts, orderId) => {
     event.preventDefault();
     setOrderId(orderId);
+    setMenuPage(currentPage);
+    setCurrentPage(1);
     setProductList(orderProducts);
-    console.log(orderId);
+    console.log(productList);
     setOrderDetail(true);
   };
 
   const onOrderMenuClick = () => {
+    setCurrentPage(menuPage);
     setOrderDetail(false);
   };
 
