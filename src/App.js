@@ -25,9 +25,10 @@ import UserPwdChange from "./routes/ChangePwd";
 //customer service center
 import CustomerCenter from "./routes/CustomerCenter";
 import QnaDetails from "./routes/QnaDetails";
+import NoticeDetails from "./routes/NoticeDetail";
 import QnaWrite from "./routes/QnaWrite";
 import PaginationTableRender from "./TablePaginationTest/tableRender";
-
+import NoticeList from "./routes/NoticeList";
 import DoughnutChart from "./ChartTest/chartRender";
 
 function App() {
@@ -39,6 +40,11 @@ function App() {
   };
 
   const customerCenterElements = [
+    {
+      id: "noticeList",
+      name: "공지사항",
+      link: "/notice",
+    },
     {
       id: "qnaList",
       name: "문의목록",
@@ -109,7 +115,7 @@ function App() {
   const orderMenuObj = sideMenuObj("발주관리", orderSideMenuElements);
   const stockMenuObj = sideMenuObj("재고관리", stockSideMenuElements);
   const userMenuObj = sideMenuObj("회원정보", userMenuElements);
-  const customerCenterObj = sideMenuObj("문의센터", customerCenterElements);
+  const customerCenterObj = sideMenuObj("고객센터", customerCenterElements);
 
   return (
     <Router>
@@ -140,6 +146,12 @@ function App() {
         </Route>
         <Route path="/qna">
           <CustomerCenter sideMenu={customerCenterObj} />
+        </Route>
+        <Route path="/notice/:id">
+          <NoticeDetails sideMenu={customerCenterObj} />
+        </Route>
+        <Route path="/notice">
+          <NoticeList sideMenu={customerCenterObj} />
         </Route>
         <Route path="/user/changepwd">
           <UserPwdChange sideMenu={userMenuObj} />

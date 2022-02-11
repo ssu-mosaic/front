@@ -44,7 +44,7 @@ function MenuBar() {
             </Link>
             <Link to={`/qna`}>
               <li className={styles.menuBar__btn}>
-                <span>문의센터</span>
+                <span>고객센터</span>
               </li>
             </Link>
             {/* <Link to={`/`}><li className={styles.menuBar__btn}><span>고객센터</span></li></Link> */}

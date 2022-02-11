@@ -3,7 +3,6 @@ import styles from "../css/mainMenu-content.module.css";
 
 function DoughnutOrderComplete(orderData) {
   const newData = orderData.orderData;
-
   //console.log(newData);
   return (
     <div className={styles.miniMenu_box}>

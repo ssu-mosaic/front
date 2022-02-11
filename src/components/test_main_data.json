@@ -35,18 +35,20 @@
             "borderWidth": 1
           }]
         },
-        "Stock":[
-          {"productId": 111,"retailerName": "숭실","productName" : "숭실계육","productCnt":12,"productUnit" : "kg"},
-          {"productId": 112,"retailerName": "삼성","productName" : "삼성계육","productCnt":22,"productUnit" : "L"},
-          {"productId": 113,"retailerName": "롯데","productName" : "롯데계육","productCnt":24,"productUnit" : "kg"},
-          {"productId": 114,"retailerName": "환화","productName" : "한화계육","productCnt":30,"productUnit" : "ml"},
-          {"productId": 115,"retailerName": "기아","productName" : "기아계육","productCnt":42,"productUnit" : "cm"}
-        ],
-        "Notice":[
-          {"noticeId": 1,"noticeData":"2099/09/09","noticeTitle": "공지테스트제목입니다"},
-          {"noticeId": 2,"noticeData":"2999/12/19","noticeTitle": "이것도 공지 테스트 제목이랍니다"},
-          {"noticeId": 3,"noticeData":"9999/12/31","noticeTitle": "이건 공지 테스트 제목일까요?"}
-        ]
+        "Stock":{
+            "data":[
+              {"productId": 111,"retailerName": "숭실","productName" : "숭실계육","productCnt":12,"productUnit" : "kg"},
+              {"productId": 112,"retailerName": "삼성","productName" : "삼성계육","productCnt":22,"productUnit" : "L"},
+              {"productId": 113,"retailerName": "롯데","productName" : "롯데계육","productCnt":24,"productUnit" : "kg"},
+              {"productId": 114,"retailerName": "환화","productName" : "한화계육","productCnt":30,"productUnit" : "ml"},
+              {"productId": 115,"retailerName": "기아","productName" : "기아계육","productCnt":42,"productUnit" : "cm"}
+            ]},
+        "Notice":{
+            "data":[
+              {"noticeId": 1,"noticeDate":"2099/09/09","noticeTitle": "공지테스트제목입니다"},
+              {"noticeId": 2,"noticeDate":"2999/12/19","noticeTitle": "이것도 공지 테스트 제목이랍니다"},
+              {"noticeId": 3,"noticeDate":"9999/12/31","noticeTitle": "이건 공지 테스트 제목일까요?"}
+            ]}
       }
     
 }

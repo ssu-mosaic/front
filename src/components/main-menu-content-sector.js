@@ -1,6 +1,7 @@
 import styles from "./css/main-menu-content-sector.module.css";
 import DoughnutOrderComplete from "./MAINMENU_CONTENT/doughnut-order-complete.js";
 import BarExpense from "./MAINMENU_CONTENT/bar-expense";
+import MiniNotice from "./MAINMENU_CONTENT/miniNoticeTable";
 import MiniStock from "./MAINMENU_CONTENT/miniStockTable";
 import adImg from "./MAINMENU_CONTENT/adsTest.JPG";
 import axios from "axios";
@@ -16,22 +17,24 @@ function MainMenuContentSector() {
   const baseURL =
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [mainData, setMainData] = useState({});
+
   useEffect(() => {
     const userData = {
       userId: userID,
     };
 
     axios.post(`${baseURL}/stats`, userData).then((response) => {
-      setMainData(response.main.data);
+      setMainData(response.data);
       setLoading(false);
     });
     //only for testing erase when real
     setMainData(TEST_MAIN_PAGE_DATA.data);
-  }, []);
-  //console.log(mainData);
-  //console.log(mainData.OrderComplete);
+    setLoading(false);
+  }, [mainData.Stock, mainData.Notice]);
+  console.log(mainData.Stock);
+  //console.log(miniTable);
   return (
     <Fragment>
       {loading ? (
@@ -60,7 +63,7 @@ function MainMenuContentSector() {
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <span>공지</span>
+                <MiniNotice miniNotice={mainData.Notice} />
               </div>
             </div>
           </div>

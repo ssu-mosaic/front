@@ -7,6 +7,11 @@
   font-weight: bold;
   color: grey;
 }
+.noticeEditDate {
+  font-size: 14px;
+  font-weight: bold;
+  color: grey;
+}
 
 .qnaBox__row:not(:nth-of-type(1)) {
   border: var(--main-border);
@@ -37,6 +42,11 @@
 
 .qnaContent {
   height: 150px;
+  color: grey;
+}
+
+.noticeContent {
+  height: 500px;
   color: grey;
 }
 
