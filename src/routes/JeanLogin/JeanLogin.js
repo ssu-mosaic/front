@@ -54,7 +54,7 @@ function JeanLogin() {
     newLoginData.userId = userId;
     newLoginData.userPwd = userPw;
 
-    axios.post(`${baseURL.url}/login`, newLoginData).then((response) => {
+    axios.post(`${baseURL}/login`, newLoginData).then((response) => {
       console.log(response.data);
       //setLoginValid(response.data);
       //console.log(newLoginData);
@@ -98,9 +98,7 @@ function JeanLogin() {
             <label for="pw">PASSWORD</label>
           </div>
           <div className={jeanStyles.btn_area}>
-            <button type="submit" onclick="location.href=''">
-              LOGIN
-            </button>
+            <button type="submit">LOGIN</button>
           </div>
         </form>
         <div className={jeanStyles.caption}>
@@ -111,6 +109,9 @@ function JeanLogin() {
         </div>
         <div className={jeanStyles.caption}>
           <Link to={"/login/findpwd"}> PW 찾기</Link>
+        </div>
+        <div className={jeanStyles.caption}>
+          <Link to={"/admin/login"}> 관리자모드</Link>
         </div>
       </section>
     </div>

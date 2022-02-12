@@ -40,6 +40,11 @@
   font-weight: bold;
 }
 
+.noticeTitle {
+  width: 90%;
+  padding: 5px 3px;
+}
+
 .qnaContent {
   height: 150px;
   color: grey;
@@ -48,6 +53,7 @@
 .noticeContent {
   height: 500px;
   color: grey;
+  padding: 5px 3px;
 }
 
 .qnaEditButton {

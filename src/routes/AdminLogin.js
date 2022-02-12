@@ -10,7 +10,7 @@ let USER_ID = "";
 function Login() {
   const baseURL =
     "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
-  const [data, setData] = useState("");
+  ///const [data, setData] = useState("");
 
   let newLoginData = {
     userId: "",
@@ -36,20 +36,22 @@ function Login() {
     newLoginData.userId = userId;
     newLoginData.userPw = userPw;
 
-    axios.put(`${baseURL}/register`, newLoginData).then((response) => {
-      setData(response.data);
-      console.log(`서버로 보낸 데이터 : ${data}`);
+    axios.post(`${baseURL}/admin/login`, newLoginData).then((response) => {
+      if (response.data === true) {
+        USER_ID = userId;
+        localStorage.setItem("USER_ID", USER_ID);
+        alert(`환영해요 ${userId}`);
+        window.location.href = "https://ssu-mosaic.github.io/front/admin";
+        // should put real https addr
+      } else {
+        alert("잘못된 아이디 또는 비밀번호입니다");
+      }
+      //setData(response.data);
+      //console.log(`서버로 보낸 데이터 : ${data}`);
     });
 
     //reset
     newLoginData = resetLoginData;
-    if (true) {
-      USER_ID = userId;
-      localStorage.setItem("USER_ID", USER_ID);
-      alert(`환영해요 ${userId}`);
-      window.location.href = "https://ssu-mosaic.github.io/front";
-      // should put real https addr
-    }
   };
 
   return (
@@ -63,29 +65,31 @@ function Login() {
             <input
               name="username"
               type="text"
-              placeholder="아이디 입력"
+              placeholder="관리자 아이디 입력"
               onChange={onIdChange}
               required="required"
             />
             <input
               name="password"
               type="password"
-              placeholder="비밀번호 입력"
+              placeholder="관리자 비밀번호 입력"
               onChange={onPwChange}
               required="required"
             />
           </div>
           <div className={styles.loginBox__loginOption}>
             <div className={styles.loginBox__loginOption_auto}>
+              <Link to={"/login"}>
+                <div className={styles.loginBox__lostIDPW}>
+                  {">> 유저모드로 돌아가기"}
+                </div>
+              </Link>
+
               {/* <input type="checkbox" name="auto-login" checked/>
                             <label for="auto-login">자동 로그인</label>   */}
             </div>
             <input type="submit" value="로그인" />
           </div>
-          <Link to={`/makeaccount`} className={styles.loginBox__lostIDPW}>
-            {" "}
-            {">> 회원가입을 하고 싶어요"}
-          </Link>
         </form>
       </div>
     </div>

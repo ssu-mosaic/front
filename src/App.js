@@ -31,6 +31,13 @@ import PaginationTableRender from "./TablePaginationTest/tableRender";
 import NoticeList from "./routes/NoticeList";
 import DoughnutChart from "./ChartTest/chartRender";
 
+//admin
+import AdminLogin from "./routes/AdminLogin";
+import AdminNotice from "./routes/AdminNotice";
+import AdminNoticeDetails from "./routes/AdminNoticeDetail";
+import AdminInquiry from "./routes/AdminInquiry";
+import AdminInquiryDetails from "./routes/AdminInquiryDetail";
+
 function App() {
   const sideMenuObj = function (topName, sideMenuElements) {
     return {
@@ -111,12 +118,25 @@ function App() {
     },
   ];
 
+  const adminNoticeSideMenuElements = [
+    {
+      id: "ansInquiry",
+      name: "공지목록",
+      link: "/admin/notice",
+    },
+    {
+      id: "ansInquiry",
+      name: "문의답변",
+      link: "/admin/inquiry",
+    },
+  ];
+
   const homeMenuObj = sideMenuObj("홈", []);
   const orderMenuObj = sideMenuObj("발주관리", orderSideMenuElements);
   const stockMenuObj = sideMenuObj("재고관리", stockSideMenuElements);
   const userMenuObj = sideMenuObj("회원정보", userMenuElements);
   const customerCenterObj = sideMenuObj("고객센터", customerCenterElements);
-
+  const adminObj = sideMenuObj("관리", adminNoticeSideMenuElements);
   return (
     <Router>
       <Switch>
@@ -188,6 +208,21 @@ function App() {
         </Route>
         <Route path="/stock/add">
           <ManageStock sideMenu={stockMenuObj} />
+        </Route>
+        <Route path="/admin/notice/:id">
+          <AdminNoticeDetails sideMenu={adminObj} />
+        </Route>
+        <Route path="/admin/notice">
+          <AdminNotice sideMenu={adminObj} />
+        </Route>
+        <Route path="/admin/inquiry/:id">
+          <AdminInquiryDetails sideMenu={adminObj} />
+        </Route>
+        <Route path="/admin/inquiry">
+          <AdminInquiry sideMenu={adminObj} />
+        </Route>
+        <Route path="/admin/login">
+          <AdminLogin sideMenu={adminObj} />
         </Route>
         <Route path="/">
           <Home sideMenu={homeMenuObj} />

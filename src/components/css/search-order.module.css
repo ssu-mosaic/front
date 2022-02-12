@@ -105,3 +105,10 @@
   font-weight: 500;
   color: grey;
 }
+
+.editTitle {
+  padding: 5px 0px;
+  color: grey;
+  font-weight: bold;
+  font-size: 15px;
+}
