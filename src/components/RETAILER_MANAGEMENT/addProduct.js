@@ -47,7 +47,7 @@ function AddProduct({
           <div className={styles.userInfoList__title}> 상품메모 : </div>
           <textarea
             type="text"
-            name="productDesc"
+            name="productDetail"
             onChange={handleProductFormChange}
             required
           />

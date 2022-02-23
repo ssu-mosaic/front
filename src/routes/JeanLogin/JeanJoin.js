@@ -8,7 +8,7 @@ function JeanJoin() {
   useEffect(() => {}, []);
 
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   let newAccountData = {
     userEmail: "",
@@ -100,9 +100,11 @@ function JeanJoin() {
     newAccountData = resetAccountData;
     if (pwValid === true) {
       alert("가입 완료 로그인 화면으로 갈게요");
-      //window.location.href = "/login"
-      //https://ssu-mosaic.github.io/login
-      window.location.href = "https://ssu-mosaic.github.io/login";
+
+      //test
+      window.location.href = "/login";
+      //publish
+      //window.location.href = "https://ssu-mosaic.github.io/login";
     } else {
       alert("가입 실패 비밀번호 등을 살펴보세요 ");
     }

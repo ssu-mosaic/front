@@ -5,22 +5,13 @@ function QnaEdit({
   inquiryContent,
   inquiryAnswer,
   handleEditFormChange,
-  onFormSubmit,
+  onFormEditSubmit,
   onCancelClick,
 }) {
   return (
     <form>
       <div className={styles.qnaBox}>
-        <div className={styles.qnaBox__row}>
-          <input
-            type="text"
-            onChange={handleEditFormChange}
-            value={inquiryTitle}
-            required
-            name="inquiryTitle"
-            className={styles.qnaTitle}
-          />
-        </div>
+        <div className={styles.qnaBox__row}>{`${inquiryTitle}`}</div>
         <div className={styles.qnaBox__row}>
           <div className={styles.qnaBox__row_title}>문의 내용</div>
           <div className={styles.qnaContent}>{`${inquiryContent}`}</div>
@@ -39,7 +30,7 @@ function QnaEdit({
         <input
           type="button"
           value="작성 완료"
-          onClick={onFormSubmit}
+          onClick={onFormEditSubmit}
           className={styles.qnaEditButton}
         />
         <input

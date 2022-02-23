@@ -15,7 +15,8 @@ let userID = localStorage.getItem("USER_ID");
 
 function MainMenuContentSector() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
+
   // If purpose for testing without server useState(false)
   const [loading, setLoading] = useState(true);
   const [mainData, setMainData] = useState({});

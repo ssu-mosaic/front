@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const baseURL =
-  "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+  "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
+
 let USER_ID = "";
 //let loginValid = false;
 
@@ -63,8 +64,10 @@ function JeanLogin() {
         localStorage.setItem("USER_ID", USER_ID);
         alert(`환영해요 ${userId}`);
         newLoginData = resetLoginData;
-        window.location.href = "https://ssu-mosaic.github.io/front";
-        //window.location.href = "/"
+        //when publish
+        //window.location.href = "https://ssu-mosaic.github.io/front";
+        //when test
+        window.location.href = "/";
       } else {
         alert("없는 아이디거나 비밀번호가 틀렸어요");
       }

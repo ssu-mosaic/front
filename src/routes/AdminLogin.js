@@ -9,20 +9,19 @@ let USER_ID = "";
 
 function Login() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
-  ///const [data, setData] = useState("");
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   let newLoginData = {
     userId: "",
-    userPw: "",
+    userPwd: "",
   };
   const resetLoginData = {
     userId: "",
-    userPw: "",
+    userPwd: "",
   };
 
   const [userId, setUserId] = useState("");
-  const [userPw, setUserPw] = useState("");
+  const [userPwd, setUserPw] = useState("");
 
   const onIdChange = (event) => {
     setUserId(event.target.value);
@@ -34,14 +33,17 @@ function Login() {
   const onSubmit = (event) => {
     event.preventDefault();
     newLoginData.userId = userId;
-    newLoginData.userPw = userPw;
+    newLoginData.userPwd = userPwd;
 
     axios.post(`${baseURL}/admin/login`, newLoginData).then((response) => {
       if (response.data === true) {
         USER_ID = userId;
         localStorage.setItem("USER_ID", USER_ID);
         alert(`환영해요 ${userId}`);
-        window.location.href = "https://ssu-mosaic.github.io/front/admin";
+        //test
+        window.location.href = "/admin/inquiry";
+        //when real
+        //window.location.href = "https://ssu-mosaic.github.io/front/admin/inquiry";
         // should put real https addr
       } else {
         alert("잘못된 아이디 또는 비밀번호입니다");

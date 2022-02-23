@@ -14,9 +14,7 @@ function QnaRead({ inquiryTitle, inquiryContent, inquiryAnswer }) {
       <div className={styles.qnaBox__row}>
         <div className={styles.qnaBox__row_title}>답변 내용</div>
         <div className={styles.qnaContent}>
-          {inquiryAnswer.length === 0
-            ? "답변 대기 중입니다"
-            : `${inquiryAnswer}`}
+          {inquiryAnswer === null ? "답변 대기 중입니다" : `${inquiryAnswer}`}
         </div>
       </div>
     </div>

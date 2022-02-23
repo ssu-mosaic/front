@@ -8,7 +8,7 @@ import axios from "axios";
 let userID = localStorage.getItem("USER_ID");
 function ChangeUserPwd() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   const [newPwd, setNewPwd] = useState("");
   const [newPwdAgain, setNewPwdAgain] = useState("");
@@ -24,7 +24,7 @@ function ChangeUserPwd() {
     setOldPwd(event.target.value);
   };
 
-  const onDeleteSubmit = (event) => {
+  const onChangeSubmit = (event) => {
     event.preventDefault();
     if (newPwd !== newPwdAgain || oldPwd === newPwd) {
       alert("비밀번호 불일치 또는 이전과 다른 비밀번호를 작성해주세요");
@@ -38,6 +38,10 @@ function ChangeUserPwd() {
         .then((response) => {
           if (response.data === true) {
             alert("비밀번호 수정 완료");
+            //test
+            window.location.href = "/user/info";
+            //publish
+            //window.location.href = "https://ssu-mosaic.github.io/user/info";
           } else {
             alert("비밀번호 수정 실패 재시도 해주세요 ");
           }
@@ -60,7 +64,7 @@ function ChangeUserPwd() {
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>비밀번호 수정</div>
         <div className={pwStyles.userInfoBox}>
-          <form onSubmit={onDeleteSubmit}>
+          <form onSubmit={onChangeSubmit}>
             <div className={pwStyles.userInfoBox__row}>
               <div className={pwStyles.userInfoBox__title}>
                 이전 비밀번호 확인:

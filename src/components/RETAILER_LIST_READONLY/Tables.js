@@ -6,7 +6,7 @@ function Tables({
   retailerName,
   retailerPhoneNo,
   retailerEmail,
-  retailerDesc,
+  retailerDetail,
 }) {
   //console.log(retailerAddress);
 
@@ -18,9 +18,9 @@ function Tables({
       <td key={"retailerPhone_td"}>{retailerPhoneNo}</td>
       <td key={"retailerEmail_td"}>{retailerEmail}</td>
       <td key={"retailerMemo_td"}>
-        {retailerDesc.length > 30
-          ? `${retailerDesc.slice(0, 30)}...`
-          : `${retailerDesc}`}
+        {retailerDetail.length > 30
+          ? `${retailerDetail.slice(0, 30)}...`
+          : `${retailerDetail}`}
       </td>
     </tr>
   );

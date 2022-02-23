@@ -11,10 +11,11 @@ let userID = localStorage.getItem("USER_ID");
 
 function Detail() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
+
   const { id } = useParams();
   //while testing loading : false
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const emptyQnaDetails = {
     inquiryId: -1,
@@ -32,21 +33,21 @@ function Detail() {
     const identification = {
       userId: userID,
     };
-    axios.get(`${baseURL}/qna/${id}`, identification).then((response) => {
+    axios.post(`${baseURL}/qna/${id}`, identification).then((response) => {
       setQnaDetails(response.data);
       setLoading(false);
     });
     //test delete when real
     //test
-    const testQnaDetails = {
-      inquiryId: 1111,
-      inquiryTitle: "this is test title",
-      inquiryDate: "2099/99/99",
-      inquiryContent: "this is test content",
-      inquiryAnswer: "this is test answer",
-      inquiryAnsDate: "2999/99/99",
-    };
-    setQnaDetails(testQnaDetails);
+    // const testQnaDetails = {
+    //   inquiryId: 1111,
+    //   inquiryTitle: "this is test title",
+    //   inquiryDate: "2099/99/99",
+    //   inquiryContent: "this is test content",
+    //   inquiryAnswer: "this is test answer",
+    //   inquiryAnsDate: "2999/99/99",
+    // };
+    //setQnaDetails(testQnaDetails);
   }, [id]);
 
   const onQnaEditClick = () => {
@@ -73,7 +74,7 @@ function Detail() {
     event.preventDefault();
     setQnaEdit(false);
     axios.put(`${baseURL}/qna/edit/${id}`, qnaDetails).then((response) => {
-      if (response.data === true) {
+      if (response.data === id) {
         alert("문의 내역 수정 완료");
       } else {
         alert("문의 내역 수정 실패");
@@ -86,9 +87,13 @@ function Detail() {
       userId: userID,
     };
     setQnaEdit(false);
-    axios.delete(`${baseURL}/qna/${id}`, identification).then((response) => {
-      if (response.data === true) {
+    axios.put(`${baseURL}/qna/${id}`, identification).then((response) => {
+      if (response.data === id) {
         alert("문의 내역 삭제 완료");
+        //test
+        window.location.href = "/qna";
+        //publish
+        //window.location.href = "https://ssu-mosaic.github.io/qna";
       } else {
         alert("문의 내역 삭제 실패");
       }
@@ -106,7 +111,7 @@ function Detail() {
         <input
           type="button"
           value="문의수정"
-          disabled={qnaEdit || qnaDetails.inquiryAnswer.length > 0}
+          disabled={qnaEdit || qnaDetails.inquiryAnswer !== null}
           onClick={onQnaEditClick}
         />
         <input
@@ -121,7 +126,7 @@ function Detail() {
           <span>문의상세</span>
         </div>
         <div>
-          {loading ? (
+          {loading || qnaDetails.inquiryId === -1 ? (
             <strong>로딩중...</strong>
           ) : (
             <Fragment>

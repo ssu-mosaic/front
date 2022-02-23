@@ -10,7 +10,7 @@ function Tables({
   retailerName,
   retailerPhoneNo,
   retailerEmail,
-  retailerDesc,
+  retailerDetail,
   handleEditClick,
   handleDeleteClick,
 }) {
@@ -20,7 +20,7 @@ function Tables({
     retailerName: retailerName,
     retailerPhoneNo: retailerPhoneNo,
     retailerEmail: retailerEmail,
-    retailerDesc: retailerDesc,
+    retailerDetail: retailerDetail,
   };
 
   //console.log(retailerAddress);
@@ -33,9 +33,9 @@ function Tables({
       <td key={"retailerPhone_td"}>{retailerPhoneNo}</td>
       <td key={"retailerEmail_td"}>{retailerEmail}</td>
       <td key={"retailerMemo_td"}>
-        {retailerDesc.length > 10
-          ? `${retailerDesc.slice(0, 10)}...`
-          : `${retailerDesc}`}
+        {retailerDetail.length > 10
+          ? `${retailerDetail.slice(0, 10)}...`
+          : `${retailerDetail}`}
       </td>
       <td key={"edit_td"}>
         <button

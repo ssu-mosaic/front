@@ -12,7 +12,7 @@ import TEST_Notice_DATA from "./testNoticeData.json";
 
 function NoticeList() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   //while testing loading : false
   const [loading, setLoading] = useState(false);

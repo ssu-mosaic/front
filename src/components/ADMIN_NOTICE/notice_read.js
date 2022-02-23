@@ -8,7 +8,7 @@ function QnaRead({ noticeContent, noticeEditDate }) {
         <div className={styles.noticeEditDate}>
           {noticeEditDate.length < 1
             ? "수정내역 없음"
-            : `최종 수정 일자 : ${noticeEditDate}`}
+            : `최종 수정 일자 : ${noticeEditDate.slice(0, 10)}`}
         </div>
       </div>
       <div className={styles.qnaBox__row}>

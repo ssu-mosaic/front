@@ -11,10 +11,11 @@ let userID = localStorage.getItem("USER_ID");
 
 function Detail() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
+
   const { id } = useParams();
   //while testing loading : false
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [editFormData, setEditFormData] = useState({
     userId: userID,
     noticeTitle: "",
@@ -36,34 +37,57 @@ function Detail() {
 
   useEffect(() => {
     axios.get(`${baseURL}/notice/${id}`).then((response) => {
-      if (response.data === true) {
-        alert("공지 수정 완료");
-      } else {
-        alert("공지 수정 실패 재시도 해주세요");
-      }
+      setLoading(false);
+      setNoticeDetails(response.data);
     });
     //test delete when real
     //test
-    const testQnaDetails = {
-      noticeId: 1111,
-      noticeTitle: "this is test title",
-      noticeDate: "2099/99/99",
-      noticeContent: "this is test content",
-      noticeEditDate: "2999/99/99",
-    };
-    setNoticeDetails(testQnaDetails);
+    // const testQnaDetails = {
+    //   noticeId: 1111,
+    //   noticeTitle: "this is test title",
+    //   noticeDate: "2099/99/99",
+    //   noticeContent: "this is test content",
+    //   noticeEditDate: "2999/99/99",
+    // };
+    //setNoticeDetails(testQnaDetails);
   }, [id]);
 
   const onSubmitEditForm = (event) => {
     event.preventDefault();
-    axios.put(`${baseURL}/admin/notice`, editFormData).then((response) => {
-      setNoticeDetails(response.data);
-      setLoading(false);
-    });
+    axios
+      .put(`${baseURL}/admin/notice/${id}`, editFormData)
+      .then((response) => {
+        if (response.data === true) {
+          alert("공지 수정 완료");
+          setNoticeDetails(editFormData);
+          setNoticeEdit(false);
+        } else {
+          alert("공지 수정 실패");
+        }
+      });
   };
 
   const onCancelClick = () => {
     setNoticeEdit(false);
+  };
+  const onNoticeDeleteClick = (event) => {
+    event.preventDefault();
+    const deleteForm = {
+      noticeId: id,
+    };
+    axios
+      .delete(`${baseURL}/admin/notice/${id}`, deleteForm)
+      .then((response) => {
+        if (response.data === true) {
+          alert("공지 삭제 완료");
+          //when publish
+          //window.location.href = "https://ssu-mosaic.github.io/front/admin/notice";
+          //when test
+          window.location.href = "/admin/notice";
+        } else {
+          alert("공지 삭제 실패");
+        }
+      });
   };
 
   const onNoticeEditClick = () => {
@@ -71,7 +95,7 @@ function Detail() {
       userId: userID,
       noticeTitle: noticeDetails.noticeTitle,
       noticeDate: noticeDetails.noticeDate,
-      noticeContent: noticeDetails.content,
+      noticeContent: noticeDetails.noticeContent,
       noticeEditDate: noticeDetails.noticeEditDate,
     };
     setEditFormData(formValues);
@@ -104,6 +128,12 @@ function Detail() {
           type="button"
           value="공지수정"
           onClick={onNoticeEditClick}
+          disabled={noticeEdit}
+        />
+        <input
+          type="button"
+          value="공지삭제"
+          onClick={onNoticeDeleteClick}
           disabled={noticeEdit}
         />
       </div>

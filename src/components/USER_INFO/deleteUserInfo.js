@@ -8,7 +8,7 @@ import axios from "axios";
 let userID = localStorage.getItem("USER_ID");
 function DeleteUserInfo() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   const [pwd, setPwd] = useState("");
   const [pwdAgain, setPwdAgain] = useState("");
@@ -32,9 +32,14 @@ function DeleteUserInfo() {
       const identification = {
         userId: userID,
       };
-      axios.delete(`${baseURL}/withdraw`, identification).then((response) => {
+      axios.put(`${baseURL}/withdraw`, identification).then((response) => {
         if (response.data === true) {
           alert("회원 탈퇴 완료");
+          localStorage.setItem("USER_ID", null);
+          //test
+          window.location.href = "/login";
+          //publish
+          //window.location.href = "https://ssu-mosaic.github.io/login";
         } else {
           alert("회원 탈퇴 실패 재시도 해주세요 ");
         }

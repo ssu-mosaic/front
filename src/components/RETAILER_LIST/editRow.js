@@ -7,7 +7,7 @@ function EditRow({
   retailerName,
   retailerPhoneNo,
   retailerEmail,
-  retailerDesc,
+  retailerDetail,
   editFormData,
   handleEditFormChange,
   handleCancelClick,
@@ -48,9 +48,9 @@ function EditRow({
         <textarea
           type="text"
           required="required"
-          placeholder={retailerDesc}
-          name="retailerDesc"
-          value={editFormData.retailerDesc}
+          placeholder={retailerDetail}
+          name="retailerDetail"
+          value={editFormData.retailerDetail}
           onChange={handleEditFormChange}
         ></textarea>
       </td>

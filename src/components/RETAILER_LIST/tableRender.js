@@ -14,10 +14,10 @@ let userID = localStorage.getItem("USER_ID");
 //거래처목록
 function RetailerListTable() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(10);
   const [table, setTable] = useState([]);
@@ -47,7 +47,7 @@ function RetailerListTable() {
       setLoading(false);
     });
     //only for testing erase when real
-    setTable(TEST_RETAILER_DATA);
+    //setTable(TEST_RETAILER_DATA);
   }, []);
 
   // Get current tables
@@ -70,7 +70,7 @@ function RetailerListTable() {
       retailerName: rowData.retailerName,
       retailerPhoneNo: rowData.retailerPhoneNo,
       retailerEmail: rowData.retailerEmail,
-      retailerDesc: rowData.retailerDesc,
+      retailerDetail: rowData.retailerDetail,
     };
 
     setEditFormData(formValues);
@@ -81,7 +81,7 @@ function RetailerListTable() {
     retailerName: "",
     retailerPhoneNo: "",
     retailerEmail: "",
-    retailerDesc: "",
+    retailerDetail: "",
   });
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -105,7 +105,7 @@ function RetailerListTable() {
       retailerName: editFormData.retailerName,
       retailerPhoneNo: editFormData.retailerPhoneNo,
       retailerEmail: editFormData.retailerEmail,
-      retailerDesc: editFormData.retailerDesc,
+      retailerDetail: editFormData.retailerDetail,
     };
 
     // const ApiCallForEdit = async () => {
@@ -167,7 +167,7 @@ function RetailerListTable() {
 
   return (
     <div>
-      {loading ? (
+      {loading || table.length === 0 ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
@@ -194,7 +194,7 @@ function RetailerListTable() {
                         retailerName={tables.retailerName}
                         retailerPhoneNo={tables.retailerPhoneNo}
                         retailerEmail={tables.retailerEmail}
-                        retailerDesc={tables.retailerDesc}
+                        retailerDetail={tables.retailerDetail}
                         editFormData={editFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
@@ -206,7 +206,7 @@ function RetailerListTable() {
                         retailerName={tables.retailerName}
                         retailerPhoneNo={tables.retailerPhoneNo}
                         retailerEmail={tables.retailerEmail}
-                        retailerDesc={tables.retailerDesc}
+                        retailerDetail={tables.retailerDetail}
                         handleEditClick={handleEditClick}
                         handleDeleteClick={handleDeleteClick}
                       />

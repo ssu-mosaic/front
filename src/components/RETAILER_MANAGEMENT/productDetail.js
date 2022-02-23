@@ -4,7 +4,7 @@ function ProductDetail({
   productName,
   productPrice,
   productUnit,
-  productDesc,
+  productDetail,
   handleBackToProducts,
 }) {
   return (
@@ -23,7 +23,7 @@ function ProductDetail({
       </div>
       <div className={styles.userInfo_row}>
         <div className={styles.userInfoList__title}> 상품메모 : </div>
-        <div className={styles.userInfoList__item}>{productDesc} </div>
+        <div className={styles.userInfoList__item}>{productDetail} </div>
       </div>
 
       <input

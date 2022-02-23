@@ -9,7 +9,7 @@ let userID = localStorage.getItem("USER_ID");
 
 function QnaWrite() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   const emptyQna = {
     userId: userID,
@@ -33,8 +33,12 @@ function QnaWrite() {
   const onFormSubmit = (event) => {
     event.preventDefault();
     axios.post(`${baseURL}/qna/write`, newQna).then((response) => {
-      if (response.data === true) {
+      if (response.data !== null) {
         alert("문의 접수 완료");
+        //test
+        window.location.href = `/qna/${response.data}`;
+        //publish
+        //window.location.href = `https://ssu-mosaic.github.io/qna/${response.data}`;
       } else {
         alert("문의 접수 실패");
       }

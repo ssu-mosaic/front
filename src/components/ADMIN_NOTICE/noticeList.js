@@ -8,16 +8,16 @@ import Pagination from "./paginationForNotice";
 import NoticeTables from "./NoticeTables";
 import NoticeAdd from "./notice_add";
 //test
-import TEST_Notice_DATA from "./testNoticeData.json";
+//import TEST_Notice_DATA from "./testNoticeData.json";
 
 let userID = localStorage.getItem("USER_ID");
 
 function NoticeList() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   //while testing loading : false
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(7);
   const [noticeTable, setNoticeTable] = useState([]);
@@ -34,7 +34,7 @@ function NoticeList() {
       setLoading(false);
     });
     // only for testing delete when real
-    setNoticeTable(TEST_Notice_DATA);
+    //testsetNoticeTable(TEST_Notice_DATA);
   }, []);
 
   // Get current tables
@@ -64,9 +64,12 @@ function NoticeList() {
   const onSubmitEditForm = (event) => {
     event.preventDefault();
     axios.post(`${baseURL}/admin/notice`, newFormData).then((response) => {
-      if (response.data === true) {
+      if (response.data !== null) {
         alert("공지 작성 완료");
-        window.location.reload();
+        //when publish
+        //window.location.href = "https://ssu-mosaic.github.io/front/admin/notice";
+        //when test
+        window.location.href = "/admin/notice";
       } else {
         alert("공지 작성 실패 재시도 해주세요");
       }
@@ -92,43 +95,40 @@ function NoticeList() {
           <span>{noticeAdd ? "새 공지" : "공지목록"}</span>
         </div>
         <div>
-          {loading ? (
-            <strong>로딩중...</strong>
-          ) : noticeAdd ? (
+          {noticeAdd ? (
             <NoticeAdd
               newFormData={newFormData}
               handleEditFormChange={handleEditFormChange}
               onCancelClick={onCancelClick}
               onSubmitEditForm={onSubmitEditForm}
             />
+          ) : loading || noticeTable.length === 0 ? (
+            <strong>로딩중...</strong>
           ) : (
             <Fragment>
-              <form>
-                <table className={tableStyles.screenPage__searchResultTable}>
-                  <thead>
-                    <tr
-                      className={
-                        tableStyles.screenPage__searchResultTable_header
-                      }
-                    >
-                      <th>공지 제목</th>
-                      <th>공지일</th>
-                      <th>최종수정일</th>
-                    </tr>
-                  </thead>
-                  <tbody className={tableStyles.testTable__tbody}>
-                    {qnaPage.map((qna) => (
-                      <NoticeTables
-                        key={qna.noticeId}
-                        noticeId={qna.noticeId}
-                        noticeTitle={qna.noticeTitle}
-                        noticeDate={qna.noticeDate}
-                        noticeEditDate={qna.noticeEditDate}
-                      />
-                    ))}
-                  </tbody>
-                </table>
-              </form>
+              <table className={tableStyles.screenPage__searchResultTable}>
+                <thead>
+                  <tr
+                    className={tableStyles.screenPage__searchResultTable_header}
+                  >
+                    <th>공지 제목</th>
+                    <th>공지일</th>
+                    <th>최종수정일</th>
+                  </tr>
+                </thead>
+                <tbody className={tableStyles.testTable__tbody}>
+                  {qnaPage.map((qna) => (
+                    <NoticeTables
+                      key={qna.noticeId}
+                      noticeId={qna.noticeId}
+                      noticeTitle={qna.noticeTitle}
+                      noticeDate={qna.noticeDate}
+                      noticeEditDate={qna.noticeEditDate}
+                    />
+                  ))}
+                </tbody>
+              </table>
+
               <Pagination
                 tablePerPage={tablePerPage}
                 totalTables={noticeTable.length}

@@ -6,7 +6,7 @@ function ReadUserInfo({
   retailerName,
   retailerEmail,
   retailerPhoneNo,
-  retailerDesc,
+  retailerDetail,
 }) {
   return (
     <div className={styles.userInfoBox}>
@@ -25,7 +25,7 @@ function ReadUserInfo({
         </li>
         <li>
           <div className={styles.userInfoList__title}>거래처 설명 : </div>
-          <div className={styles.userInfoList__readonly}>{retailerDesc}</div>
+          <div className={styles.userInfoList__readonly}>{retailerDetail}</div>
         </li>
       </ul>
     </div>

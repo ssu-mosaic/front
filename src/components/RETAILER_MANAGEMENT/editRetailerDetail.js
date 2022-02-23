@@ -5,7 +5,7 @@ function EditRetailerDetail({
   retailerName,
   retailerEmail,
   retailerPhoneNo,
-  retailerDesc,
+  retailerDetail,
   onRetailerDetailCancelClick,
   handleRetailerFormChange,
   onRetailerFormSubmit,
@@ -52,9 +52,9 @@ function EditRetailerDetail({
               <div className={styles.userInfoList__title}>거래처 설명 : </div>
               <textarea
                 type="text"
-                name="retailerDesc"
-                placeholder={retailerDesc}
-                value={retailerDesc}
+                name="retailerDetail"
+                placeholder={retailerDetail}
+                value={retailerDetail}
                 onChange={handleRetailerFormChange}
                 required
               />

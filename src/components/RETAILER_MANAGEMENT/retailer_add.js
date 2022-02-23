@@ -9,21 +9,21 @@ const userID = localStorage.getItem("USER_ID");
 
 function RetailerAdd() {
   const baseURL =
-    "http://ec2-15-164-170-164.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   let newRetailerData = {
     userId: "",
     retailerName: "",
     retailerPhoneNo: "",
     retailerEmail: "",
-    retailerDesc: "",
+    retailerDetail: "",
   };
   const resetRetailerData = {
     userId: "",
     retailerName: "",
     retailerPhoneNo: "",
     retailerEmail: "",
-    retailerDesc: "",
+    retailerDetail: "",
   };
 
   const [userId] = useState(userID);
@@ -64,7 +64,7 @@ function RetailerAdd() {
     newRetailerData.retailerName = retailerName;
     newRetailerData.retailerPhoneNo = retailerPhone;
     newRetailerData.retailerEmail = retailerEmail;
-    newRetailerData.retailerDesc = retailerMemo;
+    newRetailerData.retailerDetail = retailerMemo;
     console.log(newRetailerData);
 
     axios.post(`${baseURL}/retailer/add`, newRetailerData).then((response) => {
@@ -131,9 +131,9 @@ function RetailerAdd() {
             </div>
             <div className={styles.screenPage__section_column}>
               <div className={styles.screenPage__searchOption}>
-                <label for="retailerDesc">메모 </label>
+                <label for="retailerDetail">메모 </label>
                 <textarea
-                  name="retailerDesc"
+                  name="retailerDetail"
                   onChange={onRetailerMemoChange}
                   required
                 />
