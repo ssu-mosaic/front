@@ -40,7 +40,7 @@ function QnaList() {
   const indexOfFirstTable = indexOfLastTable - tablePerPage;
   const qnaPage = qnaTable.slice(indexOfFirstTable, indexOfLastTable);
 
-  console.log(qnaPage);
+  //console.log(qnaPage);
 
   //change page number
   const paginate = (pageNumber) => setCurrentPage(pageNumber);

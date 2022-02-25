@@ -23,15 +23,15 @@ function ShowEditUserInfo() {
     userEmail: "",
   };
 
-  const testUserData = {
-    userId: "lomantic",
-    userPwd: "12345678",
-    userAddress: "mars",
-    userName: "jhp",
-    userPhoneNo: "000111333444",
-    userBusinessNo: "0101010101010101",
-    userEmail: "lomantic@gmail.com",
-  };
+  // const testUserData = {
+  //   userId: "lomantic",
+  //   userPwd: "12345678",
+  //   userAddress: "mars",
+  //   userName: "jhp",
+  //   userPhoneNo: "000111333444",
+  //   userBusinessNo: "0101010101010101",
+  //   userEmail: "lomantic@gmail.com",
+  // };
 
   //while testing loading : false
   const [loading, setLoading] = useState(false);

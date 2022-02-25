@@ -9,6 +9,7 @@ function EditRetailerDetail({
   onRetailerDetailCancelClick,
   handleRetailerFormChange,
   onRetailerFormSubmit,
+  newRetailerDetails,
 }) {
   return (
     <Fragment>
@@ -21,7 +22,7 @@ function EditRetailerDetail({
                 type="text"
                 name="retailerName"
                 placeholder={retailerName}
-                value={retailerName}
+                value={newRetailerDetails.retailerName}
                 onChange={handleRetailerFormChange}
                 required
               />
@@ -32,7 +33,7 @@ function EditRetailerDetail({
                 type="text"
                 name="retailerEmail"
                 placeholder={retailerEmail}
-                value={retailerEmail}
+                value={newRetailerDetails.retailerEmail}
                 onChange={handleRetailerFormChange}
                 required
               />
@@ -43,7 +44,7 @@ function EditRetailerDetail({
                 type="text"
                 name="retailerPhoneNo"
                 placeholder={retailerPhoneNo}
-                value={retailerPhoneNo}
+                value={newRetailerDetails.retailerPhoneNo}
                 onChange={handleRetailerFormChange}
                 required
               />
@@ -54,7 +55,7 @@ function EditRetailerDetail({
                 type="text"
                 name="retailerDetail"
                 placeholder={retailerDetail}
-                value={retailerDetail}
+                value={newRetailerDetails.retailerDetail}
                 onChange={handleRetailerFormChange}
                 required
               />

@@ -6,7 +6,7 @@ import styles from "../css/result-table.module.css";
 import axios from "axios";
 
 //only for testing
-import TEST_RETAILER_DATA from "./MOCK_DATA.json";
+//import TEST_RETAILER_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -16,7 +16,7 @@ function RetailerListTable() {
     "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(10);
   const [table, setTable] = useState([]);
@@ -31,7 +31,7 @@ function RetailerListTable() {
       setLoading(false);
     });
     //only for testing erase when real
-    setTable(TEST_RETAILER_DATA);
+    //setTable(TEST_RETAILER_DATA);
   }, []);
 
   // Get current tables
@@ -44,7 +44,7 @@ function RetailerListTable() {
 
   return (
     <div>
-      {loading ? (
+      {loading || table.length === 0 ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>

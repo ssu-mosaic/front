@@ -3,29 +3,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 function EditRow({
-  stockRowId,
-  productName,
-  retailerName,
+  stockId,
+  stockName,
+  //retailerName,
   stockCnt,
-  productUnit,
+  stockUnit,
   editFormData,
   handleEditFormChange,
   handleCancelClick,
 }) {
-  console.log(editFormData);
+  //console.log(editFormData);
   return (
-    <tr key={stockRowId} className={styles.screenPage__searchResultTable_items}>
+    <tr key={stockId} className={styles.screenPage__searchResultTable_items}>
       <td key={"productName_edit"}>
         <input
           type="text"
           required="required"
-          placeholder={productName}
-          name="productName"
-          value={editFormData.productName}
+          placeholder={stockName}
+          name="stockName"
+          value={editFormData.stockName}
           onChange={handleEditFormChange}
         />
       </td>
-      <td key={"retailerName_edit"}>
+      {/* <td key={"retailerName_edit"}>
         <input
           type="text"
           required="required"
@@ -34,7 +34,7 @@ function EditRow({
           value={editFormData.retailerName}
           onChange={handleEditFormChange}
         />
-      </td>
+      </td> */}
       <td key={"stockCnt_edit"}>
         <input
           type="number"
@@ -49,9 +49,9 @@ function EditRow({
         <input
           type="text"
           required="required"
-          placeholder={productUnit}
-          name="productUnit"
-          value={editFormData.productUnit}
+          placeholder={stockUnit}
+          name="stockUnit"
+          value={editFormData.stockUnit}
           onChange={handleEditFormChange}
         />
       </td>

@@ -7,7 +7,7 @@ import styles from "../css/result-table.module.css";
 import axios from "axios";
 
 //only for testing
-import TEST_RETAILER_DATA from "./MOCK_DATA.json";
+//import TEST_RETAILER_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -98,7 +98,6 @@ function RetailerListTable() {
   //save changes
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
-
     const editedForm = {
       userId: userID,
       retailerId: rowId,
@@ -114,13 +113,15 @@ function RetailerListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.put(`${baseURL}/retailer/${rowId}`, editedForm).then((response) => {
-      if (response.data === true) {
-        alert("거래처 정보 수정 완료");
-      } else {
-        alert("거래처 정보 수정 실패 재시도 해주세요");
-      }
-    });
+    axios
+      .put(`${baseURL}/retailer/edit/${rowId}`, editedForm)
+      .then((response) => {
+        if (response.data === true) {
+          alert("거래처 정보 수정 완료");
+        } else {
+          alert("거래처 정보 수정 실패 재시도 해주세요");
+        }
+      });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.retailerId === rowId);
@@ -140,7 +141,6 @@ function RetailerListTable() {
   const handleDeleteClick = (rowId) => {
     const deleteForm = {
       userId: userID,
-      retailerId: rowId,
     };
     // const ApiCallForDelete = async () => {
     //     //const response =
@@ -148,15 +148,13 @@ function RetailerListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios
-      .delete(`${baseURL}/retailer/${rowId}`, deleteForm)
-      .then((response) => {
-        if (response.data === true) {
-          alert("거래처 정보 삭제 완료");
-        } else {
-          alert("거래처 정보 삭제 실패 재시도 해주세요");
-        }
-      });
+    axios.put(`${baseURL}/retailer/${rowId}`, deleteForm).then((response) => {
+      if (response.data === true) {
+        alert("거래처 정보 삭제 완료");
+      } else {
+        alert("거래처 정보 삭제 실패 재시도 해주세요");
+      }
+    });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.retailerId === rowId);

@@ -7,7 +7,7 @@ import styles from "../css/result-table.module.css";
 import axios from "axios";
 
 //test
-import TEST_STOCK_DATA from "./MOCK_DATA.json";
+//import TEST_STOCK_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -17,7 +17,7 @@ function StockListTable() {
     "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(10);
   const [table, setTable] = useState([]);
@@ -39,12 +39,12 @@ function StockListTable() {
     // setTable(MOCK_DATA);
     axios.post(`${baseURL}/stock`, userData).then((response) => {
       setLoading(false);
-      console.log(response.data);
+      //console.log(response.data);
       setTable(response.data);
     });
 
     // only for testing erase when real
-    setTable(TEST_STOCK_DATA);
+    //setTable(TEST_STOCK_DATA);
   }, []);
 
   // Get current tables
@@ -59,26 +59,26 @@ function StockListTable() {
   const [rowId, setRowId] = useState(null);
   const handleEditClick = (event, rowData) => {
     event.preventDefault();
-    setRowId(rowData.stockRowId);
+    setRowId(rowData.stockId);
 
     const formValues = {
       userId: userID,
-      stockRowId: rowData.stockRowId,
-      retailerName: rowData.retailerName,
-      productName: rowData.productName,
+      stockId: rowData.stockId,
+      //retailerName: rowData.retailerName,
+      stockName: rowData.stockName,
       stockCnt: rowData.stockCnt,
-      productUnit: rowData.productUnit,
+      stockUnit: rowData.stockUnit,
     };
 
     setEditFormData(formValues);
   };
   const [editFormData, setEditFormData] = useState({
     userId: userID,
-    stockRowId: "",
-    productName: "",
-    retailerName: "",
+    stockId: "",
+    stockName: "",
+    //retailerName: "",
     stockCnt: -1,
-    productUnit: "",
+    stockUnit: "",
   });
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -98,11 +98,10 @@ function StockListTable() {
 
     const editedForm = {
       userId: userID,
-      stockRowId: rowId,
-      productName: editFormData.productName,
-      retailerName: editFormData.retailerName,
+      stockName: editFormData.stockName,
+      //retailerName: editFormData.retailerName,
       stockCnt: editFormData.stockCnt,
-      productUnit: editFormData.productUnit,
+      stockUnit: editFormData.stockUnit,
     };
 
     // const ApiCallForEdit = async () => {
@@ -111,7 +110,7 @@ function StockListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.put(`${baseURL}/stock`, editedForm).then((response) => {
+    axios.put(`${baseURL}/stock/edit/${rowId}`, editedForm).then((response) => {
       if (response.data === true) {
         alert("재고 정보 수정 완료");
       } else {
@@ -120,7 +119,7 @@ function StockListTable() {
     });
 
     const newTable = [...table];
-    const index = table.findIndex((row) => row.stockRowId === rowId);
+    const index = table.findIndex((row) => row.stockId === rowId);
 
     newTable[index] = editedForm;
     //console.log(newTable);
@@ -136,7 +135,6 @@ function StockListTable() {
 
   const handleDeleteClick = (rowId) => {
     const deleteForm = {
-      stockRowId: rowId,
       userId: userID,
     };
     // const ApiCallForDelete = async () => {
@@ -145,7 +143,7 @@ function StockListTable() {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.delete(`${baseURL}/stock`, deleteForm).then((response) => {
+    axios.put(`${baseURL}/stock/${rowId}`, deleteForm).then((response) => {
       if (response.data === true) {
         alert("재고 정보 삭제 완료");
       } else {
@@ -153,7 +151,7 @@ function StockListTable() {
       }
     });
     const newTable = [...table];
-    const index = table.findIndex((row) => row.stockRowId === rowId);
+    const index = table.findIndex((row) => row.stockId === rowId);
     newTable.splice(index, 1);
     setTable(newTable);
     //ApiCallForDelete();
@@ -161,7 +159,7 @@ function StockListTable() {
 
   return (
     <div>
-      {loading ? (
+      {loading || table.length === 0 ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
@@ -170,7 +168,7 @@ function StockListTable() {
               <thead>
                 <tr className={styles.screenPage__searchResultTable_header}>
                   <th>재고이름</th>
-                  <th>거래처이름</th>
+                  {/* <th>거래처이름</th> */}
                   <th>잔여재고</th>
                   <th>재고단위</th>
                   <th>수정</th>
@@ -180,27 +178,27 @@ function StockListTable() {
 
               <tbody className="testTable__tbody">
                 {tables.map((tables) => (
-                  <Fragment key={`${tables.stockRowId}_fragment`}>
-                    {rowId === tables.stockRowId ? (
+                  <Fragment key={`${tables.stockId}_fragment`}>
+                    {rowId === tables.stockId ? (
                       <EditRow
-                        key={tables.stockRowId}
-                        stockRowId={tables.stockRowId}
-                        productName={tables.productName}
-                        retailerName={tables.retailerName}
+                        key={tables.stockId}
+                        stockId={tables.stockId}
+                        stockName={tables.stockName}
+                        //retailerName={tables.retailerName}
                         stockCnt={tables.stockCnt}
-                        productUnit={tables.productUnit}
+                        stockUnit={tables.stockUnit}
                         editFormData={editFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
                       />
                     ) : (
                       <Tables
-                        key={tables.stockRowId}
-                        stockRowId={tables.stockRowId}
-                        productName={tables.productName}
-                        retailerName={tables.retailerName}
+                        key={tables.stockId}
+                        stockId={tables.stockId}
+                        stockName={tables.stockName}
+                        //retailerName={tables.retailerName}
                         stockCnt={tables.stockCnt}
-                        productUnit={tables.productUnit}
+                        stockUnit={tables.stockUnit}
                         handleEditClick={handleEditClick}
                         handleDeleteClick={handleDeleteClick}
                       />

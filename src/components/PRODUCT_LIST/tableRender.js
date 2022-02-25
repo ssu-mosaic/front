@@ -17,18 +17,16 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
   const [editFormData, setEditFormData] = useState({
-    userId: userID,
     retailerId: retailerId,
-    productId: "",
     productName: "",
     productPrice: "",
     productUnit: "",
-    productDesc: "",
+    productDetail: "",
   });
 
   useEffect(() => {
@@ -36,7 +34,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       userId: userID,
       retailerId: retailerId,
     };
-    axios.post(`${baseURL}/retailer/products`, userData).then((response) => {
+    axios.post(`${baseURL}/retailer/product`, userData).then((response) => {
       //console.log(response.data);
       setTable(response.data);
       setLoading(false);
@@ -60,13 +58,11 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     setRowId(rowData.productId);
 
     const formValues = {
-      userId: userID,
       retailerId: retailerId,
-      productId: rowData.productId,
       productName: rowData.productName,
       productPrice: rowData.productPrice,
       productUnit: rowData.productUnit,
-      productDesc: rowData.productDesc,
+      productDetail: rowData.productDetail,
     };
 
     setEditFormData(formValues);
@@ -89,13 +85,11 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     event.preventDefault();
 
     const editedForm = {
-      userId: userID,
       retailerId: retailerId,
-      productId: rowId,
       productName: editFormData.productName,
       productPrice: editFormData.productPrice,
       productUnit: editFormData.productUnit,
-      productDesc: editFormData.productDesc,
+      productDetail: editFormData.productDetail,
     };
 
     // const ApiCallForEdit = async () => {
@@ -104,13 +98,15 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.put(`${baseURL}/product/${rowId}`, editedForm).then((response) => {
-      if (response.data === true) {
-        alert("물품 수정 완료");
-      } else {
-        alert("물품 수정 실패 재시도 해주세요");
-      }
-    });
+    axios
+      .put(`${baseURL}/retailer/product/edit/${rowId}`, editedForm)
+      .then((response) => {
+        if (response.data === true) {
+          alert("물품 수정 완료");
+        } else {
+          alert("물품 수정 실패 재시도 해주세요");
+        }
+      });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.productId === rowId);
@@ -129,9 +125,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
 
   const handleDeleteClick = (rowId) => {
     const deleteForm = {
-      userId: userID,
       retailerId: retailerId,
-      productId: rowId,
     };
     // const ApiCallForDelete = async () => {
     //     //const response =
@@ -139,13 +133,15 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.delete(`${baseURL}/product/${rowId}`, deleteForm).then((response) => {
-      if (response.data === true) {
-        alert("거래처 정보 삭제 완료");
-      } else {
-        alert("거래처 정보 삭제 실패 재시도 해주세요");
-      }
-    });
+    axios
+      .put(`${baseURL}/retailer/product/${rowId}`, deleteForm)
+      .then((response) => {
+        if (response.data === true) {
+          alert("거래처 정보 삭제 완료");
+        } else {
+          alert("거래처 정보 삭제 실패 재시도 해주세요");
+        }
+      });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.productId === rowId);
@@ -156,7 +152,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
 
   return (
     <div>
-      {loading ? (
+      {loading || table.length === 0 ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
@@ -183,7 +179,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
                         productName={tables.productName}
                         productPrice={tables.productPrice}
                         productUnit={tables.productUnit}
-                        productDesc={tables.productDesc}
+                        productDetail={tables.productDetail}
                         editFormData={editFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
@@ -195,7 +191,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
                         productName={tables.productName}
                         productPrice={tables.productPrice}
                         productUnit={tables.productUnit}
-                        productDesc={tables.productDesc}
+                        productDetail={tables.productDetail}
                         handleEditClick={handleEditClick}
                         handleDeleteClick={handleDeleteClick}
                         onProductDetailClick={onProductDetailClick}

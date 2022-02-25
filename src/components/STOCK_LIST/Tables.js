@@ -3,30 +3,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faHammer } from "@fortawesome/free-solid-svg-icons";
 
 function Tables({
-  stockRowId,
-  productName,
-  retailerName,
+  stockId,
+  stockName,
+  //retailerName,
   stockCnt,
-  productUnit,
+  stockUnit,
   handleEditClick,
   handleDeleteClick,
 }) {
   const rowData = {
-    stockRowId: stockRowId,
-    productName: productName,
-    retailerName: retailerName,
+    stockId: stockId,
+    stockName: stockName,
+    //retailerName: retailerName,
     stockCnt: stockCnt,
-    productUnit: productUnit,
+    stockUnit: stockUnit,
   };
 
   //console.log(retailerAddress);
 
   return (
-    <tr key={stockRowId} className={styles.screenPage__searchResultTable_items}>
-      <td key={"productName_td"}>{productName}</td>
-      <td key={"retailerName_td"}>{retailerName}</td>
+    <tr key={stockId} className={styles.screenPage__searchResultTable_items}>
+      <td key={"productName_td"}>{stockName}</td>
+      {/* <td key={"retailerName_td"}>{retailerName}</td> */}
       <td key={"stockCnt_td"}>{stockCnt}</td>
-      <td key={"productUnit_td"}>{productUnit}</td>
+      <td key={"productUnit_td"}>{stockUnit}</td>
       <td key={"edit_td"}>
         <button
           type="button"
@@ -37,7 +37,7 @@ function Tables({
         </button>
       </td>
       <td key={"delete_td"}>
-        <button type="button" onClick={() => handleDeleteClick(stockRowId)}>
+        <button type="button" onClick={() => handleDeleteClick(stockId)}>
           {" "}
           <FontAwesomeIcon icon={faTimes} size="2x" />{" "}
         </button>

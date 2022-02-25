@@ -13,23 +13,23 @@ function StockManagement() {
 
   let newStockData = {
     userId: "",
-    productName: "",
+    stockName: "",
     stockCnt: "",
-    retailerName: "",
-    productUnit: "",
+    //retailerName: "",
+    stockUnit: "",
   };
   const resetStockData = {
     userId: "",
-    productName: "",
+    stockName: "",
     stockCnt: "",
-    retailerName: "",
-    productUnit: "",
+    //retailerName: "",
+    stockUnit: "",
   };
 
-  const [productName, setProductName] = useState("");
+  const [stockName, setProductName] = useState("");
   const [stockCnt, setStockCount] = useState(-1);
-  const [retailerName, setRetailerName] = useState("");
-  const [productUnit, setProductUnit] = useState("");
+  //const [retailerName, setRetailerName] = useState("");
+  const [stockUnit, setProductUnit] = useState("");
   // const ApiCall = async () => {
   //     const response = await axios.post(`${baseURL}/stock/add`,newStockData)
   //     //const data = await response.data;
@@ -46,9 +46,9 @@ function StockManagement() {
   const onProductUnitChange = (event) => {
     setProductUnit(event.target.value);
   };
-  const onRetailerNameChange = (event) => {
-    setRetailerName(event.target.value);
-  };
+  // const onRetailerNameChange = (event) => {
+  //   setRetailerName(event.target.value);
+  // };
   const onStockCntChange = (event) => {
     setStockCount(event.target.value);
   };
@@ -56,16 +56,20 @@ function StockManagement() {
   const onSubmit = (event) => {
     event.preventDefault();
     newStockData.userId = userID;
-    newStockData.productName = productName;
-    newStockData.retailerName = retailerName;
-    newStockData.productUnit = productUnit;
+    newStockData.stockName = stockName;
+    //newStockData.retailerName = retailerName;
+    newStockData.stockUnit = stockUnit;
     newStockData.stockCnt = stockCnt;
     console.log(newStockData);
 
     //ApiCall();
     axios.post(`${baseURL}/stock/add`, newStockData).then((response) => {
-      if (response.data === true) {
+      if (response.data !== null) {
         alert("재고 정보 추가 완료");
+        //test
+        window.location.href = "/stock/edit";
+        //publish
+        //window.location.href = "https://ssu-mosaic.github.io/stock/edit";
       } else {
         alert("재고 정보 추가 실패 재시도 해주세요");
       }
@@ -97,15 +101,15 @@ function StockManagement() {
           >
             <div className={styles.screenPage__section_row}>
               <div className={styles.screenPage__searchOption}>
-                <label for="productName">재고이름 </label>
+                <label for="stockName">재고이름 </label>
                 <input
                   type="text"
                   onChange={onProductNameChange}
-                  name="productName"
+                  name="stockName"
                   required
                 />
               </div>
-              <div className={styles.screenPage__searchOption}>
+              {/* <div className={styles.screenPage__searchOption}>
                 <label for="retailerName">거래처이름 </label>
                 <input
                   type="text"
@@ -113,7 +117,7 @@ function StockManagement() {
                   name="retailerName"
                   required
                 />
-              </div>
+              </div> */}
             </div>
             <div className={styles.screenPage__section_row}>
               <div className={styles.screenPage__searchOption}>
@@ -126,11 +130,11 @@ function StockManagement() {
                 />
               </div>
               <div className={styles.screenPage__searchOption}>
-                <label for="productUnit">재고단위 </label>
+                <label for="stockUnit">재고단위 </label>
                 <input
                   type="text"
                   onChange={onProductUnitChange}
-                  name="productUnit"
+                  name="stockUnit"
                   required
                 />
               </div>

@@ -19,7 +19,7 @@ function Detail() {
 
   const { id } = useParams();
   //while testing loading : false
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const emptyRetailerDetails = {
     retailerId: -1,
@@ -30,11 +30,11 @@ function Detail() {
   };
 
   const emptyProductForm = {
-    userId: userID,
     productName: "",
     productPrice: -1,
     productUnit: "",
     productDetail: "",
+    retailerId: parseInt(id),
   };
 
   const [retailerDetails, setRetailerDetails] = useState(emptyRetailerDetails);
@@ -56,19 +56,20 @@ function Detail() {
     };
     axios.post(`${baseURL}/retailer/${id}`, identification).then((response) => {
       setRetailerDetails(response.data);
+      setNewRetailerDetails(response.data);
       setLoading(false);
     });
     //test delete when real
     //test
-    const testRetailerDetails = {
-      retailerId: id,
-      retailerName: "test retailer",
-      retailerEmail: "testretailer@retail.com",
-      retailerPhoneNo: "00011122233344455",
-      retailerDetail: "this is test retailer description",
-    };
-    setRetailerDetails(testRetailerDetails);
-    setNewRetailerDetails(testRetailerDetails);
+    // const testRetailerDetails = {
+    //   retailerId: id,
+    //   retailerName: "test retailer",
+    //   retailerEmail: "testretailer@retail.com",
+    //   retailerPhoneNo: "00011122233344455",
+    //   retailerDetail: "this is test retailer description",
+    // };
+    // setRetailerDetails(testRetailerDetails);
+    // setNewRetailerDetails(testRetailerDetails);
   }, [id]);
 
   const handleBackToProducts = (event) => {
@@ -103,6 +104,7 @@ function Detail() {
     newFormData[fieldName] = fieldValue;
 
     setNewRetailerDetails(newFormData);
+    setRetailerDetails(newFormData);
   };
 
   const onRetailerDetailCancelClick = (event) => {
@@ -115,13 +117,15 @@ function Detail() {
     event.preventDefault();
     setRetailerDetailEdit(false);
     setRetailerDetails(newRetailerDetails);
-    axios.put(`${baseURL}/retailer/${id}`, retailerDetails).then((response) => {
-      if (response.data === true) {
-        alert("거래처 정보 수정 완료");
-      } else {
-        alert("거래처 정보 수정 실패");
-      }
-    });
+    axios
+      .put(`${baseURL}/retailer/edit/${id}`, retailerDetails)
+      .then((response) => {
+        if (response.data !== null) {
+          alert("거래처 정보 수정 완료");
+        } else {
+          alert("거래처 정보 수정 실패");
+        }
+      });
   };
 
   const handleProductFormChange = (event) => {
@@ -143,12 +147,16 @@ function Detail() {
   const onProductFormSubmit = (event) => {
     event.preventDefault();
     setAddProductToggle(false);
-    //console.log(newProduct);
+    console.log(newProduct);
     axios
       .post(`${baseURL}/retailer/product/add`, newProduct)
       .then((response) => {
-        if (response.data === true) {
+        if (response.data !== null) {
           alert("물품 등록 완료");
+          //test
+          window.location.href = `/order/retailer/${id}`;
+          //publish
+          //window.location.href = `https://ssu-mosaic.github.io/order/retailer/${id}`;
         } else {
           alert("물품 등록 실패 재시도 해주세요");
         }
@@ -189,7 +197,7 @@ function Detail() {
           </span>
         </div>
         <div>
-          {loading ? (
+          {loading || retailerDetails.retailerId === -1 ? (
             <strong>로딩중...</strong>
           ) : (
             <Fragment>
@@ -208,6 +216,7 @@ function Detail() {
                   handleRetailerFormChange={handleRetailerFormChange}
                   onRetailerDetailCancelClick={onRetailerDetailCancelClick}
                   onRetailerFormSubmit={onRetailerFormSubmit}
+                  newRetailerDetails={newRetailerDetails}
                 />
               ) : (
                 <Fragment>
