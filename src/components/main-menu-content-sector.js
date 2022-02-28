@@ -34,7 +34,7 @@ function MainMenuContentSector() {
     setMainData(TEST_MAIN_PAGE_DATA.data);
     setLoading(false);
   }, [mainData.Stock, mainData.Notice]);
-  console.log(mainData.Stock);
+  //console.log(mainData.Stock);
   //console.log(miniTable);
   return (
     <Fragment>
@@ -47,24 +47,24 @@ function MainMenuContentSector() {
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <BarExpense spendingData={mainData.Spending} />
+                <BarExpense spendingData={mainData.Spendings} />
               </div>
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <DoughnutOrderComplete orderData={mainData.OrderComplete} />
+                <DoughnutOrderComplete orderData={mainData.OrderCompletes} />
               </div>
             </div>
             <div className={styles.screenPage__sector_row}>
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <MiniStock miniStock={mainData.Stock} />
+                <MiniStock miniStock={mainData.Stocks} />
               </div>
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <MiniNotice miniNotice={mainData.Notice} />
+                <MiniNotice miniNotice={mainData.Notices} />
               </div>
             </div>
           </div>

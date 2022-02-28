@@ -9,7 +9,7 @@ function Tables({
   productName,
   productPrice,
   productUnit,
-  productDesc,
+  productDetail,
   handleEditClick,
   onProductDetailClick,
 }) {
@@ -19,13 +19,13 @@ function Tables({
     productName: productName,
     productPrice: productPrice,
     productUnit: productUnit,
-    productDesc: productDesc,
+    productDetail: productDetail,
   };
   const productDetailData = {
     productName: productName,
     productPrice: productPrice,
     productUnit: productUnit,
-    productDesc: productDesc,
+    productDetail: productDetail,
   };
 
   //console.log(retailerAddress);
@@ -44,9 +44,9 @@ function Tables({
       <td key={"productPrice_td"}>{productPrice}</td>
       <td key={"productUnit_td"}>{productUnit}</td>
       <td key={"productDesc_td"}>
-        {productDesc.length > 10
-          ? `${productDesc.slice(0, 10)}...`
-          : `${productDesc}`}
+        {productDetail.length > 10
+          ? `${productDetail.slice(0, 10)}...`
+          : `${productDetail}`}
       </td>
       <td key={"edit_td"}>
         <button

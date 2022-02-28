@@ -3,7 +3,7 @@ import Fragment from "render-fragment";
 
 function MiniStock(miniStock) {
   const newData = miniStock.miniStock;
-  console.log(newData);
+  //console.log(newData);
 
   return (
     <Fragment>
@@ -18,8 +18,8 @@ function MiniStock(miniStock) {
           </tr>
         </thead>
         <tbody>
-          {newData.data.map((table) => (
-            <Fragment key={table.productId}>
+          {newData.map((table) => (
+            <Fragment key={`${table.productId}__stock`}>
               <tr className={tableStyles.miniTable_item}>
                 <td>{table.productName}</td>
                 <td>{table.retailerName}</td>

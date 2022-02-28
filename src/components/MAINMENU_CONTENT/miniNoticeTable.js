@@ -3,7 +3,7 @@ import Fragment from "render-fragment";
 
 function MiniNotice(miniNotice) {
   const newData = miniNotice.miniNotice;
-  console.log(newData);
+  //console.log(newData);
 
   return (
     <Fragment>
@@ -16,8 +16,8 @@ function MiniNotice(miniNotice) {
           </tr>
         </thead>
         <tbody>
-          {newData.data.map((table) => (
-            <Fragment key={table.productId}>
+          {newData.map((table) => (
+            <Fragment key={`${table.noticeId}__notice`}>
               <tr className={tableStyles.miniTable_item}>
                 <td>{table.noticeTitle}</td>
                 <td>{table.noticeDate}</td>

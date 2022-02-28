@@ -10,9 +10,12 @@
             "2023/01/09",
             "2024/02/09"
           ],
-          "datasets": [111000, 222000, 333000, 444000 ,555000, 666000, 777000]
+          "datasets": [{
+            "data": [111000, 222000, 333000, 444000 ,555000, 666000, 777000]
+            }]
         },
-        "OrderCompletes":[12,32,20], 
+        "OrderCompletes":[12,32,20],
+        
         "Stocks":[
               {"productId": 111,"retailerName": "숭실","productName" : "숭실계육","productCnt":12,"productUnit" : "kg"},
               {"productId": 112,"retailerName": "삼성","productName" : "삼성계육","productCnt":22,"productUnit" : "L"},

@@ -8,7 +8,7 @@ import buttonStyles from "../css/userInfo.module.css";
 //import resultStyles from "./retailer-list-readonly.module.css";
 import axios from "axios";
 //test
-import TEST_ORDER_DATA from "./MOCK_DATA.json";
+//import TEST_ORDER_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -18,7 +18,7 @@ function OrderList() {
     "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [menuPage, setMenuPage] = useState(1);
   const [tablePerPage] = useState(5);
@@ -33,13 +33,13 @@ function OrderList() {
       userId: userID,
     };
 
-    axios.post(`${baseURL}/order/list`, userData).then((response) => {
+    axios.post(`${baseURL}/order`, userData).then((response) => {
       setTable(response.data);
       setLoading(false);
       //console.log(userData);
     });
     //only for test erase when real
-    setTable(TEST_ORDER_DATA);
+    //setTable(TEST_ORDER_DATA);
   }, []);
 
   // Get current tables
@@ -57,7 +57,7 @@ function OrderList() {
     setMenuPage(currentPage);
     setCurrentPage(1);
     setProductList(orderProducts);
-    console.log(productList);
+    //console.log(productList);
     setOrderDetail(true);
   };
 
@@ -66,17 +66,16 @@ function OrderList() {
     setOrderDetail(false);
   };
 
-  const handleCancelClick = (event, productId) => {
+  const handleCancelClick = (event, productId, orderProductId) => {
     event.preventDefault();
 
-    const orderCancel = {
-      userId: userID,
-      orderId: orderId,
-      productId: productId,
-    };
-    axios.put(`${baseURL}/order/cancel`, orderCancel).then((response) => {
+    axios.put(`${baseURL}/order/cancel/${orderProductId}`).then((response) => {
       if (response.data === true) {
         alert("주문 취소 완료");
+        //test
+        window.location.href = "/order/searchorder";
+        //publish
+        //window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
       } else {
         alert("주문 취소 실패 재시도 해주세요");
       }
@@ -100,21 +99,23 @@ function OrderList() {
     }
   };
 
-  const handleCompleteClick = (event, productId) => {
+  const handleCompleteClick = (event, productId, orderProductId) => {
     event.preventDefault();
 
-    const orderComplete = {
-      userId: userID,
-      orderId: orderId,
-      productId: productId,
-    };
-    axios.put(`${baseURL}/order/complete`, orderComplete).then((response) => {
-      if (response.data === true) {
-        alert("수치 확인 완료");
-      } else {
-        alert("수취 확인 실패 재시도 해주세요");
-      }
-    });
+    axios
+      .put(`${baseURL}/order/complete/${orderProductId}`)
+      .then((response) => {
+        if (response.data === true) {
+          alert("수치 확인 완료");
+          alert("주문 취소 완료");
+          //test
+          window.location.href = "/order/searchorder";
+          //publish
+          //window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
+        } else {
+          alert("수취 확인 실패 재시도 해주세요");
+        }
+      });
 
     let newOrderForm = [...table];
     for (let index = 0; index < newOrderForm.length; index++) {
@@ -136,7 +137,7 @@ function OrderList() {
 
   return (
     <div>
-      {loading ? (
+      {loading || tables.length === 0 ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
@@ -193,6 +194,7 @@ function OrderList() {
                       productUnit={product.productUnit}
                       productCnt={product.productCnt}
                       orderStatus={product.orderStatus}
+                      orderProductId={product.orderProductId}
                       handleCancelClick={handleCancelClick}
                       handleCompleteClick={handleCompleteClick}
                     />

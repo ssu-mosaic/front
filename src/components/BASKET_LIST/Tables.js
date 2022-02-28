@@ -10,7 +10,8 @@ function Tables({
   productPrice,
   productUnit,
   productCnt,
-  productDesc,
+  productDetail,
+  cartProductId,
   handleEditClick,
   handleDeleteClick,
   onProductDetailClick,
@@ -19,12 +20,13 @@ function Tables({
     userId: userID,
     productId: productId,
     productCnt: productCnt,
+    cartProductId: cartProductId,
   };
   const productDetailData = {
     productName: productName,
     productPrice: productPrice,
     productUnit: productUnit,
-    productDesc: productDesc,
+    productDetail: productDetail,
   };
 
   //console.log(retailerAddress);
@@ -41,9 +43,10 @@ function Tables({
       <td key={"productUnit_td"}>{productUnit}</td>
       <td key={"productCnt_td"}>{productCnt}</td>
       <td key={"productDesc_td"}>
-        {productDesc.length > 10
-          ? `${productDesc.slice(0, 10)}...`
-          : `${productDesc}`}
+        {productDetail}
+        {/* {productDetail.length > 10
+          ? `${productDetail.slice(0, 10)}...`
+          : `${productDetail}`} */}
       </td>
       <td key={"edit_td"}>
         <button
@@ -55,7 +58,7 @@ function Tables({
         </button>
       </td>
       <td key={"delete_td"}>
-        <button type="button" onClick={() => handleDeleteClick(productId)}>
+        <button type="button" onClick={() => handleDeleteClick(cartProductId)}>
           {" "}
           <FontAwesomeIcon icon={faTimes} size="2x" />{" "}
         </button>

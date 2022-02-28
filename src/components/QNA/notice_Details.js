@@ -12,7 +12,7 @@ function Detail() {
 
   const { id } = useParams();
   //while testing loading : false
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const emptyNoticeDetails = {
     noticeId: -1,
@@ -31,14 +31,14 @@ function Detail() {
     });
     //test delete when real
     //test
-    const testQnaDetails = {
-      noticeId: 1111,
-      noticeTitle: "this is test title",
-      noticeDate: "2099/99/99",
-      noticeContent: "this is test content",
-      noticeEditDate: "2999/99/99",
-    };
-    setNoticeDetails(testQnaDetails);
+    // const testQnaDetails = {
+    //   noticeId: 1111,
+    //   noticeTitle: "this is test title",
+    //   noticeDate: "2099/99/99",
+    //   noticeContent: "this is test content",
+    //   noticeEditDate: "2999/99/99",
+    // };
+    //setNoticeDetails(testQnaDetails);
   }, [id]);
 
   return (

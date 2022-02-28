@@ -24,7 +24,7 @@ function Detail() {
     retailerName: "",
     retailerEmail: "",
     retailerPhoneNo: "",
-    retailerDesc: "",
+    retailerDetail: "",
   };
 
   const [retailerDetails, setRetailerDetails] = useState(emptyRetailerDetails);
@@ -33,7 +33,7 @@ function Detail() {
     productName: "",
     productPrice: "",
     productUnit: "",
-    productDesc: "",
+    productDetail: "",
   });
   const [showProductDetail, setShowProductDetail] = useState(false);
   useEffect(() => {
@@ -52,7 +52,7 @@ function Detail() {
       retailerName: "test retailer",
       retailerEmail: "testretailer@retail.com",
       retailerPhoneNo: "00011122233344455",
-      retailerDesc: "this is test retailer description",
+      retailerDetail: "this is test retailer description",
     };
     setRetailerDetails(testRetailerDetails);
   }, [id]);
@@ -67,7 +67,7 @@ function Detail() {
       productName: rowData.productName,
       productPrice: rowData.productPrice,
       productUnit: rowData.productUnit,
-      productDesc: rowData.productDesc,
+      productDetail: rowData.productDetail,
     };
     //console.log(formValues);
     setShowProductDetail(true);
@@ -102,7 +102,7 @@ function Detail() {
                 retailerName={retailerDetails.retailerName}
                 retailerEmail={retailerDetails.retailerEmail}
                 retailerPhoneNo={retailerDetails.retailerPhoneNo}
-                retailerDesc={retailerDetails.retailerDesc}
+                retailerDetail={retailerDetails.retailerDetail}
               />
               <div className={styles.tableTitle}>
                 {showProductDetail
@@ -114,7 +114,7 @@ function Detail() {
                   productName={productDetailData.productName}
                   productPrice={productDetailData.productPrice}
                   productUnit={productDetailData.productUnit}
-                  productDesc={productDetailData.productDesc}
+                  productDetail={productDetailData.productDetail}
                   handleBackToProducts={handleBackToProducts}
                 />
               ) : (

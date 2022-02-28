@@ -8,14 +8,14 @@ import Fragment from "render-fragment";
 import Pagination from "./paginationForNotice";
 import NoticeTables from "./NoticeTables";
 //test
-import TEST_Notice_DATA from "./testNoticeData.json";
+//import TEST_Notice_DATA from "./testNoticeData.json";
 
 function NoticeList() {
   const baseURL =
     "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   //while testing loading : false
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(7);
   const [noticeTable, setNoticeTable] = useState([]);
@@ -27,7 +27,7 @@ function NoticeList() {
       setLoading(false);
     });
     // only for testing delete when real
-    setNoticeTable(TEST_Notice_DATA);
+    //setNoticeTable(TEST_Notice_DATA);
   }, []);
 
   // Get current tables

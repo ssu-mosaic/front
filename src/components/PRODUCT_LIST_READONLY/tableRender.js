@@ -7,7 +7,7 @@ import styles from "../css/result-table.module.css";
 import axios from "axios";
 
 //only for testing
-import TEST_PRODUCT_DATA from "./MOCK_DATA.json";
+//import TEST_PRODUCT_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -17,7 +17,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
@@ -28,7 +28,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     productName: "",
     productPrice: 0,
     productUnit: "",
-    productDesc: "",
+    productDetail: "",
     productCnt: 0,
   });
 
@@ -37,13 +37,13 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       userId: userID,
       retailerId: retailerId,
     };
-    axios.post(`${baseURL}/retailer/products`, userData).then((response) => {
+    axios.post(`${baseURL}/retailer/product`, userData).then((response) => {
       //console.log(response.data);
       setTable(response.data);
       setLoading(false);
     });
     //only for testing erase when real
-    setTable(TEST_PRODUCT_DATA);
+    //setTable(TEST_PRODUCT_DATA);
   }, [retailerId]);
 
   // Get current tables
@@ -67,7 +67,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       productName: rowData.productName,
       productPrice: rowData.productPrice,
       productUnit: rowData.productUnit,
-      productDesc: rowData.productDesc,
+      productDetail: rowData.productDetail,
       productCnt: rowData.productCnt,
     };
 
@@ -98,8 +98,16 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       productPrice: orderFormData.productPrice,
       productUnit: orderFormData.productUnit,
       productCnt: orderFormData.productCnt,
-      productDesc: orderFormData.productDesc,
+      productDetail: orderFormData.productDetail,
     };
+
+    const sendForm = {
+      userId: userID,
+      productId: rowId,
+      productCnt: orderFormData.productCnt,
+    };
+
+    //console.log(editedForm);
 
     // const ApiCallForEdit = async () => {
     //     //const response =
@@ -107,8 +115,8 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios.post(`${baseURL}/order/cart/add`, editedForm).then((response) => {
-      if (response.data === true) {
+    axios.post(`${baseURL}/order/cart/add`, sendForm).then((response) => {
+      if (response.data !== null) {
         alert(
           `물품 :${orderFormData.productName} \n수량:${orderFormData.productCnt} ${orderFormData.productUnit}\n장바구니 추가 성공`
         );
@@ -134,7 +142,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
 
   return (
     <div>
-      {loading ? (
+      {loading || tables.length === 0 ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
@@ -160,8 +168,8 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
                         productName={tables.productName}
                         productPrice={tables.productPrice}
                         productUnit={tables.productUnit}
-                        productDesc={tables.productDesc}
-                        productCnt={tables.productCnt}
+                        productDetail={tables.productDetail}
+                        //productCnt={tables.productCnt}
                         orderFormData={orderFormData}
                         handleEditFormChange={handleEditFormChange}
                         handleCancelClick={handleCancelClick}
@@ -173,7 +181,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
                         productName={tables.productName}
                         productPrice={tables.productPrice}
                         productUnit={tables.productUnit}
-                        productDesc={tables.productDesc}
+                        productDetail={tables.productDetail}
                         handleEditClick={handleEditClick}
                         onProductDetailClick={onProductDetailClick}
                       />

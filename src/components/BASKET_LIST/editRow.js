@@ -8,7 +8,7 @@ function EditRow({
   productPrice,
   productUnit,
   productCnt,
-  productDesc,
+  productDetail,
   editFormData,
   handleEditFormChange,
   handleCancelClick,
@@ -30,9 +30,9 @@ function EditRow({
         ></input>
       </td>
       <td key={"productDesc_td"}>
-        {productDesc.length > 10
-          ? `${productDesc.slice(0, 10)}...`
-          : `${productDesc}`}
+        {productDetail.length > 10
+          ? `${productDetail.slice(0, 10)}...`
+          : `${productDetail}`}
       </td>
       <td key={"button_edit"}>
         <button type="submit">

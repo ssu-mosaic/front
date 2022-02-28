@@ -8,7 +8,7 @@ import EditRow from "./editRow";
 import ProductDetail from "../ORDER_MANAGEMENT/productDetail";
 
 //only for testing
-import TEST_BASKET_DATA from "./MOCK_DATA.json";
+//import TEST_BASKET_DATA from "./MOCK_DATA.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -18,7 +18,7 @@ function BasketTable() {
     "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [tablePerPage] = useState(5);
   const [table, setTable] = useState([]);
@@ -28,13 +28,14 @@ function BasketTable() {
     userId: userID,
     productId: "",
     productCnt: 0,
+    cartProductId: 0,
   });
   const [productDetailData, setProductDetailData] = useState({
     productName: "",
     productPrice: "",
     productUnit: "",
     productCnt: 0,
-    productDesc: "",
+    productDetail: "",
   });
   useEffect(() => {
     const userData = {
@@ -46,7 +47,7 @@ function BasketTable() {
       setLoading(false);
     });
     //only for testing erase when real
-    setTable(TEST_BASKET_DATA);
+    //setTable(TEST_BASKET_DATA);
   }, []);
 
   // Get current tables
@@ -67,6 +68,7 @@ function BasketTable() {
       userId: userID,
       productId: rowData.productId,
       productCnt: rowData.productCnt,
+      cartProductId: rowData.cartProductId,
     };
 
     setEditFormData(formValues);
@@ -79,7 +81,7 @@ function BasketTable() {
       productPrice: rowData.productPrice,
       productUnit: rowData.productUnit,
       productCnt: rowData.productCnt,
-      productDesc: rowData.productDesc,
+      productDetail: rowData.productDetail,
     };
     //console.log(formValues);
     setShowProductDetail(true);
@@ -106,20 +108,21 @@ function BasketTable() {
     event.preventDefault();
 
     const editedForm = {
-      userId: userID,
-      productId: rowId,
       productCnt: editFormData.productCnt,
     };
 
+    //console.log(editFormData.cartProductId);
     //console.log(editedForm);
 
-    axios.put(`${baseURL}/order/cart/${rowId}`, editedForm).then((response) => {
-      if (response.data === true) {
-        alert("물품 수량 수정 완료");
-      } else {
-        alert("물품 수량 수정 실패 재시도 해주세요");
-      }
-    });
+    axios
+      .put(`${baseURL}/order/cart/${editFormData.cartProductId}`, editedForm)
+      .then((response) => {
+        if (response.data === true) {
+          alert("물품 수량 수정 완료");
+        } else {
+          alert("물품 수량 수정 실패 재시도 해주세요");
+        }
+      });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.productId === rowId);
@@ -136,26 +139,20 @@ function BasketTable() {
     setRowId(null);
   };
 
-  const handleDeleteClick = (rowId) => {
-    const deleteForm = {
-      userId: userID,
-      productId: rowId,
-    };
+  const handleDeleteClick = (cartProductId) => {
     // const ApiCallForDelete = async () => {
     //     //const response =
     //     await axios.post(`${baseURL}/retailer/delete`,deleteForm)
     //     //const data = await response.data;
     //     //console.log(data);
     // }
-    axios
-      .delete(`${baseURL}/order/cart/${rowId}`, deleteForm)
-      .then((response) => {
-        if (response.data === true) {
-          alert("거래처 정보 삭제 완료");
-        } else {
-          alert("거래처 정보 삭제 실패 재시도 해주세요");
-        }
-      });
+    axios.delete(`${baseURL}/order/cart/${cartProductId}`).then((response) => {
+      if (response.data === true) {
+        alert("거래처 정보 삭제 완료");
+      } else {
+        alert("거래처 정보 삭제 실패 재시도 해주세요");
+      }
+    });
 
     const newTable = [...table];
     const index = table.findIndex((row) => row.productId === rowId);
@@ -166,7 +163,7 @@ function BasketTable() {
 
   return (
     <div>
-      {loading ? (
+      {loading || tables.length === 0 ? (
         <strong>로딩중...</strong>
       ) : (
         <Fragment>
@@ -175,7 +172,7 @@ function BasketTable() {
               productName={productDetailData.productName}
               productPrice={productDetailData.productPrice}
               productUnit={productDetailData.productUnit}
-              productDesc={productDetailData.productDesc}
+              productDetail={productDetailData.productDetail}
               productCnt={productDetailData.productCnt}
               handleBackToProducts={handleBackToProducts}
             />
@@ -206,7 +203,7 @@ function BasketTable() {
                             productPrice={tables.productPrice}
                             productUnit={tables.productUnit}
                             productCnt={tables.productCnt}
-                            productDesc={tables.productDesc}
+                            productDetail={tables.productDetail}
                             editFormData={editFormData}
                             handleEditFormChange={handleEditFormChange}
                             handleCancelClick={handleCancelClick}
@@ -219,7 +216,8 @@ function BasketTable() {
                             productPrice={tables.productPrice}
                             productUnit={tables.productUnit}
                             productCnt={tables.productCnt}
-                            productDesc={tables.productDesc}
+                            productDetail={tables.productDetail}
+                            cartProductId={tables.cartProductId}
                             handleEditClick={handleEditClick}
                             handleDeleteClick={handleDeleteClick}
                             onProductDetailClick={onProductDetailClick}

@@ -11,9 +11,11 @@ function QnaTables({ noticeId, noticeTitle, noticeDate, noticeEditDate }) {
             : `${noticeTitle}`}
         </Link>
       </td>
-      <td>{noticeDate}</td>
+      <td>{noticeDate.slice(0, 10)}</td>
       <td>
-        {noticeEditDate.length < 1 ? "수정내역 없음" : `${noticeEditDate}`}
+        {noticeEditDate.length < 1
+          ? "수정내역 없음"
+          : `${noticeEditDate.slice(0, 10)}`}
       </td>
     </tr>
   );

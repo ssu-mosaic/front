@@ -25,7 +25,7 @@ function RetailerListTable() {
     const userData = {
       userId: userID,
     };
-    axios.post(`${baseURL}/order`, userData).then((response) => {
+    axios.post(`${baseURL}/retailer`, userData).then((response) => {
       //console.log(response.data);
       setTable(response.data);
       setLoading(false);

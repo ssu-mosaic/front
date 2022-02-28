@@ -9,13 +9,14 @@ function ProductTables({
   productUnit,
   productCnt,
   orderStatus,
+  orderProductId,
   handleCancelClick,
   handleCompleteClick,
 }) {
   let orderStatusKor = "";
-  if (orderStatus === "canceled") {
+  if (orderStatus === "CANCELED") {
     orderStatusKor = "취소완료";
-  } else if (orderStatus === "complete") {
+  } else if (orderStatus === "COMPLETED") {
     orderStatusKor = "완료";
   } else {
     orderStatusKor = "발주진행중";
@@ -31,10 +32,12 @@ function ProductTables({
       <td key={"orderCancel_td"}>
         <button
           type="button"
-          onClick={(event) => handleCancelClick(event, productId)}
-          disabled={orderStatus === "canceled" || orderStatus === "complete"}
+          onClick={(event) =>
+            handleCancelClick(event, productId, orderProductId)
+          }
+          disabled={orderStatus === "CANCELED" || orderStatus === "COMPLETED"}
         >
-          {orderStatus === "canceled" || orderStatus === "complete" ? (
+          {orderStatus === "CANCELED" || orderStatus === "COMPLETED" ? (
             ""
           ) : (
             <FontAwesomeIcon icon={faTimes} size="2x" />
@@ -44,10 +47,12 @@ function ProductTables({
       <td key={"orderComplete_td"}>
         <button
           type="button"
-          onClick={(event) => handleCompleteClick(event, productId)}
-          disabled={orderStatus === "canceled" || orderStatus === "complete"}
+          onClick={(event) =>
+            handleCompleteClick(event, productId, orderProductId)
+          }
+          disabled={orderStatus === "CANCELED" || orderStatus === "COMPLETED"}
         >
-          {orderStatus === "canceled" || orderStatus === "complete" ? (
+          {orderStatus === "CANCELED" || orderStatus === "COMPLETED" ? (
             ""
           ) : (
             <FontAwesomeIcon icon={faCheck} size="2x" />
