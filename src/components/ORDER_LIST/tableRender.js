@@ -73,9 +73,9 @@ function OrderList() {
       if (response.data === true) {
         alert("주문 취소 완료");
         //test
-        window.location.href = "/order/searchorder";
+        //window.location.href = "/order/searchorder";
         //publish
-        //window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
+        window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
       } else {
         alert("주문 취소 실패 재시도 해주세요");
       }
@@ -109,9 +109,10 @@ function OrderList() {
           alert("수치 확인 완료");
           alert("주문 취소 완료");
           //test
-          window.location.href = "/order/searchorder";
+          //window.location.href = "/order/searchorder";
           //publish
-          //window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
+          window.location.href =
+            "https://ssu-mosaic.github.io/order/searchorder";
         } else {
           alert("수취 확인 실패 재시도 해주세요");
         }

@@ -102,9 +102,9 @@ function JeanJoin() {
       alert("가입 완료 로그인 화면으로 갈게요");
 
       //test
-      window.location.href = "/login";
+      //window.location.href = "/login";
       //publish
-      //window.location.href = "https://ssu-mosaic.github.io/login";
+      window.location.href = "https://ssu-mosaic.github.io/login";
     } else {
       alert("가입 실패 비밀번호 등을 살펴보세요 ");
     }

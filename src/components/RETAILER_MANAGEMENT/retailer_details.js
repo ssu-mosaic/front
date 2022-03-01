@@ -154,9 +154,9 @@ function Detail() {
         if (response.data !== null) {
           alert("물품 등록 완료");
           //test
-          window.location.href = `/order/retailer/${id}`;
+          //window.location.href = `/order/retailer/${id}`;
           //publish
-          //window.location.href = `https://ssu-mosaic.github.io/order/retailer/${id}`;
+          window.location.href = `https://ssu-mosaic.github.io/order/retailer/${id}`;
         } else {
           alert("물품 등록 실패 재시도 해주세요");
         }

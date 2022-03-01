@@ -91,9 +91,9 @@ function Detail() {
       if (response.data === id) {
         alert("문의 내역 삭제 완료");
         //test
-        window.location.href = "/qna";
+        //window.location.href = "/qna";
         //publish
-        //window.location.href = "https://ssu-mosaic.github.io/qna";
+        window.location.href = "https://ssu-mosaic.github.io/qna";
       } else {
         alert("문의 내역 삭제 실패");
       }

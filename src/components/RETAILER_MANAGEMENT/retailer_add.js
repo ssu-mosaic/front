@@ -71,9 +71,9 @@ function RetailerAdd() {
       if (response.data !== null) {
         alert("거래처 등록 완료");
         //test
-        window.location.href = "/order/retailer";
+        //window.location.href = "/order/retailer";
         //publish
-        //window.location.href = "https://ssu-mosaic.github.io/order/retailer";
+        window.location.href = "https://ssu-mosaic.github.io/order/retailer";
       } else {
         alert("거래처 등록 실패 재시도 해주세요 ");
       }

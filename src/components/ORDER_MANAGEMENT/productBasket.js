@@ -21,9 +21,10 @@ function BasketDetail() {
       if (response.data !== null) {
         alert("주문 완료");
         //test
-        window.location.href = "/order/requestorder/basket";
+        //window.location.href = "/order/requestorder/basket";
         //publish
-        //window.location.href = "https://ssu-mosaic.github.io/order/requestorder/basket";
+        window.location.href =
+          "https://ssu-mosaic.github.io/order/requestorder/basket";
       } else {
         alert("주문 실패 재시도 해주세요");
       }

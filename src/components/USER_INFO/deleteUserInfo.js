@@ -37,9 +37,9 @@ function DeleteUserInfo() {
           alert("회원 탈퇴 완료");
           localStorage.setItem("USER_ID", null);
           //test
-          window.location.href = "/login";
+          //window.location.href = "/login";
           //publish
-          //window.location.href = "https://ssu-mosaic.github.io/login";
+          window.location.href = "https://ssu-mosaic.github.io/login";
         } else {
           alert("회원 탈퇴 실패 재시도 해주세요 ");
         }

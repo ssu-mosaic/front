@@ -39,9 +39,9 @@ function ChangeUserPwd() {
           if (response.data === true) {
             alert("비밀번호 수정 완료");
             //test
-            window.location.href = "/user/info";
+            //window.location.href = "/user/info";
             //publish
-            //window.location.href = "https://ssu-mosaic.github.io/user/info";
+            window.location.href = "https://ssu-mosaic.github.io/user/info";
           } else {
             alert("비밀번호 수정 실패 재시도 해주세요 ");
           }

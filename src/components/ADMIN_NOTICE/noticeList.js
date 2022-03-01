@@ -67,9 +67,10 @@ function NoticeList() {
       if (response.data !== null) {
         alert("공지 작성 완료");
         //when publish
-        //window.location.href = "https://ssu-mosaic.github.io/front/admin/notice";
+        window.location.href =
+          "https://ssu-mosaic.github.io/front/admin/notice";
         //when test
-        window.location.href = "/admin/notice";
+        //window.location.href = "/admin/notice";
       } else {
         alert("공지 작성 실패 재시도 해주세요");
       }

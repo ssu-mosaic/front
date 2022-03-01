@@ -67,9 +67,9 @@ function StockManagement() {
       if (response.data !== null) {
         alert("재고 정보 추가 완료");
         //test
-        window.location.href = "/stock/edit";
+        //window.location.href = "/stock/edit";
         //publish
-        //window.location.href = "https://ssu-mosaic.github.io/stock/edit";
+        window.location.href = "https://ssu-mosaic.github.io/stock/edit";
       } else {
         alert("재고 정보 추가 실패 재시도 해주세요");
       }
