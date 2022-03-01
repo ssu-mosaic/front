@@ -22,7 +22,11 @@ function MiniStock(miniStock) {
             <Fragment key={`${table.productId}__stock`}>
               <tr className={tableStyles.miniTable_item}>
                 <td>{table.productName}</td>
-                <td>{table.retailerName}</td>
+                <td>
+                  {table.retailerName === null
+                    ? "본인 입력"
+                    : `${table.retailerName}`}
+                </td>
                 <td>{table.productCnt}</td>
                 <td>{table.productUnit}</td>
               </tr>

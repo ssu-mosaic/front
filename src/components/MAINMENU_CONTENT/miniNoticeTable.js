@@ -20,7 +20,7 @@ function MiniNotice(miniNotice) {
             <Fragment key={`${table.noticeId}__notice`}>
               <tr className={tableStyles.miniTable_item}>
                 <td>{table.noticeTitle}</td>
-                <td>{table.noticeDate}</td>
+                <td>{table.noticeDate.slice(0, 10)}</td>
               </tr>
             </Fragment>
           ))}

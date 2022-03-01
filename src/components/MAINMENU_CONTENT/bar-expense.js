@@ -1,24 +1,22 @@
 import { Bar } from "react-chartjs-2";
 import styles from "../css/mainMenu-content.module.css";
 
-function DoughnutOrderComplete(spendingData) {
+function ChartSpending(spendingData) {
   const newData = spendingData.spendingData;
   //console.log(newData);
+  const dataLength = newData.labels.length;
+  const bgColor = [];
+
+  for (let i = 0; i < dataLength; i++) {
+    bgColor.push("rgba(255, 199, 132, 0.6)");
+  }
 
   const chartData = {
     labels: newData.labels,
     datasets: [
       {
         data: newData.datasets,
-        backgroundColor: [
-          "rgba(255, 199, 132, 0.6)",
-          "rgba(255, 199, 132, 0.6)",
-          "rgba(255, 199, 132, 0.6)",
-          "rgba(255, 199, 132, 0.6)",
-          "rgba(255, 199, 132, 0.6)",
-          "rgba(255, 199, 132, 0.6)",
-          "rgba(255, 199, 132, 0.6)",
-        ],
+        backgroundColor: bgColor,
       },
     ],
   };
@@ -44,4 +42,4 @@ function DoughnutOrderComplete(spendingData) {
   );
 }
 
-export default DoughnutOrderComplete;
+export default ChartSpending;

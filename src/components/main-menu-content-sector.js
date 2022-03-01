@@ -9,7 +9,7 @@ import Fragment from "render-fragment";
 import React, { useState, useEffect } from "react";
 
 //test
-import TEST_MAIN_PAGE_DATA from "./test_main_data.json";
+//import TEST_MAIN_PAGE_DATA from "./test_main_data.json";
 
 let userID = localStorage.getItem("USER_ID");
 
@@ -27,13 +27,14 @@ function MainMenuContentSector() {
     };
 
     axios.post(`${baseURL}/stats`, userData).then((response) => {
-      setMainData(response.data);
+      setMainData(response.data.data);
       setLoading(false);
     });
     //only for testing erase when real
-    setMainData(TEST_MAIN_PAGE_DATA.data);
-    setLoading(false);
-  }, [mainData.Stock, mainData.Notice]);
+    //setMainData(TEST_MAIN_PAGE_DATA.data);
+    //setLoading(false);
+  }, [mainData.stock, mainData.notice]);
+  //console.log(mainData);
   //console.log(mainData.Stock);
   //console.log(miniTable);
   return (
@@ -47,24 +48,24 @@ function MainMenuContentSector() {
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <BarExpense spendingData={mainData.Spendings} />
+                <BarExpense spendingData={mainData.spendings} />
               </div>
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <DoughnutOrderComplete orderData={mainData.OrderCompletes} />
+                <DoughnutOrderComplete orderData={mainData.orderCompletes} />
               </div>
             </div>
             <div className={styles.screenPage__sector_row}>
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <MiniStock miniStock={mainData.Stocks} />
+                <MiniStock miniStock={mainData.stocks} />
               </div>
               <div
                 className={`${styles.screenPage__sector_column} ${styles.screenPage__sectorBox_square} ${styles.screenPage__sectorBox_attr}`}
               >
-                <MiniNotice miniNotice={mainData.Notices} />
+                <MiniNotice miniNotice={mainData.notices} />
               </div>
             </div>
           </div>
