@@ -46,11 +46,11 @@ function Detail() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>공지사항</span>
+        <span>Notice</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/notice`}>
-          <input type="button" value="공지목록" />
+          <input type="button" value="notice menu" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
@@ -59,7 +59,7 @@ function Detail() {
         </div>
         <div>
           {loading ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : (
             <NoticeRead
               noticeDate={noticeDetails.noticeDate}

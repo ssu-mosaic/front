@@ -75,9 +75,9 @@ function Detail() {
     setQnaEdit(false);
     axios.put(`${baseURL}/qna/edit/${id}`, qnaDetails).then((response) => {
       if (response.data === id) {
-        alert("문의 내역 수정 완료");
+        alert("edited");
       } else {
-        alert("문의 내역 수정 실패");
+        alert("edit failed");
       }
     });
   };
@@ -89,13 +89,13 @@ function Detail() {
     setQnaEdit(false);
     axios.put(`${baseURL}/qna/${id}`, identification).then((response) => {
       if (response.data === id) {
-        alert("문의 내역 삭제 완료");
+        alert("deleted");
         //test
         //window.location.href = "/qna";
         //publish
         window.location.href = "https://ssu-mosaic.github.io/qna";
       } else {
-        alert("문의 내역 삭제 실패");
+        alert("delete failed");
       }
     });
   };
@@ -105,29 +105,29 @@ function Detail() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>문의상세</span>
+        <span>Inquiry Details</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <input
           type="button"
-          value="문의수정"
+          value="Edit"
           disabled={qnaEdit || qnaDetails.inquiryAnswer !== null}
           onClick={onQnaEditClick}
         />
         <input
           type="button"
-          value="문의삭제"
+          value="Delete"
           onClick={onDeleteClick}
           disabled={qnaEdit}
         />
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>문의상세</span>
+          <span>Inquiry Details</span>
         </div>
         <div>
           {loading || qnaDetails.inquiryId === -1 ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : (
             <Fragment>
               {qnaEdit ? (

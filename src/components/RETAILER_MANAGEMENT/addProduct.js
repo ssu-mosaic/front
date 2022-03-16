@@ -10,7 +10,7 @@ function AddProduct({
       <form onSubmit={onProductFormSubmit}>
         <div className={styles.userInfo_row}>
           <label className={styles.userInfoList__title} for="productName">
-            상품이름 :{" "}
+            Product Name :{" "}
           </label>
           <input
             type="text"
@@ -22,7 +22,7 @@ function AddProduct({
         <div className={styles.userInfo_row}>
           <label className={styles.userInfoList__title} for="productPrice">
             {" "}
-            상품가격 :{" "}
+            Price :{" "}
           </label>
           <input
             type="number"
@@ -34,7 +34,7 @@ function AddProduct({
         <div className={styles.userInfo_row}>
           <label className={styles.userInfoList__title} for="productUnit">
             {" "}
-            상품단위 :{" "}
+            Unit :{" "}
           </label>
           <input
             type="text"
@@ -44,7 +44,7 @@ function AddProduct({
           />
         </div>
         <div className={styles.userInfo_row}>
-          <div className={styles.userInfoList__title}> 상품메모 : </div>
+          <div className={styles.userInfoList__title}> Description : </div>
           <textarea
             type="text"
             name="productDetail"
@@ -55,13 +55,13 @@ function AddProduct({
         <input
           className={styles.userInfoList__saveChange}
           type="submit"
-          value="물품추가"
+          value="Add"
         />
         <input
           className={styles.userInfoList__saveChange}
           type="button"
           onClick={onAddProductCancelClick}
-          value="취소"
+          value="Cancel"
         />
       </form>
     </div>

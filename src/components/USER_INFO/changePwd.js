@@ -27,7 +27,7 @@ function ChangeUserPwd() {
   const onChangeSubmit = (event) => {
     event.preventDefault();
     if (newPwd !== newPwdAgain || oldPwd === newPwd) {
-      alert("비밀번호 불일치 또는 이전과 다른 비밀번호를 작성해주세요");
+      alert("Password does not match or write new password");
     } else {
       const changeNewPwd = {
         userId: userID,
@@ -37,13 +37,13 @@ function ChangeUserPwd() {
         .put(`${baseURL}/myinfo/changepwd`, changeNewPwd)
         .then((response) => {
           if (response.data === true) {
-            alert("비밀번호 수정 완료");
+            alert("PW edited");
             //test
             //window.location.href = "/user/info";
             //publish
             window.location.href = "https://ssu-mosaic.github.io/user/info";
           } else {
-            alert("비밀번호 수정 실패 재시도 해주세요 ");
+            alert("edit failed ");
           }
         });
     }
@@ -54,35 +54,35 @@ function ChangeUserPwd() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>비밀번호 수정</span>
+        <span>Edit Password</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/user/info`}>
-          <input type="button" value="회원정보" />
+          <input type="button" value="Profile" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
-        <div className={styles.screenPage_title}>비밀번호 수정</div>
+        <div className={styles.screenPage_title}>Edit Password</div>
         <div className={pwStyles.userInfoBox}>
           <form onSubmit={onChangeSubmit}>
             <div className={pwStyles.userInfoBox__row}>
               <div className={pwStyles.userInfoBox__title}>
-                이전 비밀번호 확인:
+                Previous Password:
               </div>
               <input type="password" onChange={onConfirmChange} required />
             </div>
             <div className={pwStyles.userInfoBox__row}>
-              <div className={pwStyles.userInfoBox__title}>새 비밀번호 : </div>
+              <div className={pwStyles.userInfoBox__title}>New Password : </div>
               <input type="password" onChange={onPwdChange} required />
             </div>
             <div className={pwStyles.userInfoBox__row}>
               <div className={pwStyles.userInfoBox__title}>
-                새 비밀번호 재확인:
+                New Password rewrite:
               </div>
               <input type="password" onChange={onPwdAgainChange} required />
             </div>
 
-            <input type="submit" value="수정요청" className={pwStyles.button} />
+            <input type="submit" value="Submit" className={pwStyles.button} />
           </form>
         </div>
       </div>

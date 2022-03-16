@@ -7,12 +7,12 @@ function QnaRead({ noticeDate, noticeContent, noticeEditDate }) {
       <div className={styles.qnaBox__row}>
         <div className={styles.noticeEditDate}>
           {noticeEditDate.length < 1
-            ? "수정내역 없음"
-            : `최종 수정 일자 : ${noticeEditDate}`}
+            ? "this notice is not edited"
+            : `Recent Edit Date : ${noticeEditDate}`}
         </div>
       </div>
       <div className={styles.qnaBox__row}>
-        <div className={styles.qnaBox__row_title}>공지 내용</div>
+        <div className={styles.qnaBox__row_title}>Notice</div>
         <div className={styles.noticeContent}>{`${noticeContent}`}</div>
       </div>
     </div>

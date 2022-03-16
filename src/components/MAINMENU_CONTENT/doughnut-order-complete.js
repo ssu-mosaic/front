@@ -6,7 +6,7 @@ function DoughnutOrderComplete(orderData) {
   //console.log(newData);
 
   const doughnutData = {
-    labels: ["발주진행중", "수취완료", "주문취소"],
+    labels: ["onProgress", "Completed", "Canceled"],
     datasets: [
       {
         data: newData,
@@ -21,7 +21,7 @@ function DoughnutOrderComplete(orderData) {
   };
   return (
     <div className={styles.miniMenu_box}>
-      <div className={styles.miniMenu_title}>최근 주문 발주상태</div>
+      <div className={styles.miniMenu_title}>Recent Order Status</div>
       <div className={styles.chart_setting}>
         <Doughnut
           data={doughnutData}

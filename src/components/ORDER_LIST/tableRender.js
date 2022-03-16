@@ -71,13 +71,13 @@ function OrderList() {
 
     axios.put(`${baseURL}/order/cancel/${orderProductId}`).then((response) => {
       if (response.data === true) {
-        alert("주문 취소 완료");
+        alert("order canceled");
         //test
         //window.location.href = "/order/searchorder";
         //publish
         window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
       } else {
-        alert("주문 취소 실패 재시도 해주세요");
+        alert("order cancel failed");
       }
     });
 
@@ -106,15 +106,15 @@ function OrderList() {
       .put(`${baseURL}/order/complete/${orderProductId}`)
       .then((response) => {
         if (response.data === true) {
-          alert("수치 확인 완료");
-          alert("주문 취소 완료");
+          alert("fetch confirmed");
+          alert("order canceled");
           //test
           //window.location.href = "/order/searchorder";
           //publish
           window.location.href =
             "https://ssu-mosaic.github.io/order/searchorder";
         } else {
-          alert("수취 확인 실패 재시도 해주세요");
+          alert("fetch failed");
         }
       });
 
@@ -147,10 +147,10 @@ function OrderList() {
               <table className={styles.screenPage__searchResultTable}>
                 <thead>
                   <tr className={styles.screenPage__searchResultTable_header}>
-                    <th>주문 아이디</th>
-                    <th>주문 날짜</th>
-                    <th>주문 내역</th>
-                    <th>주문 완료율</th>
+                    <th>Order ID</th>
+                    <th>date</th>
+                    <th>receipt</th>
+                    <th>fetch rate</th>
                   </tr>
                 </thead>
                 <tbody className={styles.testTable__tbody}>
@@ -176,13 +176,13 @@ function OrderList() {
               <table className={styles.screenPage__searchResultTable}>
                 <thead>
                   <tr className={styles.screenPage__searchResultTable_header}>
-                    <th>상품 이름</th>
-                    <th>거래처 이름</th>
-                    <th>상품 수량</th>
-                    <th>상품 단위</th>
-                    <th>발주 상태</th>
-                    <th>주문 취소</th>
-                    <th>수취 완료</th>
+                    <th>Product Name</th>
+                    <th>Retailer Name</th>
+                    <th>count</th>
+                    <th>unit</th>
+                    <th>status</th>
+                    <th>cancel</th>
+                    <th>fetch</th>
                   </tr>
                 </thead>
                 <tbody className={styles.testTable__tbody}>
@@ -209,7 +209,7 @@ function OrderList() {
               />
               <input
                 type="button"
-                value="주문목록 돌아가기"
+                value="Back to List"
                 onClick={onOrderMenuClick}
                 className={buttonStyles.userInfoList__saveChange}
               />

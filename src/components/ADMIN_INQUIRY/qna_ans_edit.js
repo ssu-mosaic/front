@@ -13,11 +13,11 @@ function QnaEdit({
       <div className={styles.qnaBox}>
         <div className={styles.qnaBox__row}>{`${inquiryTitle}`}</div>
         <div className={styles.qnaBox__row}>
-          <div className={styles.qnaBox__row_title}>문의 내용</div>
+          <div className={styles.qnaBox__row_title}>Inquiry</div>
           <div className={styles.qnaContent}>{`${inquiryContent}`}</div>
         </div>
         <div className={styles.qnaBox__row}>
-          <div className={styles.qnaBox__row_title}>답변 내용</div>
+          <div className={styles.qnaBox__row_title}>Answer</div>
           <textarea
             type="text"
             onChange={handleEditFormChange}
@@ -29,13 +29,13 @@ function QnaEdit({
         </div>
         <input
           type="button"
-          value="작성 완료"
+          value="Submit"
           onClick={onFormEditSubmit}
           className={styles.qnaEditButton}
         />
         <input
           type="button"
-          value="작성 취소"
+          value="Cancel"
           onClick={onCancelClick}
           className={styles.qnaEditButton}
         />

@@ -19,7 +19,7 @@ function QnaTables({
       </td>
       <td key={"inquiryDate_td"}>{inquiryDate.slice(0, 10)}</td>
       <td key={"inquiryAnsDate_td"}>
-        {inquiryAnswer === null ? "답변 대기중" : `${inquiryAnsDate}`}
+        {inquiryAnswer === null ? "Waiting for Answer" : `${inquiryAnsDate}`}
       </td>
     </tr>
   );

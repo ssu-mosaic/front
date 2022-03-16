@@ -28,11 +28,11 @@ function RetailerListRead() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>거래처목록</span>
+        <span>Retailer</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={"/order/retailer/add"}>
-          <input type="button" value="거래처등록" />
+          <input type="button" value="Add Retailer" />
         </Link>
       </div>
       <div className={styles.screenPage__searchBox}>
@@ -64,7 +64,7 @@ function RetailerListRead() {
 
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>거래처리스트</span>
+          <span>Retailer</span>
         </div>
         <RetailerListTable />
       </div>

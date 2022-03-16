@@ -33,12 +33,12 @@ function Tables({ orderId, orderDate, orderProducts, onOrderDetailClick }) {
               onOrderDetailClick(event, orderProducts, orderId)
             }
           >
-            {`거래처 ${orderProducts[0].retailerName}`}
+            {`Retailer ${orderProducts[0].retailerName}`}
             {orderProducts.length < 2
               ? ""
               : `, ${orderProducts[1].retailerName} `}
-            {orderProducts.length > 2 ? "등 " : ""}
-            {`에서 ${orderProducts.length} 건의 상품`}
+            {orderProducts.length > 2 ? "etc " : ""}
+            {`contains ${orderProducts.length} products`}
           </td>
           <td key={"orderProgress_td"}>{`${(
             (orderComplete / (orderTotal - orderCanceled)) *

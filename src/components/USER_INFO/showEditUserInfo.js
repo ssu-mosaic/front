@@ -81,11 +81,9 @@ function ShowEditUserInfo() {
     setEditData(false);
     axios.put(`${baseURL}/myinfo/change`, userData).then((response) => {
       if (response.data === true) {
-        alert("회원 정보 수정 완료");
+        alert("edited");
       } else {
-        alert(
-          "회원 정보 수정 실패 \n 잘못된 비밀번호 또는 회원 정보 중 타 계정과 중복되는 정보가 있습니다 "
-        );
+        alert("edit failed wrong password or information ");
       }
     });
   };
@@ -95,12 +93,12 @@ function ShowEditUserInfo() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>회원정보</span>
+        <span>Profile</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <input
           type="button"
-          value="회원정보수정"
+          value="Edit"
           onClick={onEditDataClick}
           disabled={editData}
         />
@@ -109,7 +107,7 @@ function ShowEditUserInfo() {
         <div className={styles.screenPage_title}>
           <div>
             {loading ? (
-              <strong>로딩중...</strong>
+              <strong>loading...</strong>
             ) : (
               <Fragment>
                 <span>회원정보</span>

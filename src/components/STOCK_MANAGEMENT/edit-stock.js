@@ -14,17 +14,17 @@ function EditForStock() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>재고목록</span>
+        <span>Stock</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={"/stock/add"}>
-          <input type="button" value="재고등록" />
+          <input type="button" value="Add Stock" />
         </Link>
       </div>
 
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>거래처리스트</span>
+          <span>Retailer</span>
         </div>
         <StockListTable />
       </div>

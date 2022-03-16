@@ -65,13 +65,13 @@ function StockManagement() {
     //ApiCall();
     axios.post(`${baseURL}/stock/add`, newStockData).then((response) => {
       if (response.data !== null) {
-        alert("재고 정보 추가 완료");
+        alert("added");
         //test
         //window.location.href = "/stock/edit";
         //publish
         window.location.href = "https://ssu-mosaic.github.io/stock/edit";
       } else {
-        alert("재고 정보 추가 실패 재시도 해주세요");
+        alert("add failed");
       }
     });
 
@@ -83,17 +83,17 @@ function StockManagement() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>재고등록</span>
+        <span>Add Stock</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={"/stock/edit"}>
-          <input type="button" value="재고목록" />
+          <input type="button" value="stock" />
         </Link>
       </div>
 
       <div className={styles.screenPage__searchBox}>
         <div className={styles.screenPage_title}>
-          <span>검색옵션</span>
+          <span>option</span>
         </div>
         <form onSubmit={onSubmit}>
           <div
@@ -101,7 +101,7 @@ function StockManagement() {
           >
             <div className={styles.screenPage__section_row}>
               <div className={styles.screenPage__searchOption}>
-                <label for="stockName">재고이름 </label>
+                <label for="stockName">Stock Name </label>
                 <input
                   type="text"
                   onChange={onProductNameChange}
@@ -121,7 +121,7 @@ function StockManagement() {
             </div>
             <div className={styles.screenPage__section_row}>
               <div className={styles.screenPage__searchOption}>
-                <label for="stockCnt">잔여재고 </label>
+                <label for="stockCnt">count </label>
                 <input
                   type="number"
                   onChange={onStockCntChange}
@@ -130,7 +130,7 @@ function StockManagement() {
                 />
               </div>
               <div className={styles.screenPage__searchOption}>
-                <label for="stockUnit">재고단위 </label>
+                <label for="stockUnit">unit </label>
                 <input
                   type="text"
                   onChange={onProductUnitChange}
@@ -141,7 +141,7 @@ function StockManagement() {
             </div>
           </div>
           <div className={styles.screenPage__section_column}>
-            <input type="submit" value="추가" />
+            <input type="submit" value="Add" />
           </div>
         </form>
       </div>

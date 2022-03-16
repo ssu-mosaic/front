@@ -118,9 +118,9 @@ function BasketTable() {
       .put(`${baseURL}/order/cart/${editFormData.cartProductId}`, editedForm)
       .then((response) => {
         if (response.data === true) {
-          alert("물품 수량 수정 완료");
+          alert("Edited");
         } else {
-          alert("물품 수량 수정 실패 재시도 해주세요");
+          alert("Edit failed");
         }
       });
 
@@ -148,9 +148,9 @@ function BasketTable() {
     // }
     axios.delete(`${baseURL}/order/cart/${cartProductId}`).then((response) => {
       if (response.data === true) {
-        alert("거래처 정보 삭제 완료");
+        alert("Deleted");
       } else {
-        alert("거래처 정보 삭제 실패 재시도 해주세요");
+        alert("delete failed");
       }
     });
 
@@ -164,7 +164,7 @@ function BasketTable() {
   return (
     <div>
       {loading || tables.length === 0 ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <Fragment>
           {showProductDetail ? (
@@ -182,13 +182,13 @@ function BasketTable() {
                 <table className={styles.screenPage__searchResultTable}>
                   <thead>
                     <tr className={styles.screenPage__searchResultTable_header}>
-                      <th>상품 이름</th>
-                      <th>상품 가격</th>
-                      <th>상품 단위</th>
-                      <th>주문 수량</th>
-                      <th>상품 설명</th>
-                      <th>수량 수정</th>
-                      <th>삭제</th>
+                      <th>name</th>
+                      <th>price</th>
+                      <th>unit</th>
+                      <th>count</th>
+                      <th>description</th>
+                      <th>edit count</th>
+                      <th>delete</th>
                     </tr>
                   </thead>
 

@@ -58,11 +58,11 @@ function Detail() {
       .put(`${baseURL}/admin/notice/${id}`, editFormData)
       .then((response) => {
         if (response.data === true) {
-          alert("공지 수정 완료");
+          alert("Notice edited");
           setNoticeDetails(editFormData);
           setNoticeEdit(false);
         } else {
-          alert("공지 수정 실패");
+          alert("Notice edit failed");
         }
       });
   };
@@ -79,14 +79,14 @@ function Detail() {
       .delete(`${baseURL}/admin/notice/${id}`, deleteForm)
       .then((response) => {
         if (response.data === true) {
-          alert("공지 삭제 완료");
+          alert("Notice deleted");
           //when publish
           window.location.href =
             "https://ssu-mosaic.github.io/front/admin/notice";
           //when test
           //window.location.href = "/admin/notice";
         } else {
-          alert("공지 삭제 실패");
+          alert("Notice delete failed");
         }
       });
   };
@@ -119,21 +119,21 @@ function Detail() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>공지사항</span>
+        <span>Notice</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/admin/notice`}>
-          <input type="button" value="공지목록" />
+          <input type="button" value="Notice" />
         </Link>
         <input
           type="button"
-          value="공지수정"
+          value="Edit"
           onClick={onNoticeEditClick}
           disabled={noticeEdit}
         />
         <input
           type="button"
-          value="공지삭제"
+          value="Delete"
           onClick={onNoticeDeleteClick}
           disabled={noticeEdit}
         />
@@ -154,7 +154,7 @@ function Detail() {
         </div>
         <div>
           {loading ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : noticeEdit ? (
             <NoticeEdit
               noticeContent={noticeDetails.noticeContent}

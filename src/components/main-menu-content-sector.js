@@ -40,7 +40,7 @@ function MainMenuContentSector() {
   return (
     <Fragment>
       {loading ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <div className={styles.screenPage__content}>
           <div className={styles.screenPage__sector_mainColumn}>

@@ -17,7 +17,7 @@ function EditRetailerDetail({
         <div className={styles.userInfoBox}>
           <ul className={styles.userInfoList}>
             <li>
-              <div className={styles.userInfoList__title}>거래처 이름 : </div>
+              <div className={styles.userInfoList__title}>Retailer Name : </div>
               <input
                 type="text"
                 name="retailerName"
@@ -28,7 +28,7 @@ function EditRetailerDetail({
               />
             </li>
             <li>
-              <div className={styles.userInfoList__title}>거래처 이메일 : </div>
+              <div className={styles.userInfoList__title}>Email : </div>
               <input
                 type="text"
                 name="retailerEmail"
@@ -39,7 +39,7 @@ function EditRetailerDetail({
               />
             </li>
             <li>
-              <div className={styles.userInfoList__title}>거래처 번호 : </div>
+              <div className={styles.userInfoList__title}>Phone No : </div>
               <input
                 type="text"
                 name="retailerPhoneNo"
@@ -50,7 +50,7 @@ function EditRetailerDetail({
               />
             </li>
             <li>
-              <div className={styles.userInfoList__title}>거래처 설명 : </div>
+              <div className={styles.userInfoList__title}>Description : </div>
               <textarea
                 type="text"
                 name="retailerDetail"
@@ -63,12 +63,12 @@ function EditRetailerDetail({
           </ul>
           <input
             type="submit"
-            value="수정완료"
+            value="Edit"
             className={styles.userInfoList__saveChange}
           />
           <input
             type="button"
-            value="수정취소"
+            value="Cancel"
             onClick={onRetailerDetailCancelClick}
             className={styles.userInfoList__saveChange}
           />

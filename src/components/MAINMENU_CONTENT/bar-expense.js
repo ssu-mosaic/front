@@ -23,7 +23,7 @@ function ChartSpending(spendingData) {
 
   return (
     <div className={styles.miniMenu_box}>
-      <div className={styles.miniMenu_title}>최근 7개 주문 지출 통계(원)</div>
+      <div className={styles.miniMenu_title}>Recent 7 order spending (won)</div>
       <div className={styles.chart_setting}>
         <Bar
           data={chartData}

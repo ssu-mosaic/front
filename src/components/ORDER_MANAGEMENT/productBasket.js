@@ -19,14 +19,14 @@ function BasketDetail() {
 
     axios.post(`${baseURL}/order/checkout`, orderForm).then((response) => {
       if (response.data !== null) {
-        alert("주문 완료");
+        alert("Order complete");
         //test
         //window.location.href = "/order/requestorder/basket";
         //publish
         window.location.href =
           "https://ssu-mosaic.github.io/order/requestorder/basket";
       } else {
-        alert("주문 실패 재시도 해주세요");
+        alert("order failed");
       }
     });
   };
@@ -36,21 +36,21 @@ function BasketDetail() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>장바구니</span>
+        <span>Cart</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={"/order/requestorder"}>
-          <input type="button" value="거래처목록" />
+          <input type="button" value="retailer" />
         </Link>
         <input
           type="button"
           onClick={(event) => onOrderClick(event)}
-          value="주문하기"
+          value="order"
         />
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>장바구니</span>
+          <span>Cart</span>
         </div>
         <Basket />
       </div>

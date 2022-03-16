@@ -43,20 +43,20 @@ function NoticeList() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>공지사항</span>
+        <span>Notice</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/qna`}>
-          <input type="button" value="문의목록" />
+          <input type="button" value="inquiry" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>문의목록</span>
+          <span>Inquiry</span>
         </div>
         <div>
           {loading ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : (
             <Fragment>
               <form>
@@ -67,9 +67,9 @@ function NoticeList() {
                         tableStyles.screenPage__searchResultTable_header
                       }
                     >
-                      <th>공지 제목</th>
-                      <th>공지일</th>
-                      <th>최종수정일</th>
+                      <th>Notice Title</th>
+                      <th>Date</th>
+                      <th>Edit Date</th>
                     </tr>
                   </thead>
                   <tbody className={tableStyles.testTable__tbody}>

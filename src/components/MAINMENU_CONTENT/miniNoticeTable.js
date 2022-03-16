@@ -7,12 +7,12 @@ function MiniNotice(miniNotice) {
 
   return (
     <Fragment>
-      <div className={tableStyles.miniMenu_title}>최근 공지사항</div>
+      <div className={tableStyles.miniMenu_title}>Recent Notice</div>
       <table className={tableStyles.miniTable}>
         <thead>
           <tr className={tableStyles.miniTable_header}>
-            <th>공지 제목</th>
-            <th>공지 날짜</th>
+            <th>Title</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>

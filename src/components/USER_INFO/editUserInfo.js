@@ -18,11 +18,11 @@ function EditUserInfo({
     <div className={styles.userInfoBox}>
       <ul className={styles.userInfoList}>
         <li>
-          <div>아이디 : </div>
+          <div>ID : </div>
           <div className={styles.userInfoList__readonly}>{userId}</div>
         </li>
         <li>
-          <div>비밀번호 : </div>
+          <div>PW : </div>
           <input
             type="password"
             name="userPwd"
@@ -32,11 +32,11 @@ function EditUserInfo({
           />
         </li>
         <li>
-          <div>이름 : </div>
+          <div>Name : </div>
           <div className={styles.userInfoList__readonly}>{userName}</div>
         </li>
         <li>
-          <div>주소 : </div>
+          <div>Address : </div>
           <input
             type="text"
             name="userAddress"
@@ -46,7 +46,7 @@ function EditUserInfo({
           />
         </li>
         <li>
-          <div>전화번호 : </div>
+          <div>Phone No : </div>
           <input
             type="text"
             name="userPhoneNo"
@@ -56,11 +56,11 @@ function EditUserInfo({
           />
         </li>
         <li>
-          <div>사업자번호 : </div>
+          <div>Business No : </div>
           <div className={styles.userInfoList__readonly}>{userBusinessNo}</div>
         </li>
         <li>
-          <div>이메일 : </div>
+          <div>Email : </div>
           <input
             type="text"
             name="userEmail"
@@ -72,13 +72,13 @@ function EditUserInfo({
       </ul>
       <input
         type="button"
-        value="수정완료"
+        value="Edit"
         onClick={onSaveClick}
         className={styles.userInfoList__saveChange}
       />
       <input
         type="button"
-        value="수정취소"
+        value="Cancel"
         onClick={onCancelClick}
         className={styles.userInfoList__saveChange}
       />

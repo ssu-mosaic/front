@@ -79,23 +79,23 @@ function Detail() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>거래처 상세</span>
+        <span>Retailer Detail</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/order/requestorder`}>
-          <input type="button" value="거래처목록" />
+          <input type="button" value="retailer" />
         </Link>
         <Link to={`/order/requestorder/basket`}>
-          <input type="button" value="장바구니" />
+          <input type="button" value="cart" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>거래처 상세 정보</span>
+          <span>Retailer Detail</span>
         </div>
         <div>
           {loading ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : (
             <Fragment>
               <ReadDetail
@@ -106,8 +106,8 @@ function Detail() {
               />
               <div className={styles.tableTitle}>
                 {showProductDetail
-                  ? `${productDetailData.productName} 세부정보`
-                  : `${retailerDetails.retailerName} 판매 상품`}
+                  ? `${productDetailData.productName} Detail`
+                  : `${retailerDetails.retailerName}'s product`}
               </div>
               {showProductDetail ? (
                 <ProductDetail

@@ -102,9 +102,9 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       .put(`${baseURL}/retailer/product/edit/${rowId}`, editedForm)
       .then((response) => {
         if (response.data === true) {
-          alert("물품 수정 완료");
+          alert("edit complete");
         } else {
-          alert("물품 수정 실패 재시도 해주세요");
+          alert("edit failed");
         }
       });
 
@@ -137,9 +137,9 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
       .put(`${baseURL}/retailer/product/${rowId}`, deleteForm)
       .then((response) => {
         if (response.data === true) {
-          alert("거래처 정보 삭제 완료");
+          alert("deleted");
         } else {
-          alert("거래처 정보 삭제 실패 재시도 해주세요");
+          alert("delete failed");
         }
       });
 
@@ -160,12 +160,12 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
             <table className={styles.screenPage__searchResultTable}>
               <thead>
                 <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>상품 이름</th>
-                  <th>상품 가격</th>
-                  <th>상품 단위</th>
-                  <th>상품 설명</th>
-                  <th>수정</th>
-                  <th>삭제</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Unit</th>
+                  <th>Description</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
 

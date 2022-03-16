@@ -112,9 +112,9 @@ function StockListTable() {
     // }
     axios.put(`${baseURL}/stock/edit/${rowId}`, editedForm).then((response) => {
       if (response.data === true) {
-        alert("재고 정보 수정 완료");
+        alert("Edited");
       } else {
-        alert("재고 정보 수정 실패 재시도 해주세요");
+        alert("edit failed");
       }
     });
 
@@ -145,9 +145,9 @@ function StockListTable() {
     // }
     axios.put(`${baseURL}/stock/${rowId}`, deleteForm).then((response) => {
       if (response.data === true) {
-        alert("재고 정보 삭제 완료");
+        alert("deleted");
       } else {
-        alert("재고 정보 삭제 실패 재시도 해주세요");
+        alert("delete failed");
       }
     });
     const newTable = [...table];
@@ -160,19 +160,19 @@ function StockListTable() {
   return (
     <div>
       {loading || table.length === 0 ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <Fragment>
           <form onSubmit={handleEditFormSubmit}>
             <table className={styles.screenPage__searchResultTable}>
               <thead>
                 <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>재고이름</th>
+                  <th>Stock Name</th>
                   {/* <th>거래처이름</th> */}
-                  <th>잔여재고</th>
-                  <th>재고단위</th>
-                  <th>수정</th>
-                  <th>삭제</th>
+                  <th>Count</th>
+                  <th>Unit</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
 

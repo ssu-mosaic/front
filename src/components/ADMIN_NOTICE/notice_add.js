@@ -13,23 +13,23 @@ function NoticeAdd({
       <div className={styles.qnaBox__row}>
         <input
           type="button"
-          value="작성취소"
+          value="Cancel"
           onClick={onCancelClick}
           className={styles.qnaEditButton}
         />
         <input
           type="button"
-          value="작성완료"
+          value="Submit"
           onClick={onSubmitEditForm}
           className={styles.qnaEditButton}
         />
       </div>
       <div className={styles.qnaBox__row}>
-        <div className={styles.qnaBox__row_title}>공지 내용</div>
+        <div className={styles.qnaBox__row_title}>Notice</div>
         <input
           type="text"
           name="noticeTitle"
-          placeholder="공지 제목"
+          placeholder="Notice Title"
           value={newFormData.noticeTitle}
           onChange={handleEditFormChange}
           className={styles.noticeTitle}
@@ -40,7 +40,7 @@ function NoticeAdd({
           name="noticeContent"
           value={newFormData.noticeContent}
           onChange={handleEditFormChange}
-          placeholder="공지 내용"
+          placeholder="Notice Content"
           className={styles.noticeContent}
           required
         />

@@ -121,9 +121,9 @@ function Detail() {
       .put(`${baseURL}/retailer/edit/${id}`, retailerDetails)
       .then((response) => {
         if (response.data !== null) {
-          alert("거래처 정보 수정 완료");
+          alert("Edited");
         } else {
-          alert("거래처 정보 수정 실패");
+          alert("edit failed");
         }
       });
   };
@@ -152,13 +152,13 @@ function Detail() {
       .post(`${baseURL}/retailer/product/add`, newProduct)
       .then((response) => {
         if (response.data !== null) {
-          alert("물품 등록 완료");
+          alert("Added");
           //test
           //window.location.href = `/order/retailer/${id}`;
           //publish
           window.location.href = `https://ssu-mosaic.github.io/order/retailer/${id}`;
         } else {
-          alert("물품 등록 실패 재시도 해주세요");
+          alert("Add failed");
         }
         setNewProduct(emptyProductForm);
       });
@@ -169,36 +169,36 @@ function Detail() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>거래처 상세</span>
+        <span>Retailer Detail</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <input
           type="button"
-          value="거래처수정"
+          value="Edit"
           onClick={onRetailerEditClick}
           disabled={addProductToggle}
         />
         <input
           type="button"
-          value="물품추가"
+          value="Add Product"
           onClick={onAddProductClick}
           disabled={retailerDetailEdit}
         />
         <Link to={`/order/retailer`}>
-          <input type="button" value="거래처목록" />
+          <input type="button" value="Retailers" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
           <span>
             {addProductToggle
-              ? `거래처 ${retailerDetails.retailerName} 물품추가`
-              : "거래처 상세 정보"}
+              ? `Retailer ${retailerDetails.retailerName} Add Product`
+              : "Retailer Details"}
           </span>
         </div>
         <div>
           {loading || retailerDetails.retailerId === -1 ? (
-            <strong>로딩중...</strong>
+            <strong>loading</strong>
           ) : (
             <Fragment>
               {addProductToggle ? (
@@ -228,8 +228,8 @@ function Detail() {
                   />
                   <div className={styles.tableTitle}>
                     {showProductDetail
-                      ? `${productDetailData.productName} 세부정보`
-                      : `${retailerDetails.retailerName} 판매 상품`}
+                      ? `${productDetailData.productName} Details`
+                      : `${retailerDetails.retailerName} Products`}
                   </div>
                   {showProductDetail ? (
                     <ProductDetail

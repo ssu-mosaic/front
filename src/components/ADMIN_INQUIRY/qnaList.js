@@ -44,20 +44,20 @@ function QnaList() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>문의목록</span>
+        <span>Inquiry</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/admin/notice`}>
-          <input type="button" value="공지목록" />
+          <input type="button" value="Notice" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>문의목록</span>
+          <span>Inquiry</span>
         </div>
         <div>
           {loading || qnaTable.length === 0 ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : (
             <Fragment>
               <form>
@@ -68,9 +68,9 @@ function QnaList() {
                         tableStyles.screenPage__searchResultTable_header
                       }
                     >
-                      <th>문의 제목</th>
-                      <th>문의 날짜</th>
-                      <th>답변 날짜</th>
+                      <th>Inquiry Title</th>
+                      <th>Inquiry Date</th>
+                      <th>Answer Date</th>
                     </tr>
                   </thead>
                   <tbody className={tableStyles.testTable__tbody}>

@@ -29,12 +29,12 @@ function MenuBar() {
           <ul className={styles.menuBar__list}>
             <Link to={`/admin/notice`}>
               <li className={styles.menuBar__btn}>
-                <span>공지사항</span>
+                <span>Notice</span>
               </li>
             </Link>
             <Link to={`/admin/inquiry`}>
               <li className={styles.menuBar__btn}>
-                <span>문의답변</span>
+                <span>QNA</span>
               </li>
             </Link>
             {/* <Link to={`/`}><li className={styles.menuBar__btn}><span>고객센터</span></li></Link> */}
@@ -45,7 +45,7 @@ function MenuBar() {
         <div className={styles.menuBar__profile}>
           <FontAwesomeIcon icon={faUserCircle} size="2x" />
           <Link to={`/login`}>
-            <span>{userID === "null" ? "로그인해주세요" : userID}</span>
+            <span>{userID === "null" ? "Please Login" : userID}</span>
           </Link>
           <Link to={`/login`}>
             <FontAwesomeIcon

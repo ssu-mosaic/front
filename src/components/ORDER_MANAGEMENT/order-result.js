@@ -27,16 +27,16 @@ function SearchForItem() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>발주조회</span>
+        <span>My Order</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={"/order/requestorder"}>
-          <input type="button" value="발주요청" />
+          <input type="button" value="Order" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>주문목록</span>
+          <span>Order List</span>
         </div>
         <OrderList />
       </div>

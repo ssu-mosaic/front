@@ -14,7 +14,7 @@ function MenuBar() {
   return (
     <div className={styles.menuBar}>
       <div className={styles.menuBar__column}>
-        <Link to={`/`}>
+        <Link to={`/front`}>
           {" "}
           <img
             src={logo}
@@ -29,22 +29,22 @@ function MenuBar() {
           <ul className={styles.menuBar__list}>
             <Link to={`/order/retailer/add`}>
               <li className={styles.menuBar__btn}>
-                <span>발주관리</span>
+                <span>Order</span>
               </li>
             </Link>
             <Link to={`/stock/add`}>
               <li className={styles.menuBar__btn}>
-                <span>재고관리</span>
+                <span>Stock</span>
               </li>
             </Link>
             <Link to={`/user/info`}>
               <li className={styles.menuBar__btn}>
-                <span>회원정보</span>
+                <span>Profile</span>
               </li>
             </Link>
             <Link to={`/qna`}>
               <li className={styles.menuBar__btn}>
-                <span>고객센터</span>
+                <span>CustomerCenter</span>
               </li>
             </Link>
             {/* <Link to={`/`}><li className={styles.menuBar__btn}><span>고객센터</span></li></Link> */}
@@ -55,7 +55,7 @@ function MenuBar() {
         <div className={styles.menuBar__profile}>
           <FontAwesomeIcon icon={faUserCircle} size="2x" />
           <Link to={`/login`}>
-            <span>{userID === "null" ? "로그인해주세요" : userID}</span>
+            <span>{userID === "null" ? "You need to login" : userID}</span>
           </Link>
           <Link to={`/login`}>
             <FontAwesomeIcon

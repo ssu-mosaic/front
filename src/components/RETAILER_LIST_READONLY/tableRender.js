@@ -45,16 +45,16 @@ function RetailerListTable() {
   return (
     <div>
       {loading || table.length === 0 ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <Fragment>
           <table className={styles.screenPage__searchResultTable}>
             <thead>
               <tr className={styles.screenPage__searchResultTable_header}>
-                <th>거래처 이름</th>
-                <th>거래처 연락처</th>
-                <th>거래처 이메일</th>
-                <th>거래처 메모</th>
+                <th>Retailer Name</th>
+                <th>Phone No</th>
+                <th>Email</th>
+                <th>Description</th>
               </tr>
             </thead>
 

@@ -26,22 +26,22 @@ function DeleteUserInfo() {
 
   const onDeleteSubmit = (event) => {
     event.preventDefault();
-    if (pwd !== pwdAgain || lastConfirm !== "확인했습니다") {
-      alert("비밀번호 불일치 또는 인증문자 불일치");
+    if (pwd !== pwdAgain || lastConfirm !== "Proceed") {
+      alert("Password does not match or you should agree to the term");
     } else {
       const identification = {
         userId: userID,
       };
       axios.put(`${baseURL}/withdraw`, identification).then((response) => {
         if (response.data === true) {
-          alert("회원 탈퇴 완료");
+          alert("user withdraw complete");
           localStorage.setItem("USER_ID", null);
           //test
           //window.location.href = "/login";
           //publish
           window.location.href = "https://ssu-mosaic.github.io/login";
         } else {
-          alert("회원 탈퇴 실패 재시도 해주세요 ");
+          alert("withdraw failed");
         }
       });
     }
@@ -52,24 +52,24 @@ function DeleteUserInfo() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>회원탈퇴</span>
+        <span>Withdraw</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/user/info`}>
-          <input type="button" value="회원정보" />
+          <input type="button" value="Profile" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
-        <div className={styles.screenPage_title}>회원탈퇴</div>
+        <div className={styles.screenPage_title}>Withdraw</div>
         <div className={pwStyles.userInfoBox}>
           <form onSubmit={onDeleteSubmit}>
             <div className={pwStyles.userInfoBox__row}>
-              <div className={pwStyles.userInfoBox__title}>비밀번호 : </div>
+              <div className={pwStyles.userInfoBox__title}>Password : </div>
               <input type="password" onChange={onPwdChange} required />
             </div>
             <div className={pwStyles.userInfoBox__row}>
               <div className={pwStyles.userInfoBox__title}>
-                비밀번호 재확인:
+                Password rewrite :
               </div>
               <input type="password" onChange={onPwdAgainChange} required />
             </div>
@@ -77,17 +77,17 @@ function DeleteUserInfo() {
               <div
                 className={`${pwStyles.userInfoBox__title} ${pwStyles.alertMessage}`}
               >
-                회원 탈퇴시 모든 정보가 삭제 되며 복구될 수 없음을
+                All Data will be deleted permanently and cannot be restored ==
               </div>
               <input
                 type="text"
-                placeholder="확인했습니다"
+                placeholder="Proceed"
                 onChange={onConfirmChange}
                 className={pwStyles.alertMessage}
                 required
               />
             </div>
-            <input type="submit" value="탈퇴요청" className={pwStyles.button} />
+            <input type="submit" value="Withdraw" className={pwStyles.button} />
           </form>
         </div>
       </div>

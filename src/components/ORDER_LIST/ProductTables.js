@@ -15,11 +15,11 @@ function ProductTables({
 }) {
   let orderStatusKor = "";
   if (orderStatus === "CANCELED") {
-    orderStatusKor = "취소완료";
+    orderStatusKor = "CANCELED";
   } else if (orderStatus === "COMPLETED") {
-    orderStatusKor = "완료";
+    orderStatusKor = "COMPLETED";
   } else {
-    orderStatusKor = "발주진행중";
+    orderStatusKor = "ONPROGRESS";
   }
 
   return (

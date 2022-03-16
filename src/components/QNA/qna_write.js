@@ -34,13 +34,13 @@ function QnaWrite() {
     event.preventDefault();
     axios.post(`${baseURL}/qna/write`, newQna).then((response) => {
       if (response.data !== null) {
-        alert("문의 접수 완료");
+        alert("submitted");
         //test
         //window.location.href = `/qna/${response.data}`;
         //publish
         window.location.href = `https://ssu-mosaic.github.io/qna/${response.data}`;
       } else {
-        alert("문의 접수 실패");
+        alert("submit failed");
       }
     });
   };
@@ -50,16 +50,16 @@ function QnaWrite() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>문의상세</span>
+        <span>Inquiry Details</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={`/qna`}>
-          <input type="button" value="문의목록" />
+          <input type="button" value="Inquiry Menu" />
         </Link>
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>문의상세</span>
+          <span>Inquiry Details</span>
         </div>
         <div>
           <form onSubmit={onFormSubmit}>
@@ -69,13 +69,13 @@ function QnaWrite() {
                   type="text"
                   onChange={handleEditFormChange}
                   required
-                  placeholder="문의 제목을 입력하세요"
+                  placeholder="Inquiry Title"
                   name="inquiryTitle"
                   className={QnaStyles.qnaTitle}
                 />
               </div>
               <div className={QnaStyles.qnaBox__row}>
-                <div className={QnaStyles.qnaBox__row_title}>문의 내용</div>
+                <div className={QnaStyles.qnaBox__row_title}>Inquiry</div>
                 <textarea
                   type="text"
                   onChange={handleEditFormChange}
@@ -86,13 +86,13 @@ function QnaWrite() {
               </div>
               <input
                 type="submit"
-                value="작성 완료"
+                value="Submit"
                 className={QnaStyles.qnaEditButton}
               />
               <Link to={`/qna`}>
                 <input
                   type="button"
-                  value="작성 취소"
+                  value="Cancel"
                   className={QnaStyles.qnaEditButton}
                 />
               </Link>

@@ -62,10 +62,10 @@ function JeanJoin() {
   const onPwCheckClick = () => {
     if (userPw === userPwRe) {
       setPwValid(true);
-      alert("비밀번호 일치확인");
+      alert("pw match confirmed");
     } else {
       setPwValid(false);
-      alert("비밀번호 불일치");
+      alert("pw error");
     }
   };
   const onBusinessNoChange = (event) => {
@@ -99,14 +99,14 @@ function JeanJoin() {
     //reset
     newAccountData = resetAccountData;
     if (pwValid === true) {
-      alert("가입 완료 로그인 화면으로 갈게요");
+      alert("register complete");
 
       //test
       //window.location.href = "/login";
       //publish
       window.location.href = "https://ssu-mosaic.github.io/login";
     } else {
-      alert("가입 실패 비밀번호 등을 살펴보세요 ");
+      alert("register failed ");
     }
   };
 

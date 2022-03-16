@@ -15,33 +15,33 @@ function ReadUserInfo({
     <div className={styles.userInfoBox}>
       <ul className={styles.userInfoList}>
         <li>
-          <div>아이디 : </div>
+          <div>ID : </div>
           <div className={styles.userInfoList__readonly}>{userId}</div>
         </li>
         <li>
-          <div>비밀번호 : </div>
+          <div>PW : </div>
           <div className={styles.userInfoList__readonly}>
             {blind.repeat(userPwd.length)}
           </div>
         </li>
         <li>
-          <div>이름 : </div>
+          <div>Name : </div>
           <div className={styles.userInfoList__readonly}>{userName}</div>
         </li>
         <li>
-          <div>주소 : </div>
+          <div>Address : </div>
           <div className={styles.userInfoList__readonly}>{userAddress}</div>
         </li>
         <li>
-          <div>전화번호 : </div>
+          <div>Phone No : </div>
           <div className={styles.userInfoList__readonly}>{userPhoneNo}</div>
         </li>
         <li>
-          <div>사업자번호 : </div>
+          <div>Business No : </div>
           <div className={styles.userInfoList__readonly}>{userBusinessNo}</div>
         </li>
         <li>
-          <div>이메일 : </div>
+          <div>Email : </div>
           <div className={styles.userInfoList__readonly}>{userEmail}</div>
         </li>
       </ul>

@@ -117,9 +117,9 @@ function RetailerListTable() {
       .put(`${baseURL}/retailer/edit/${rowId}`, editedForm)
       .then((response) => {
         if (response.data === true) {
-          alert("거래처 정보 수정 완료");
+          alert("Edited");
         } else {
-          alert("거래처 정보 수정 실패 재시도 해주세요");
+          alert("edit Canceled");
         }
       });
 
@@ -150,9 +150,9 @@ function RetailerListTable() {
     // }
     axios.put(`${baseURL}/retailer/${rowId}`, deleteForm).then((response) => {
       if (response.data === true) {
-        alert("거래처 정보 삭제 완료");
+        alert("Deleted");
       } else {
-        alert("거래처 정보 삭제 실패 재시도 해주세요");
+        alert("delete Failed");
       }
     });
 
@@ -166,19 +166,19 @@ function RetailerListTable() {
   return (
     <div>
       {loading || table.length === 0 ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <Fragment>
           <form onSubmit={handleEditFormSubmit}>
             <table className={styles.screenPage__searchResultTable}>
               <thead>
                 <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>거래처 이름</th>
-                  <th>거래처 연락처</th>
-                  <th>거래처 이메일</th>
-                  <th>거래처 메모</th>
-                  <th>수정</th>
-                  <th>삭제</th>
+                  <th>Retailer Name</th>
+                  <th>Phone No</th>
+                  <th>Email</th>
+                  <th>Description</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
 

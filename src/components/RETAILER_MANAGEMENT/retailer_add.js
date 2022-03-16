@@ -69,13 +69,13 @@ function RetailerAdd() {
 
     axios.post(`${baseURL}/retailer/add`, newRetailerData).then((response) => {
       if (response.data !== null) {
-        alert("거래처 등록 완료");
+        alert("added");
         //test
         //window.location.href = "/order/retailer";
         //publish
         window.location.href = "https://ssu-mosaic.github.io/order/retailer";
       } else {
-        alert("거래처 등록 실패 재시도 해주세요 ");
+        alert("add failed ");
       }
     });
 
@@ -87,16 +87,16 @@ function RetailerAdd() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>거래처등록</span>
+        <span>Add Retailer</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <Link to={"/order/retailer"}>
-          <input type="button" value="거래처목록" />
+          <input type="button" value="Retailer Menu" />
         </Link>
       </div>
       <div className={styles.screenPage__searchBox}>
         <div className={styles.screenPage_title}>
-          <span>거래처정보입력</span>
+          <span>Retailer Detail</span>
         </div>
         <form onSubmit={onSubmit}>
           <div
@@ -104,7 +104,7 @@ function RetailerAdd() {
           >
             <div className={styles.screenPage__section_column}>
               <div className={styles.screenPage__searchOption}>
-                <label for="retailerName">거래처이름 </label>
+                <label for="retailerName">Retailer Name </label>
                 <input
                   type="text"
                   name="retailerName"
@@ -115,7 +115,7 @@ function RetailerAdd() {
             </div>
             <div className={styles.screenPage__section_column}>
               <div className={styles.screenPage__searchOption}>
-                <label for="retailerEmail">거래처이메일 </label>
+                <label for="retailerEmail">Email </label>
                 <input
                   type="text"
                   name="retailerEmail"
@@ -124,7 +124,7 @@ function RetailerAdd() {
                 />
               </div>
               <div className={styles.screenPage__searchOption}>
-                <label for="retailerPhoneNo">거래처연락처 </label>
+                <label for="retailerPhoneNo">Phone No </label>
                 <input
                   type="text"
                   name="retailerPhoneNo"
@@ -135,7 +135,7 @@ function RetailerAdd() {
             </div>
             <div className={styles.screenPage__section_column}>
               <div className={styles.screenPage__searchOption}>
-                <label for="retailerDetail">메모 </label>
+                <label for="retailerDetail">Description </label>
                 <textarea
                   name="retailerDetail"
                   onChange={onRetailerMemoChange}
@@ -145,7 +145,7 @@ function RetailerAdd() {
             </div>
           </div>
           <div className={styles.screenPage__section_row}>
-            <input type="submit" value="등록" />
+            <input type="submit" value="Add" />
           </div>
         </form>
       </div>

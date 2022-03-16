@@ -82,9 +82,9 @@ function Detail() {
       .post(`${baseURL}/admin/qna/${id}/answer`, qnaDetails)
       .then((response) => {
         if (response.data === true) {
-          alert("문의 내역 답변 완료");
+          alert("answer Complete");
         } else {
-          alert("문의 내역 답변 실패");
+          alert("answer failed");
         }
       });
   };
@@ -95,9 +95,9 @@ function Detail() {
       .put(`${baseURL}/admin/qna/${id}/answer`, qnaDetails)
       .then((response) => {
         if (response.data === true) {
-          alert("문의 내역 답변 수정 완료");
+          alert("answer edited");
         } else {
-          alert("문의 내역 답변 수정 실패");
+          alert("answer edit failed");
         }
       });
   };
@@ -107,18 +107,18 @@ function Detail() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>문의상세</span>
+        <span>Inquiry Detail</span>
       </div>
       <div className={styles.screenPage__nextButton}>
         <input
           type="button"
-          value="문의답변"
+          value="Answer"
           disabled={qnaEdit || qnaWrite || qnaDetails.inquiryAnswer !== null}
           onClick={onQnaWriteClick}
         />
         <input
           type="button"
-          value="답변수정"
+          value="Edit"
           disabled={qnaEdit || qnaWrite}
           onClick={onQnaEditClick}
         />
@@ -126,11 +126,11 @@ function Detail() {
 
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>문의상세</span>
+          <span>Inquiry Detail</span>
         </div>
         <div>
           {loading ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : (
             <Fragment>
               {qnaEdit ? (

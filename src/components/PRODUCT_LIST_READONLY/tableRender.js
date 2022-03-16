@@ -118,10 +118,10 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
     axios.post(`${baseURL}/order/cart/add`, sendForm).then((response) => {
       if (response.data !== null) {
         alert(
-          `물품 :${orderFormData.productName} \n수량:${orderFormData.productCnt} ${orderFormData.productUnit}\n장바구니 추가 성공`
+          `Product :${orderFormData.productName} \nCount:${orderFormData.productCnt} ${orderFormData.productUnit}\nAdded To Cart`
         );
       } else {
-        alert("장바구니 추가 실패 재시도 해주세요");
+        alert("failed to add cart");
       }
     });
 
@@ -143,18 +143,18 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
   return (
     <div>
       {loading || tables.length === 0 ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <Fragment>
           <form onSubmit={handleEditFormSubmit}>
             <table className={styles.screenPage__searchResultTable}>
               <thead>
                 <tr className={styles.screenPage__searchResultTable_header}>
-                  <th>상품 이름</th>
-                  <th>상품 가격</th>
-                  <th>상품 단위</th>
-                  <th>상품 설명</th>
-                  <th>장바구니에 담기</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Unit</th>
+                  <th>Description</th>
+                  <th>Add to Cart</th>
                 </tr>
               </thead>
 

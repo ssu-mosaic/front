@@ -41,9 +41,10 @@ function Login() {
         localStorage.setItem("USER_ID", USER_ID);
         alert(`환영해요 ${userId}`);
         //test
-        window.location.href = "/admin/inquiry";
+        //window.location.href = "/admin/inquiry";
         //when real
-        //window.location.href = "https://ssu-mosaic.github.io/front/admin/inquiry";
+        window.location.href =
+          "https://ssu-mosaic.github.io/front/admin/inquiry";
         // should put real https addr
       } else {
         alert("잘못된 아이디 또는 비밀번호입니다");

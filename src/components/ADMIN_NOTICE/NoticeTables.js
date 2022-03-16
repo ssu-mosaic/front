@@ -14,7 +14,7 @@ function QnaTables({ noticeId, noticeTitle, noticeDate, noticeEditDate }) {
       <td>{noticeDate.slice(0, 10)}</td>
       <td>
         {noticeEditDate.length < 1
-          ? "수정내역 없음"
+          ? "This Notice is not edited"
           : `${noticeEditDate.slice(0, 10)}`}
       </td>
     </tr>

@@ -105,16 +105,16 @@ function JeanLogin() {
           </div>
         </form>
         <div className={jeanStyles.caption}>
-          <Link to={"/login/makeaccount"}> 회원가입</Link>
+          <Link to={"/login/makeaccount"}> Register</Link>
         </div>
-        <div className={jeanStyles.caption}>
+        {/* <div className={jeanStyles.caption}>
           <Link to={"/login/findid"}> ID 찾기</Link>
         </div>
         <div className={jeanStyles.caption}>
           <Link to={"/login/findpwd"}> PW 찾기</Link>
-        </div>
+        </div> */}
         <div className={jeanStyles.caption}>
-          <Link to={"/admin/login"}> 관리자모드</Link>
+          <Link to={"/admin/login"}> Administer</Link>
         </div>
       </section>
     </div>

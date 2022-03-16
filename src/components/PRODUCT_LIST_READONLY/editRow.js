@@ -28,7 +28,7 @@ function EditRow({
           required
           min="1"
           name="productCnt"
-          placeholder={`수량(${productUnit})입력`}
+          placeholder={`Count(${productUnit})`}
           value={orderFormData.productCnt}
           onChange={handleEditFormChange}
         />

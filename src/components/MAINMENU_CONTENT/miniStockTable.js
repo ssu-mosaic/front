@@ -7,14 +7,14 @@ function MiniStock(miniStock) {
 
   return (
     <Fragment>
-      <div className={tableStyles.miniMenu_title}>5대 최소잔여 재고</div>
+      <div className={tableStyles.miniMenu_title}>5 Least Stock</div>
       <table className={tableStyles.miniTable}>
         <thead>
           <tr className={tableStyles.miniTable_header}>
-            <th>물품 이름</th>
-            <th>거래처 이름</th>
-            <th>잔여 수량</th>
-            <th>물품 단위</th>
+            <th>product</th>
+            <th>retailer</th>
+            <th>count</th>
+            <th>unit</th>
           </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@ function MiniStock(miniStock) {
                 <td>{table.productName}</td>
                 <td>
                   {table.retailerName === null
-                    ? "본인 입력"
+                    ? "Written Manually"
                     : `${table.retailerName}`}
                 </td>
                 <td>{table.productCnt}</td>

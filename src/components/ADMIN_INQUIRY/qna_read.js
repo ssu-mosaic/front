@@ -8,13 +8,13 @@ function QnaRead({ inquiryTitle, inquiryContent, inquiryAnswer }) {
         <div className={styles.qnaTitle}>{`${inquiryTitle}`}</div>
       </div>
       <div className={styles.qnaBox__row}>
-        <div className={styles.qnaBox__row_title}>문의 내용</div>
+        <div className={styles.qnaBox__row_title}>Inquiry</div>
         <div className={styles.qnaContent}>{`${inquiryContent}`}</div>
       </div>
       <div className={styles.qnaBox__row}>
-        <div className={styles.qnaBox__row_title}>답변 내용</div>
+        <div className={styles.qnaBox__row_title}>Answer</div>
         <div className={styles.qnaContent}>
-          {inquiryAnswer === null ? "답변 대기 중입니다" : `${inquiryAnswer}`}
+          {inquiryAnswer === null ? "Waiting for Answer" : `${inquiryAnswer}`}
         </div>
       </div>
     </div>

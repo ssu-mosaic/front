@@ -65,14 +65,14 @@ function NoticeList() {
     event.preventDefault();
     axios.post(`${baseURL}/admin/notice`, newFormData).then((response) => {
       if (response.data !== null) {
-        alert("공지 작성 완료");
+        alert("Notice submitted");
         //when publish
         window.location.href =
           "https://ssu-mosaic.github.io/front/admin/notice";
         //when test
         //window.location.href = "/admin/notice";
       } else {
-        alert("공지 작성 실패 재시도 해주세요");
+        alert("Notice submit failed");
       }
     });
   };
@@ -86,14 +86,14 @@ function NoticeList() {
       className={`${contentStyles.screenPage__content} ${contentStyles.screenPage__content_box}`}
     >
       <div className={styles.screenPage__searchItem}>
-        <span>공지사항</span>
+        <span>Notice</span>
       </div>
       <div className={styles.screenPage__nextButton}>
-        <input type="button" value="공지추가" onClick={onNoticeAdd} />
+        <input type="button" value="Add Notice" onClick={onNoticeAdd} />
       </div>
       <div className={styles.screenPage__searchResult}>
         <div className={styles.screenPage_title}>
-          <span>{noticeAdd ? "새 공지" : "공지목록"}</span>
+          <span>{noticeAdd ? "New Notice" : "Notice"}</span>
         </div>
         <div>
           {noticeAdd ? (
@@ -104,7 +104,7 @@ function NoticeList() {
               onSubmitEditForm={onSubmitEditForm}
             />
           ) : loading || noticeTable.length === 0 ? (
-            <strong>로딩중...</strong>
+            <strong>loading...</strong>
           ) : (
             <Fragment>
               <table className={tableStyles.screenPage__searchResultTable}>
@@ -112,9 +112,9 @@ function NoticeList() {
                   <tr
                     className={tableStyles.screenPage__searchResultTable_header}
                   >
-                    <th>공지 제목</th>
-                    <th>공지일</th>
-                    <th>최종수정일</th>
+                    <th>Notice Title</th>
+                    <th>Notice Date</th>
+                    <th>Last Written</th>
                   </tr>
                 </thead>
                 <tbody className={tableStyles.testTable__tbody}>
