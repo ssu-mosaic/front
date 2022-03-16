@@ -49,17 +49,17 @@ function App() {
   const customerCenterElements = [
     {
       id: "noticeList",
-      name: "공지사항",
+      name: "Notice",
       link: "/notice",
     },
     {
       id: "qnaList",
-      name: "문의목록",
+      name: "QNA",
       link: "/qna",
     },
     {
       id: "qnaWrite",
-      name: "문의작성",
+      name: "Write Inquiry",
       link: "/qna/write",
     },
   ];
@@ -67,17 +67,17 @@ function App() {
   const userMenuElements = [
     {
       id: "showEditUserInfo",
-      name: "회원정보",
+      name: "Profile",
       link: "/user/info",
     },
     {
       id: "changeUserPwd",
-      name: "비밀번호 수정",
+      name: "Change Password",
       link: "/user/changepwd",
     },
     {
       id: "deleteUserInfo",
-      name: "회원탈퇴",
+      name: "Withdraw",
       link: "/user/delete",
     },
   ];
@@ -85,22 +85,22 @@ function App() {
   const orderSideMenuElements = [
     {
       id: "searchitem",
-      name: "거래처등록",
+      name: "Add Retailer",
       link: "/order/retailer/add",
     },
     {
       id: "confirmitem",
-      name: "거래처목록",
+      name: "Retailer",
       link: "/order/retailer",
     },
     {
       id: "requestorder",
-      name: "발주요청",
+      name: "Order",
       link: "/order/requestorder",
     },
     {
       id: "searchorder",
-      name: "발주조회",
+      name: "Order List",
       link: "/order/searchorder",
     },
   ];
@@ -108,35 +108,38 @@ function App() {
   const stockSideMenuElements = [
     {
       id: "stockadd",
-      name: "재고등록",
+      name: "Add Stock",
       link: "/stock/add",
     },
     {
       id: "stockedit",
-      name: "재고목록",
+      name: "Stock List",
       link: "/stock/edit",
     },
   ];
 
   const adminNoticeSideMenuElements = [
     {
-      id: "ansInquiry",
-      name: "공지목록",
+      id: "writeNotice",
+      name: "Notice",
       link: "/admin/notice",
     },
     {
       id: "ansInquiry",
-      name: "문의답변",
+      name: "Answer Inquiry",
       link: "/admin/inquiry",
     },
   ];
 
-  const homeMenuObj = sideMenuObj("홈", []);
-  const orderMenuObj = sideMenuObj("발주관리", orderSideMenuElements);
-  const stockMenuObj = sideMenuObj("재고관리", stockSideMenuElements);
-  const userMenuObj = sideMenuObj("회원정보", userMenuElements);
-  const customerCenterObj = sideMenuObj("고객센터", customerCenterElements);
-  const adminObj = sideMenuObj("관리", adminNoticeSideMenuElements);
+  const homeMenuObj = sideMenuObj("Home", []);
+  const orderMenuObj = sideMenuObj("Order", orderSideMenuElements);
+  const stockMenuObj = sideMenuObj("Stock", stockSideMenuElements);
+  const userMenuObj = sideMenuObj("Profile", userMenuElements);
+  const customerCenterObj = sideMenuObj(
+    "Customer Center",
+    customerCenterElements
+  );
+  const adminObj = sideMenuObj("Management", adminNoticeSideMenuElements);
   return (
     <Router>
       <Switch>

@@ -110,7 +110,7 @@ function ShowEditUserInfo() {
               <strong>loading...</strong>
             ) : (
               <Fragment>
-                <span>회원정보</span>
+                <span>Profile</span>
                 {editData ? (
                   <EditUserInfo
                     userId={newUserData.userId}
