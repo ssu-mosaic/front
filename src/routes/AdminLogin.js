@@ -39,15 +39,15 @@ function Login() {
       if (response.data === true) {
         USER_ID = userId;
         localStorage.setItem("USER_ID", USER_ID);
-        alert(`환영해요 ${userId}`);
+        alert(`welcome ${userId}`);
         //test
-        //window.location.href = "/admin/inquiry";
+        window.location.href = "/admin/inquiry";
         //when real
-        window.location.href =
-          "https://ssu-mosaic.github.io/front/admin/inquiry";
+        // window.location.href =
+        //   "https://ssu-mosaic.github.io/front/admin/inquiry";
         // should put real https addr
       } else {
-        alert("잘못된 아이디 또는 비밀번호입니다");
+        alert("wrong ID or Password");
       }
       //setData(response.data);
       //console.log(`서버로 보낸 데이터 : ${data}`);
@@ -68,14 +68,14 @@ function Login() {
             <input
               name="username"
               type="text"
-              placeholder="관리자 아이디 입력"
+              placeholder="Admin ID"
               onChange={onIdChange}
               required="required"
             />
             <input
               name="password"
               type="password"
-              placeholder="관리자 비밀번호 입력"
+              placeholder="Admin PW"
               onChange={onPwChange}
               required="required"
             />
@@ -84,14 +84,14 @@ function Login() {
             <div className={styles.loginBox__loginOption_auto}>
               <Link to={"/login"}>
                 <div className={styles.loginBox__lostIDPW}>
-                  {">> 유저모드로 돌아가기"}
+                  {">> user mode"}
                 </div>
               </Link>
 
               {/* <input type="checkbox" name="auto-login" checked/>
                             <label for="auto-login">자동 로그인</label>   */}
             </div>
-            <input type="submit" value="로그인" />
+            <input type="submit" value="Login" />
           </div>
         </form>
       </div>

@@ -40,10 +40,14 @@ function Tables({ orderId, orderDate, orderProducts, onOrderDetailClick }) {
             {orderProducts.length > 2 ? "etc " : ""}
             {`contains ${orderProducts.length} products`}
           </td>
-          <td key={"orderProgress_td"}>{`${(
-            (orderComplete / (orderTotal - orderCanceled)) *
-            100
-          ).toFixed(1)} %`}</td>
+          <td key={"orderProgress_td"}>
+            {orderTotal - orderCanceled === 0
+              ? `CANCELED`
+              : `${(
+                  (orderComplete / (orderTotal - orderCanceled)) *
+                  100
+                ).toFixed(1)} %`}
+          </td>
         </tr>
       </Fragment>
     );

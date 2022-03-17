@@ -14,7 +14,7 @@ function MenuBar() {
   return (
     <div className={styles.menuBar}>
       <div className={styles.menuBar__column}>
-        <Link to={`/`}>
+        <Link to={`/admin/notice`}>
           {" "}
           <img
             src={logo}
