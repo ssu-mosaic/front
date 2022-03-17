@@ -107,7 +107,7 @@ function OrderList() {
       .then((response) => {
         if (response.data === true) {
           alert("fetch confirmed");
-          alert("order canceled");
+
           //test
           window.location.href = "/order/searchorder";
           //publish

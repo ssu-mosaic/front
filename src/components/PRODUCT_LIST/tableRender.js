@@ -153,7 +153,7 @@ function ProductListTable({ retailerId, onProductDetailClick }) {
   return (
     <div>
       {loading || table.length === 0 ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <Fragment>
           <form onSubmit={handleEditFormSubmit}>
