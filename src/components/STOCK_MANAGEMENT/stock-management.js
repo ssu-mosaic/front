@@ -67,9 +67,9 @@ function StockManagement() {
       if (response.data !== null) {
         alert("added");
         //test
-        //window.location.href = "/stock/edit";
+        window.location.href = "/stock/edit";
         //publish
-        window.location.href = "https://ssu-mosaic.github.io/stock/edit";
+        //window.location.href = "https://ssu-mosaic.github.io/stock/edit";
       } else {
         alert("add failed");
       }

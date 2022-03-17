@@ -36,9 +36,9 @@ function QnaWrite() {
       if (response.data !== null) {
         alert("submitted");
         //test
-        //window.location.href = `/qna/${response.data}`;
+        window.location.href = `/qna/${response.data}`;
         //publish
-        window.location.href = `https://ssu-mosaic.github.io/qna/${response.data}`;
+        //window.location.href = `https://ssu-mosaic.github.io/qna/${response.data}`;
       } else {
         alert("submit failed");
       }

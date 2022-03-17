@@ -81,10 +81,10 @@ function Detail() {
         if (response.data === true) {
           alert("Notice deleted");
           //when publish
-          window.location.href =
-            "https://ssu-mosaic.github.io/front/admin/notice";
+          // window.location.href =
+          //   "https://ssu-mosaic.github.io/front/admin/notice";
           //when test
-          //window.location.href = "/admin/notice";
+          window.location.href = "/admin/notice";
         } else {
           alert("Notice delete failed");
         }

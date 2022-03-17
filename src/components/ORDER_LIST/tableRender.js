@@ -73,9 +73,9 @@ function OrderList() {
       if (response.data === true) {
         alert("order canceled");
         //test
-        //window.location.href = "/order/searchorder";
+        window.location.href = "/order/searchorder";
         //publish
-        window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
+        //window.location.href = "https://ssu-mosaic.github.io/order/searchorder";
       } else {
         alert("order cancel failed");
       }
@@ -109,10 +109,10 @@ function OrderList() {
           alert("fetch confirmed");
           alert("order canceled");
           //test
-          //window.location.href = "/order/searchorder";
+          window.location.href = "/order/searchorder";
           //publish
-          window.location.href =
-            "https://ssu-mosaic.github.io/order/searchorder";
+          // window.location.href =
+          //   "https://ssu-mosaic.github.io/order/searchorder";
         } else {
           alert("fetch failed");
         }

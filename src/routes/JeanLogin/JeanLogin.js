@@ -65,9 +65,9 @@ function JeanLogin() {
         alert(`환영해요 ${userId}`);
         newLoginData = resetLoginData;
         //when publish
-        window.location.href = "https://ssu-mosaic.github.io/front";
+        //window.location.href = "https://ssu-mosaic.github.io/front";
         //when test
-        //window.location.href = "/";
+        window.location.href = "/";
       } else {
         alert("없는 아이디거나 비밀번호가 틀렸어요");
       }

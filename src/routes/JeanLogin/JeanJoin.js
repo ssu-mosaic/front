@@ -102,9 +102,9 @@ function JeanJoin() {
       alert("register complete");
 
       //test
-      //window.location.href = "/login";
+      window.location.href = "/login";
       //publish
-      window.location.href = "https://ssu-mosaic.github.io/login";
+      //window.location.href = "https://ssu-mosaic.github.io/login";
     } else {
       alert("register failed ");
     }

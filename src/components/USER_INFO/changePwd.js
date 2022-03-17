@@ -39,9 +39,9 @@ function ChangeUserPwd() {
           if (response.data === true) {
             alert("PW edited");
             //test
-            //window.location.href = "/user/info";
+            window.location.href = "/user/info";
             //publish
-            window.location.href = "https://ssu-mosaic.github.io/user/info";
+            //window.location.href = "https://ssu-mosaic.github.io/user/info";
           } else {
             alert("edit failed ");
           }

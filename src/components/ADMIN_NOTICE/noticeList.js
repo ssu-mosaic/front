@@ -67,10 +67,10 @@ function NoticeList() {
       if (response.data !== null) {
         alert("Notice submitted");
         //when publish
-        window.location.href =
-          "https://ssu-mosaic.github.io/front/admin/notice";
+        // window.location.href =
+        //   "https://ssu-mosaic.github.io/front/admin/notice";
         //when test
-        //window.location.href = "/admin/notice";
+        window.location.href = "/admin/notice";
       } else {
         alert("Notice submit failed");
       }

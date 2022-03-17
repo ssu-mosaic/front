@@ -71,9 +71,9 @@ function RetailerAdd() {
       if (response.data !== null) {
         alert("added");
         //test
-        //window.location.href = "/order/retailer";
+        window.location.href = "/order/retailer";
         //publish
-        window.location.href = "https://ssu-mosaic.github.io/order/retailer";
+        //window.location.href = "https://ssu-mosaic.github.io/order/retailer";
       } else {
         alert("add failed ");
       }

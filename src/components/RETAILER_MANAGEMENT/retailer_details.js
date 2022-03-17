@@ -154,9 +154,9 @@ function Detail() {
         if (response.data !== null) {
           alert("Added");
           //test
-          //window.location.href = `/order/retailer/${id}`;
+          window.location.href = `/order/retailer/${id}`;
           //publish
-          window.location.href = `https://ssu-mosaic.github.io/order/retailer/${id}`;
+          //window.location.href = `https://ssu-mosaic.github.io/order/retailer/${id}`;
         } else {
           alert("Add failed");
         }
