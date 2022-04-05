@@ -139,7 +139,7 @@ function OrderList() {
   return (
     <div>
       {loading || tables.length === 0 ? (
-        <strong>로딩중...</strong>
+        <strong>loading...</strong>
       ) : (
         <Fragment>
           {orderDetail === false ? (
