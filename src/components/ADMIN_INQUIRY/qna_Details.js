@@ -12,7 +12,7 @@ import QnaWrite from "./qna_ans_write";
 
 function Detail() {
   const baseURL =
-    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
 
   const { id } = useParams();
   //while testing loading : false

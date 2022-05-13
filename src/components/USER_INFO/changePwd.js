@@ -8,7 +8,7 @@ import axios from "axios";
 let userID = localStorage.getItem("USER_ID");
 function ChangeUserPwd() {
   const baseURL =
-    "http://ec2-3-39-21-95.ap-northeast-2.compute.amazonaws.com:8080";
+    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
 
   const [newPwd, setNewPwd] = useState("");
   const [newPwdAgain, setNewPwdAgain] = useState("");
