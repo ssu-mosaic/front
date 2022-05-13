@@ -13,7 +13,7 @@ let userID = localStorage.getItem("USER_ID");
 
 function Detail() {
   const baseURL =
-    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
+    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com:8080";
 
   const { id } = useParams();
   //while testing loading : false

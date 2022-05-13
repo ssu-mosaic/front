@@ -12,7 +12,7 @@ import NoticeTables from "./NoticeTables";
 
 function NoticeList() {
   const baseURL =
-    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
+    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com:8080";
 
   //while testing loading : false
   const [loading, setLoading] = useState(true);

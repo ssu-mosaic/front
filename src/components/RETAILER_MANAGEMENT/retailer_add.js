@@ -9,7 +9,7 @@ const userID = localStorage.getItem("USER_ID");
 
 function RetailerAdd() {
   const baseURL =
-    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
+    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com:8080";
 
   let newRetailerData = {
     userId: "",

@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 
-const baseURL = "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
+const baseURL =
+  "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com:8080";
 
 let USER_ID = "";
 //let loginValid = false;

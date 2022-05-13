@@ -5,7 +5,7 @@ import axios from "axios";
 
 function JeanForgetPw() {
   const baseURL =
-    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
+    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com:8080";
 
   let newSearchData = {
     userEmail: "",

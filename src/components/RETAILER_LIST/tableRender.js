@@ -14,7 +14,7 @@ let userID = localStorage.getItem("USER_ID");
 //거래처목록
 function RetailerListTable() {
   const baseURL =
-    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com";
+    "http://ec2-54-180-8-119.ap-northeast-2.compute.amazonaws.com:8080";
 
   // If purpose for testing without server useState(false)
   const [loading, setLoading] = useState(true);
